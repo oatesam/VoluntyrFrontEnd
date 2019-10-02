@@ -7,8 +7,10 @@ import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
+  {path: 'login', component: LoginComponent},
+
+  //PageNotFound should always be last in routing, otherwise it will overtake others
   { path: '**', component: PageNotFoundComponent },
-  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
