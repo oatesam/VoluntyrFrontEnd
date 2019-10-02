@@ -1,5 +1,22 @@
+div.emailinput{
+  margin-right: auto;
+  margin-left: auto;
+  position: center;
+  width: 80%;
+  padding: 16px;
+}
 
+input {
+  background-color: #1976d2;
+  width: 80%;
+  font-size: 24px;
+  display:block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align:center;
+}
 
-h1{
+h1, h2{
   text-align: center;
 }
+
