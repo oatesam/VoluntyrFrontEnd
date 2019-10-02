@@ -1,12 +1,33 @@
-h3 {
-  display: inline;
-}
-
-body{
-  background-color: #9E9E9E;
-}
-
 div{
   position:center;
-  text-align: center;
+
+}
+
+div.navtext{
+  height: 50px;
+  background-color: #1976d2;
+  padding: 16px;
+}
+
+#block_container
+{
+    text-align:center;
+}
+
+.leftnav{
+  float:left;
+}
+
+.rightnav{
+  float:right;
+}
+
+a {
+  color: white;
+  margin: 0;
+  text-decoration: none;
+}
+
+a.rightnav{
+  padding-left:7px;
 }

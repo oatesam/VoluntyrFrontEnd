@@ -1,4 +1,14 @@
-body{
-  background-color: #696969;
+.responsive{
+  width: 60%;
+  height: auto;
+  margin-right:auto;
+  margin-left:auto;
+  display: block;
 }
 
+div.center_content{
+  background-color:white;
+  width:60%;
+  margin-right:auto;
+  margin-left:auto;
+}
