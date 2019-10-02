@@ -122,8 +122,5 @@
       }
     }
   },
-  "defaultProject": "voluntyrFrontend",
-  "cli": {
-    "defaultCollection": "@ngrx/schematics"
-  }
+  "defaultProject": "voluntyrFrontend"
 }

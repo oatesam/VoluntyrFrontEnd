@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
+import {AccountsService} from '../_helpers/accounts.service';
 
 @Component({
   selector: 'app-email-input',
@@ -8,6 +9,11 @@ import { FormControl } from "@angular/forms";
 })
 export class EmailInputComponent{
 
+  constructor(private accountService: AccountsService) {
+    this.verifyEmail()
+  }
+
+
   email = new FormControl('');
 
   getEmail() {
@@ -15,6 +21,10 @@ export class EmailInputComponent{
   }
 
   verifyEmail() {
-
+    this.accountService.checkEmail("testorgemail@gmail.com").subscribe(
+      resp => {
+        console.log(resp.status);
+      }
+    );
   }
 }
