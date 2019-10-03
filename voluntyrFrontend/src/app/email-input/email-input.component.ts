@@ -21,7 +21,7 @@ export class EmailInputComponent{
   }
 
   verifyEmail() {
-    this.accountService.checkEmail("testorgemail@gmail.com").subscribe(
+    this.accountService.checkEmail("email").subscribe(
       resp => {
         console.log(resp.status);
       }
