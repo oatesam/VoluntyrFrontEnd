@@ -6,17 +6,14 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class EventsService {
-  private baseurl = "http://localhost:8000/api/events";
+  private baseurl = "http://localhost:8000/api/events/";
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: ` Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTcwMTU1Nzg0LCJqdGkiOiI5YzRhMTEzZmQ4ZDI0YWQ0YjIwZmE5NWQyYjVhODhmZCIsInVzZXJfaWQiOjIsInNjb3BlIjoib3JnYW5pemF0aW9uIn0.OEhdlNF4I34rlXudT0bebX3NJ2SGWmfPn3SlgUhtcqU`
+      Authorization: ` Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTcwMzQxMzU2LCJqdGkiOiIzMDQxNjkyYjYwNzU0NWM1OTU2OTc5ZmIwMjM2MjhjZSIsInVzZXJfaWQiOjIsInNjb3BlIjoib3JnYW5pemF0aW9uIn0.pWiDRe7zWEFc-RMOqUWfTZgT2loFvZGCXYzKcBie0cQ`
     })
   };
   getEventInfo(): Observable<event[]> {
-    return this.httpClient.get<event[]>(
-      this.baseurl + "?organization_id=2",
-      this.httpOptions
-    );
+    return this.httpClient.get<event[]>(this.baseurl, this.httpOptions);
   }
 }
