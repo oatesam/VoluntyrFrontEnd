@@ -3,9 +3,18 @@
 </button>
 
 
-
-<h3>Name</h3>
-<input type="text" [formControl]="name">
+<ng-container *ngIf="!showOrg">
+<h3>First Name</h3>
+<input type="text" [formControl]="firstname">
+<h3>Last Name</h3>
+<input type="text" [formControl]="lastname">
+  <h3> Birthday</h3>
+  <input type="text" [formControl]="birthday">
+</ng-container>
+<ng-container *ngIf="showOrg">
+  <h3> Organization Name </h3>
+  <input type="text" [formControl]="orgname">
+</ng-container>
 <h3>Email</h3>
 <input type="text" [formControl]="email">
 <h3>Password</h3>

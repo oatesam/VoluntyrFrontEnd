@@ -12,23 +12,32 @@ export class LoginComponent implements OnInit {
 
   constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) { }
 
-  email = new FormControl('');
-  password = new FormControl('');
+  email = new FormControl('testemail1@gmail.com');
+  password = new FormControl('testpassword123');
+  accesstoken : string = '';
+  refreshtoken: string = '';
 
   ngOnInit() {
   }
 
+  get Token() {
+    return this.refreshtoken;
+  }
+
   verifyLogin() {
-    this.accountService.login(this.email, this.password).subscribe(
+    console.log(this.email.value)
+    this.accountService.login(this.email.value, this.password.value).subscribe(
       resp => {
-        if (resp === 202) {
-          console.log(resp);
-          this.router.navigateByUrl('../../account');
-        } else if (resp === 401) {
-          console.log(resp);
-          this.router.navigateByUrl('');
-        }
+        console.log(resp);
+        this.accesstoken = resp['access'];
+        this.refreshtoken = resp['refresh'];
+        console.log(this.accesstoken);
+        console.log(this.refreshtoken);
+        this.router.navigateByUrl('/');
+      }, error => {
+
       }
+
     );
   }
 

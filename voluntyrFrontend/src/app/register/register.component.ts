@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {AccountsService} from '../_helpers/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -15,9 +16,12 @@ export class RegisterComponent implements OnInit {
 
   public showOrg: boolean = false;
   public buttonName: any = 'Volunteer';
-  name = new FormControl('');
-  email = new FormControl('');
-  password = new FormControl('');
+  firstname = new FormControl('Sam');
+  lastname = new FormControl('Fake');
+  email = new FormControl('samfake@gmail.com');
+  password = new FormControl('samfake');
+  birthday = new FormControl('1998-06-12')
+  orgname = new FormControl('')
   address = new FormControl('');
   phonenumber = new FormControl('');
 
@@ -34,7 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyVolunteerRegistration() {
-    this.accountService.registerVolunteer(this.name, this.email, this.password).subscribe(
+    this.accountService.registerVolunteer(this.firstname.value, this.lastname.value, this.email.value, this.password.value, this.birthday.value).subscribe(
       resp => {
         if (resp === 202) {
           console.log(resp);
@@ -48,7 +52,7 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyOrganizationRegistration() {
-    this.accountService.registerOrganization(this.name, this.email, this.password, this.address, this.phonenumber).subscribe(
+    this.accountService.registerOrganization(this.orgname.value, this.email.value, this.password.value, this.address.value, this.phonenumber.value).subscribe(
       resp => {
         if (resp === 202) {
           console.log(resp);

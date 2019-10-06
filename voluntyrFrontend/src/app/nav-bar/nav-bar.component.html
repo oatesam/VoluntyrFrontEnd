@@ -20,10 +20,17 @@
         Account
       </a>
     </div>
-    <div class =rightnav>
-      <a routerLink="email-input" class="rightnav">
-        Login
-      </a>
+    <div class ='rightnav'>
+      <ng-container *ngIf="showLogin">
+        <a routerLink="email-input" class="rightnav ">
+          Login
+        </a>
+      </ng-container>
+      <ng-container *ngIf="!showLogin">
+        <a routerLink="/" class="rightnav">
+          Logout
+        </a>
+      </ng-container>
     </div>
   </div>
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +11,9 @@ export class AccountsService {
   checkemailurl: string = 'http://localhost:8000/api/signup/checkemail/';
   orgregurl: string = 'http://localhost:8000/api/signup/organization/';
   volregurl: string = 'http://localhost:8000/api/signup/volunteer/';
-  loginurl: string = 'http://localhost:8000/api/login'
+  loginurl: string = 'http://localhost:8000/api/token/'
+  refreshtoken: string = '';
+  accesstoken: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -22,18 +23,23 @@ export class AccountsService {
 
   registerOrganization(name, email, password, address, phonenumber): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    return this.http.post(this.orgregurl, {'name': name, 'email': email, 'password': password, 'address': address, 'phonenumber': phonenumber}, { observe: 'response' });
+    let body = {'name': name, 'email': email, 'password': password, 'address': address, 'phonenumber': phonenumber};
+    console.log(body)
+    return this.http.post(this.orgregurl, body, { observe: 'response' });
   }
 
-  registerVolunteer(name, email, password): Observable<any> {
+  registerVolunteer(firstname, lastname, email, password, birthday): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    return this.http.post(this.volregurl, {'name': name, 'email': email, 'password': password}, { observe: 'response' });
+    let body = {'first_name': firstname, 'last_name': lastname, 'email': email, 'password': password, 'birthday': birthday};
+    console.log(body);
+    return this.http.post(this.volregurl, body, { observe: 'response' });
   }
 
   login(email, password): Observable<any> {
     const body = new HttpParams()
-    .set('name', name)
+    .set('email', email)
     .set('password', password);
+    console.log(body);
 
     return this.http.post(this.loginurl,
       body.toString(),
