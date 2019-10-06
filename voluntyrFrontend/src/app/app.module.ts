@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EmailInputComponent } from './email-input/email-input.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountsService } from './_helpers/accounts.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AccountsService } from './_helpers/accounts.service';
     LandingPageComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

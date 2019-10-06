@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import {AccountsService} from '../_helpers/accounts.service';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-email-input',
@@ -9,8 +10,8 @@ import {AccountsService} from '../_helpers/accounts.service';
 })
 export class EmailInputComponent{
 
-  constructor(private accountService: AccountsService) {
-    this.verifyEmail()
+  constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) {
+    this.verifyEmail();
   }
 
 
@@ -21,9 +22,15 @@ export class EmailInputComponent{
   }
 
   verifyEmail() {
-    this.accountService.checkEmail("email").subscribe(
+    this.accountService.checkEmail(this.email).subscribe(
       resp => {
-        console.log(resp.status);
+        if (resp === 204) {
+          console.log(resp);
+          this.router.navigateByUrl('../../login');
+        } else if (resp === 202) {
+          console.log(resp);
+          this.router.navigateByUrl('../../register');
+        }
       }
     );
   }

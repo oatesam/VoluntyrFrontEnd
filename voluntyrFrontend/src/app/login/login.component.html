@@ -1,3 +1,6 @@
-<div class="emailinput">
-  <app-email-input></app-email-input>
-</div>
+<h3>Email</h3>
+<input type="text" [formControl]="email">
+<h3>Password</h3>
+<input type="text" [formControl]="password">
+<h3> ---</h3>
+<button (click)="verifyLogin()">Login</button>

@@ -1,1 +1,8 @@
-<p>register works!</p>
+<h3>Name</h3>
+<input type="text" [formControl]="name">
+<h3>Email</h3>
+<input type="text" [formControl]="email">
+<h3>Password</h3>
+<input type="text" [formControl]="password">
+<h3> ---</h3>
+<button (click)="verifyRegistration()">Register</button>
