@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {AccountsService} from '../_helpers/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -10,25 +10,56 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) {
+  }
+
+  public show: boolean = false;
+  public buttonName: any = 'Volunteer';
   name = new FormControl('');
   email = new FormControl('');
   password = new FormControl('');
+  address = new FormControl('');
+  phonenumber = new FormControl('');
 
-  ngOnInit() {}
+  toggle() {
+    this.show = !this.show;
+    if (this.show) {
+      this.buttonName = 'Organization';
+    } else {
+      this.buttonName = 'Volunteer';
+    }
+  }
 
-  verifyRegistration() {
-    this.accountService.register(this.name, this.email, this.password).subscribe(
+  ngOnInit() {
+  }
+
+  verifyVolunteerRegistration() {
+    this.accountService.registerVolunteer(this.name, this.email, this.password).subscribe(
       resp => {
-        if (resp === 201) {
+        if (resp === 202) {
           console.log(resp);
           this.router.navigateByUrl('../../login');
-        } else if (resp === 401) {
+        } else if (resp === 204) {
           console.log(resp);
           this.router.navigateByUrl('');
         }
       }
     );
   }
+
+  verifyOrganizationRegistration() {
+    this.accountService.registerOrganization(this.name, this.email, this.password, this.address, this.phonenumber).subscribe(
+      resp => {
+        if (resp === 202) {
+          console.log(resp);
+          this.router.navigateByUrl('../../login');
+        } else if (resp === 204) {
+          console.log(resp);
+          this.router.navigateByUrl('');
+        }
+      }
+    );
+  }
+
 
 }

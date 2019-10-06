@@ -1,3 +1,9 @@
+<button (click)="toggle()" id="bt">
+    {{buttonName}}
+</button>
+
+
+
 <h3>Name</h3>
 <input type="text" [formControl]="name">
 <h3>Email</h3>
@@ -5,4 +11,10 @@
 <h3>Password</h3>
 <input type="text" [formControl]="password">
 <h3> ---</h3>
-<button (click)="verifyRegistration()">Register</button>
+<ng-container *ngIf="show">
+  <h3>Address</h3>
+<input type="text" [formControl]="address">
+  <h3>Phone Number</h3>
+<input type="text" [formControl]="phonenumber">
+</ng-container>
+<button (click)="verifyVolunteerRegistration()">Register</button>
