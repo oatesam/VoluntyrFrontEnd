@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) {
   }
 
-  public show: boolean = false;
+  public showOrg: boolean = false;
   public buttonName: any = 'Volunteer';
   name = new FormControl('');
   email = new FormControl('');
@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
   phonenumber = new FormControl('');
 
   toggle() {
-    this.show = !this.show;
-    if (this.show) {
+    this.showOrg = !this.showOrg;
+    if (this.showOrg) {
       this.buttonName = 'Organization';
     } else {
       this.buttonName = 'Volunteer';
@@ -59,6 +59,14 @@ export class RegisterComponent implements OnInit {
         }
       }
     );
+  }
+
+  verifyReg() {
+    if (this.showOrg) {
+      this.verifyOrganizationRegistration();
+    } else {
+      this.verifyVolunteerRegistration();
+    }
   }
 
 

@@ -11,10 +11,12 @@
 <h3>Password</h3>
 <input type="text" [formControl]="password">
 <h3> ---</h3>
-<ng-container *ngIf="show">
+<ng-container *ngIf="showOrg">
   <h3>Address</h3>
 <input type="text" [formControl]="address">
   <h3>Phone Number</h3>
 <input type="text" [formControl]="phonenumber">
+  <h3>---</h3>
 </ng-container>
-<button (click)="verifyVolunteerRegistration()">Register</button>
+
+<button (click)="verifyReg()">Register</button>

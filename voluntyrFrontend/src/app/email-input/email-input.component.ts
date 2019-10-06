@@ -11,7 +11,6 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class EmailInputComponent{
 
   constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) {
-    this.verifyEmail();
   }
 
 
