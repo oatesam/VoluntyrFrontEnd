@@ -10,7 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmailInputComponent } from './email-input/email-input.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountsService } from './_helpers/accounts.service';
+import { AccountsService } from './_services/accounts.service';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -31,7 +31,12 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpClientModule, AccountsService],
-  bootstrap: [AppComponent]
+  providers: [
+    HttpClientModule,
+    AccountsService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

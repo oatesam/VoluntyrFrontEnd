@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {AccountsService} from '../_helpers/accounts.service';
+import {AccountsService} from '../_services/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-register',

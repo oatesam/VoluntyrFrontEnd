@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Router, ActivatedRoute} from "@angular/router";
-import {AccountsService} from "../_helpers/accounts.service";
+import {Router, ActivatedRoute} from '@angular/router';
+import {AccountsService} from '../_services/accounts.service';
+import {AuthenticationService} from '@app/_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,12 @@ import {AccountsService} from "../_helpers/accounts.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authservice: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
 
   email = new FormControl('testemail1@gmail.com');
   password = new FormControl('testpassword123');
-  accesstoken : string = '';
-  refreshtoken: string = '';
+  accesstoken = '';
+  refreshtoken = '';
 
   ngOnInit() {
   }
@@ -25,12 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
-    console.log(this.email.value)
-    this.accountService.login(this.email.value, this.password.value).subscribe(
+    this.authservice.login(this.email.value, this.password.value).subscribe(
       resp => {
         console.log(resp);
-        this.accesstoken = resp['access'];
-        this.refreshtoken = resp['refresh'];
+        this.accesstoken = resp.access;
+        this.refreshtoken = resp.refresh;
         console.log(this.accesstoken);
         console.log(this.refreshtoken);
         this.router.navigateByUrl('/');

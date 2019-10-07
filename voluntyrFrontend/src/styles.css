@@ -6,7 +6,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+body.main {
   background-color: #cce0ff;
 }
 
