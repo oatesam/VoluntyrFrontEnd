@@ -1,0 +1,12 @@
+<h1> Account Details </h1>
+<h2>{{ volunteer.first_name }} {{ volunteer.last_name }}</h2>
+<p>{{ volunteer.birthday }}</p>
+
+<h1> Registered Events </h1>
+<ul>
+  <li *ngFor="let event of events">
+    <h3>Title: {{ event.title }}</h3>
+    <h4>Organizer: {{ event.organization }}</h4>
+    <p>From {{ event.start_time | date: "short" }} to {{ event.end_time | date: "short" }}</p>
+  </li>
+</ul>
