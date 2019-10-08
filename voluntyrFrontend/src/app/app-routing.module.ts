@@ -5,12 +5,13 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {EmailInputComponent} from './email-input/email-input.component';
-import {AuthGuard} from './_helpers/auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
-  // {path: '', component: LandingPageComponent, canActivate: [AuthGuard]},
+  // This is an example of how to add an AuthGuard to a protected route
+  // basically the same as below, just replace 'ExampleComponent'
+  // {path: '', component: ExampleComponent, canActivate: [AuthGuard]},
   // will uncomment the above line once AuthGuard is integrated
   {path: 'email-input', component: EmailInputComponent},
   {path: 'login', component: LoginComponent},

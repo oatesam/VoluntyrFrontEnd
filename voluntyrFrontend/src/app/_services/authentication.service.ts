@@ -9,16 +9,10 @@ import { User } from '../_models/user';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    navSubject = new Subject<any>();
-    navObservable = this.navSubject.asObservable();
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
-    }
-
-    callNavLog() {
-      this.navSubject.next();
     }
 
     public get currentUserValue(): User {
@@ -39,6 +33,8 @@ export class AuthenticationService {
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
+                // To retrieve the current user
+                // let curUser = localStorage.getItem(currentUser);
                 this.currentUserSubject.next(user);
                 return user;
             }))

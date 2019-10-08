@@ -33,16 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
-    this.authservice.callNavLog();
     this.authservice.login(this.email.value, this.password.value).subscribe(
       resp => {
         this.accesstoken = resp.access;
         this.refreshtoken = resp.refresh;
         console.log(this.accesstoken);
         console.log(this.refreshtoken);
-        this.router.navigateByUrl('/RefreshComponent').then(() => {
-          this.router.navigateByUrl('/');
-        });
       }, error => {
 
       }
