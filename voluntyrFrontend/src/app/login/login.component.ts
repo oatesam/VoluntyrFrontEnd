@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
-import {AccountsService} from '../_services/accounts.service';
 import {AuthenticationService} from '@app/_services/authentication.service';
+import { NavBarComponent} from "@app/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,11 @@ import {AuthenticationService} from '@app/_services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authservice: AuthenticationService, private router: Router, private route: ActivatedRoute) {
+    if (this.authservice.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   email = new FormControl('testemail1@gmail.com');
   password = new FormControl('testpassword123');
@@ -28,7 +32,6 @@ export class LoginComponent implements OnInit {
   verifyLogin() {
     this.authservice.login(this.email.value, this.password.value).subscribe(
       resp => {
-        console.log(resp);
         this.accesstoken = resp.access;
         this.refreshtoken = resp.refresh;
         console.log(this.accesstoken);

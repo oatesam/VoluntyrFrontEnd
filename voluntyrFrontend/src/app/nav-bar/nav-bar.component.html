@@ -1,6 +1,6 @@
   <div class="navtext">
     &nbsp;<div class = "leftnav">
-      <a routerLink="/">
+    <a routerLink="/">
         Home
       </a>
       &nbsp;
@@ -22,12 +22,12 @@
     </div>
     <div class ='rightnav'>
       <ng-container *ngIf="showLogin">
-        <a routerLink="email-input" class="rightnav ">
+        <a routerLink="login" class="rightnav ">
           Login
         </a>
       </ng-container>
       <ng-container *ngIf="!showLogin">
-        <a routerLink="/" class="rightnav">
+        <a routerLink="/" class="rightnav" (click)="navLogout()">
           Logout
         </a>
       </ng-container>
