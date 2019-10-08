@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '@app/_services/authentication.service';
 import { NavBarComponent} from "@app/nav-bar/nav-bar.component";
+import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,9 @@ import { NavBarComponent} from "@app/nav-bar/nav-bar.component";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice: AuthenticationService, private router: Router, private route: ActivatedRoute) {
+  constructor(private authservice: AuthenticationService,
+              private router: Router,
+              private route: ActivatedRoute ) {
     if (this.authservice.currentUserValue) {
       this.router.navigate(['/']);
     }
@@ -30,18 +33,22 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
+    this.authservice.callNavLog();
     this.authservice.login(this.email.value, this.password.value).subscribe(
       resp => {
         this.accesstoken = resp.access;
         this.refreshtoken = resp.refresh;
         console.log(this.accesstoken);
         console.log(this.refreshtoken);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/RefreshComponent').then(() => {
+          this.router.navigateByUrl('/');
+        });
       }, error => {
 
       }
 
     );
   }
+
 
 }

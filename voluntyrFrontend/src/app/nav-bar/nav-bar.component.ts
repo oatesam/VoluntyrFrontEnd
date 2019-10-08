@@ -10,9 +10,29 @@ export class NavBarComponent implements OnInit {
 
   constructor(private authService: AuthenticationService) {}
   public showLogin: boolean = true;
+  public currentUser = this.authService.currentUserValue;
 
   ngOnInit() {
-    console.log(this.authService.currentUserValue)
+    this.authService.login(this.currentUser.username, this.currentUser.password).subscribe(
+      (data) => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error => {
+        console.log('Error');
+      }
+    );
+
+    if(this.authService.currentUserValue){
+      this.showLogin = false;
+    } else {
+      this.showLogin = true;
+    }
+
+
+  }
+
+  checkLog() {
     if(this.authService.currentUserValue){
       this.showLogin = false;
     } else {
@@ -20,7 +40,7 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  navLogout(){
+  navLogout() {
     this.authService.logout();
     this.ngOnInit();
   }

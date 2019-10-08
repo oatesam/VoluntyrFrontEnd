@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { environment } from '../../environments/environment';
 import { User } from '../_models/user';
 
@@ -10,10 +9,16 @@ import { User } from '../_models/user';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    navSubject = new Subject<any>();
+    navObservable = this.navSubject.asObservable();
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+    }
+
+    callNavLog() {
+      this.navSubject.next();
     }
 
     public get currentUserValue(): User {
@@ -25,7 +30,6 @@ export class AuthenticationService {
         .set('email', email)
         .set('password', password);
       console.log(body);
-
       return this.http.post<any>(`${environment.apiUrl}/api/token/`,
           body.toString(),
         {
