@@ -16,6 +16,9 @@ import {ErrorInterceptor} from '@app/_helpers/error.interceptor';
 import {JwtInterceptor} from '@app/_helpers/jwt.interceptor';
 import { HidePasswordDirective } from './_helpers/hide-password.directive';
 import { AlertComponent } from './alert/alert.component';
+import {NgbDatepickerModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {RecaptchaFormsModule, RecaptchaModule} from 'ng-recaptcha';
+
 import {OrganizerDashboardComponent} from '@app/organizer-dashboard/organizer-dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FullCalendarModule } from '@fullcalendar/angular'; // full-calendar
@@ -51,7 +54,11 @@ import {VolunteerEventComponent} from '@app/volunteer-event/volunteer-event.comp
     FontAwesomeModule, // Font-Awesome
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    NgbDatepickerModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   providers: [
     HttpClientModule,
