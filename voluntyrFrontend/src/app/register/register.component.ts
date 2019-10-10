@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {AccountsService} from '../_services/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -10,16 +10,22 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private accountService: AccountsService, private router: Router, private route: ActivatedRoute) {
-  }
+  @Input() email: string;
+
+  constructor(private accountService: AccountsService,
+              private router: Router,
+              private route: ActivatedRoute
+  ) {  }
 
   public showOrg: boolean = false;
-  public buttonName: any = 'Sign up as Organization';
-  firstname = new FormControl();
-  lastname = new FormControl();
-  email = new FormControl();
-  password = new FormControl();
-  birthday = new FormControl('1998-06-12')
+  public buttonName: any = 'Volunteer';
+  public oppReg: any = 'an Organization';
+  public curReg: any = 'a Volunteer'
+  firstname = new FormControl('');
+  lastname = new FormControl('');
+  emailControl = new FormControl('');
+  password = new FormControl('');
+  birthday = new FormControl('')
   orgname = new FormControl('')
   address = new FormControl('');
   phonenumber = new FormControl('');
@@ -27,9 +33,11 @@ export class RegisterComponent implements OnInit {
   toggle() {
     this.showOrg = !this.showOrg;
     if (this.showOrg) {
-      this.buttonName = 'Sign up as Volunteer';
+      this.buttonName = 'Organization';
+      this.oppReg = 'a Volunteer';
     } else {
-      this.buttonName = 'Sign up as Organization';
+      this.buttonName = 'Volunteer';
+      this.curReg = 'an Organization';
     }
   }
 
@@ -37,26 +45,28 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyVolunteerRegistration() {
-    this.accountService.registerVolunteer(this.firstname.value, this.lastname.value, this.email.value, this.password.value, this.birthday.value).subscribe(
+    this.accountService.registerVolunteer(this.firstname.value, this.lastname.value, this.emailControl.value, this.password.value, this.birthday.value).subscribe(
       resp => {
-        if (resp === 202) {
+        console.log(resp)
+        if (resp['status'] === 202) {
           console.log(resp);
-          this.router.navigateByUrl('../../login');
-        } else if (resp === 204) {
+          this.router.navigateByUrl('login');
+        } else if (resp['status'] === 204) {
           console.log(resp);
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('register');
         }
       }
     );
   }
 
   verifyOrganizationRegistration() {
-    this.accountService.registerOrganization(this.orgname.value, this.email.value, this.password.value, this.address.value, this.phonenumber.value).subscribe(
+    this.accountService.registerOrganization(this.orgname.value, this.emailControl.value, this.password.value, this.address.value, this.phonenumber.value).subscribe(
       resp => {
-        if (resp === 202) {
-          console.log(resp);
-          this.router.navigateByUrl('../../login');
-        } else if (resp === 204) {
+        console.log('is this thing working?')
+        if (resp['status'] === 409) {
+          console.log('got into status');
+          this.router.navigateByUrl('login');
+        } else if (resp['status'] === 204) {
           console.log(resp);
           this.router.navigateByUrl('');
         }

@@ -1,8 +1,8 @@
-<div class="responsive center">
+<div class="logreg">
   <h3>Email</h3>
-  <input type="text" [formControl]="email">
+  <input type="text" [formControl]="emailControl">
   <h3>Password</h3>
-  <input type="password" [formControl]="password">
-  <br>
+  <input type="text" [formControl]="passwordControl">
+  <h3> ---</h3>
   <button (click)="verifyLogin()">Login</button>
 </div>

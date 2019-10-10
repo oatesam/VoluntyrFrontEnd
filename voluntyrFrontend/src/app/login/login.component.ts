@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute, Data} from '@angular/router';
 import {AuthenticationService} from '@app/_services/authentication.service';
-import { NavBarComponent} from "@app/nav-bar/nav-bar.component";
-import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 
 @Component({
   selector: 'app-login',
@@ -12,33 +10,27 @@ import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 })
 export class LoginComponent implements OnInit {
 
+  @Input() email: string;
+
   constructor(private authservice: AuthenticationService,
               private router: Router,
-              private route: ActivatedRoute ) {
+              private route: ActivatedRoute) {
     if (this.authservice.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
 
-  email = new FormControl();
-  password = new FormControl();
-  accesstoken = '';
-  refreshtoken = '';
+  emailControl = new FormControl('');
+  passwordControl = new FormControl('');
 
   ngOnInit() {
-  }
-
-  get Token() {
-    return this.refreshtoken;
+    this.emailControl.setValue(this.email);
   }
 
   verifyLogin() {
-    this.authservice.login(this.email.value, this.password.value).subscribe(
+    this.authservice.login(this.emailControl.value, this.passwordControl.value).subscribe(
       resp => {
-        this.accesstoken = resp.access;
-        this.refreshtoken = resp.refresh;
-        console.log(this.accesstoken);
-        console.log(this.refreshtoken);
+        console.log(resp);
       }, error => {
 
       }

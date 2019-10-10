@@ -1,14 +1,16 @@
-<div class="responsive center">
-  <button (click)="toggle()" id="bt">
+<div class="logreg">
+  <h3 class="reg">You're signing up as {{curReg}}</h3>
+  <h1 class="reg">Click here to sign up as {{oppReg}}</h1>
+  <button id="orgtoggle"(click)="toggle()" id="bt">
       {{buttonName}}
   </button>
 
 
   <ng-container *ngIf="!showOrg">
-  <h3>First Name</h3>
-  <input type="text" [formControl]="firstname">
-  <h3>Last Name</h3>
-  <input type="text" [formControl]="lastname">
+    <h3>First Name</h3>
+    <input type="text" [formControl]="firstname">
+    <h3>Last Name</h3>
+    <input type="text" [formControl]="lastname">
     <h3> Birthday</h3>
     <input type="text" [formControl]="birthday">
   </ng-container>
@@ -16,16 +18,16 @@
     <h3> Organization Name </h3>
     <input type="text" [formControl]="orgname">
   </ng-container>
-  <h3>Email</h3>
-  <input type="text" [formControl]="email">
-  <h3>Password</h3>
-  <input type="text" [formControl]="password">
-  <h3> ---</h3>
+    <h3>Email</h3>
+    <input type="text" [formControl]="emailControl">
+    <h3>Password</h3>
+    <input type="text" [formControl]="password">
+    <h3> --- </h3>
   <ng-container *ngIf="showOrg">
     <h3>Address</h3>
-  <input type="text" [formControl]="address">
+    <input type="text" [formControl]="address">
     <h3>Phone Number</h3>
-  <input type="text" [formControl]="phonenumber">
+    <input type="text" [formControl]="phonenumber">
     <h3>---</h3>
   </ng-container>
 

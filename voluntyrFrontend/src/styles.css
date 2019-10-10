@@ -10,6 +10,9 @@ body.main {
   background-color: #cce0ff;
 }
 
+div.logreg {
+  text-align: center;
+}
 .responsive {
   width: 60%;
   height: auto;
@@ -23,6 +26,23 @@ body.main {
 }
 
 
+button {
+  background-color: #1976d2;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+input{
+  text-align: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 16px;
+}
 
 
 
