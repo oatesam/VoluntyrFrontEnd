@@ -12,7 +12,8 @@
     <h3>Last Name</h3>
     <input type="text" [formControl]="lastname">
     <h3> Birthday</h3>
-    <input type="text" [formControl]="birthday">
+    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
   </ng-container>
   <ng-container *ngIf="showOrg">
     <h3> Organization Name </h3>
@@ -24,7 +25,6 @@
     <input type="password" [formControl]="password" appHidePassword>
     <h3>Confirm Password</h3>
     <input type="password" [formControl]="passwordconfirm" appHidePassword>
-    <h3> --- </h3>
   <ng-container *ngIf="showOrg">
     <h3>Address</h3>
     <input type="text" [formControl]="address">
@@ -32,5 +32,9 @@
     <input type="text" [formControl]="phonenumber">
   </ng-container>
   <alert></alert>
-  <button (click)="verifyReg()">Register</button>
+  <re-captcha
+    (resolved)="resolved($event)"
+    siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+  ></re-captcha>
+  <button (click)="verifyReg()" *ngIf="captchaResolved">Register</button>
 </div>

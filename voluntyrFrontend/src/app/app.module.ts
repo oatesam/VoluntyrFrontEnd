@@ -16,6 +16,9 @@ import {ErrorInterceptor} from '@app/_helpers/error.interceptor';
 import {JwtInterceptor} from '@app/_helpers/jwt.interceptor';
 import { HidePasswordDirective } from './_helpers/hide-password.directive';
 import { AlertComponent } from './alert/alert.component';
+import {NgbDatepickerModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {RecaptchaFormsModule, RecaptchaModule} from 'ng-recaptcha';
+
 
 @NgModule({
   declarations: [
@@ -28,14 +31,18 @@ import { AlertComponent } from './alert/alert.component';
     EmailInputComponent,
     RegisterComponent,
     HidePasswordDirective,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    NgbDatepickerModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   providers: [
     HttpClientModule,

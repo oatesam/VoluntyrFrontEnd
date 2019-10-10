@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
     }
   }
   private logged  = false;
+  emailControl: any;
+  passwordControl: any;
 
   ngOnInit() {
     this.authService.getLogged.subscribe(name => this.changeLog(name));

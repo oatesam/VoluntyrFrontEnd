@@ -15,7 +15,7 @@ export class NavBarComponent implements OnInit {
   private logged: boolean;
 
   ngOnInit() {
-    if (this.authService.currentUserValue){
+    if (this.authService.currentUserValue) {
       this.logged = true;
     } else {
       this.logged = false;
