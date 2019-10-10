@@ -1,6 +1,8 @@
-<h3>Email</h3>
-<input type="text" [formControl]="email">
-<h3>Password</h3>
-<input type="text" [formControl]="password">
-<h3> ---</h3>
-<button (click)="verifyLogin()">Login</button>
+<div class="logreg">
+  <h3>Email</h3>
+  <input type="text" [formControl]="emailControl">
+  <h3>Password</h3>
+  <input type="text" [formControl]="passwordControl">
+  <h3> ---</h3>
+  <button (click)="verifyLogin()">Login</button>
+</div>
