@@ -6,15 +6,15 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class OrganizationService {
-  private baseurl = "http://localhost:8000/api/organization_info/";
+  private baseurl = "http://localhost:8000/api/organization/";
   s;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: ` Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTcwMzQxMzU2LCJqdGkiOiIzMDQxNjkyYjYwNzU0NWM1OTU2OTc5ZmIwMjM2MjhjZSIsInVzZXJfaWQiOjIsInNjb3BlIjoib3JnYW5pemF0aW9uIn0.pWiDRe7zWEFc-RMOqUWfTZgT2loFvZGCXYzKcBie0cQ`
+      Authorization: ` Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTcwNjEwMjE1LCJqdGkiOiJiOTEwMjA1OTEzNmU0YWZiODJhOGZkYTg2ZmI0YjYyZCIsInVzZXJfaWQiOjIsInNjb3BlIjoib3JnYW5pemF0aW9uIn0.apFTYEkmeIWhmhJR66xJZ8kj3ob16nRiq8AvbLkNOCE`
     })
   };
-  getOrganizationInfo(): Observable<organization[]> {
-    return this.httpClient.get<organization[]>(this.baseurl, this.httpOptions);
+  getOrganizationInfo(): Observable<organization> {
+    return this.httpClient.get<organization>(this.baseurl, this.httpOptions);
   }
 }

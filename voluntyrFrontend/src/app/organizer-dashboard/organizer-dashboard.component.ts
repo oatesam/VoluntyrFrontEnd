@@ -34,7 +34,7 @@ export class OrganizerDashboardComponent implements OnInit {
     private EventService: EventsService
   ) {}
   //Initiate the varibales
-  public org_lst: organization[];
+  public org_lst: organization;
   public org_info;
   public event_lst: event[];
   public calendar_event: [];
@@ -42,7 +42,7 @@ export class OrganizerDashboardComponent implements OnInit {
   ngOnInit() {
     //httprequests to gather data for display
     this.OrganizationService.getOrganizationInfo().subscribe(
-      data => ((this.org_lst = data), (this.org_info = this.org_lst[0]))
+      data => ((this.org_lst = data), (this.org_info = this.org_lst))
     );
 
     this.EventService.getEventInfo().subscribe(data => (this.event_lst = data));
