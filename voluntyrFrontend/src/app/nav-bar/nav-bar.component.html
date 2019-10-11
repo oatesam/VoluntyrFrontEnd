@@ -21,12 +21,12 @@
       </a>
     </div>
     <div class ='rightnav'>
-      <ng-container *ngIf="showLogin">
+      <ng-container *ngIf="!logged">
         <a routerLink="email-input" class="rightnav ">
           Login
         </a>
       </ng-container>
-      <ng-container *ngIf="!showLogin">
+      <ng-container *ngIf="logged">
         <a routerLink="/" class="rightnav" (click)="navLogout()">
           Logout
         </a>

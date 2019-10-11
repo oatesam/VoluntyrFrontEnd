@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute, Data} from '@angular/router';
 import {AuthenticationService} from '@app/_services/authentication.service';
+import {throwError} from 'rxjs';
+import {DataService} from '@app/_services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -11,30 +13,47 @@ import {AuthenticationService} from '@app/_services/authentication.service';
 export class LoginComponent implements OnInit {
 
   @Input() email: string;
+  loginForm = new FormGroup({
+      emailControl: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      passwordControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    });
 
-  constructor(private authservice: AuthenticationService,
+  constructor(private authService: AuthenticationService,
               private router: Router,
-              private route: ActivatedRoute) {
-    if (this.authservice.currentUserValue) {
+              private route: ActivatedRoute,
+              private data: DataService) {
+    if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
-
-  emailControl = new FormControl('');
-  passwordControl = new FormControl('');
+  private logged  = false;
 
   ngOnInit() {
-    this.emailControl.setValue(this.email);
+    this.authService.getLogged.subscribe(name => this.changeLog(name));
+    this.loginForm.patchValue({
+      emailControl: this.email
+    });
+  }
+
+  changeLog(log: boolean) {
+    this.logged = log;
   }
 
   verifyLogin() {
-    this.authservice.login(this.emailControl.value, this.passwordControl.value).subscribe(
-      resp => {
-        console.log(resp);
-      }, error => {
-      }
-
-    );
+    if (this.logged) {
+      this.router.navigate(['/']);
+    } else {
+      this.authService.login(this.loginForm.controls['emailControl'].value, this.loginForm.controls['passwordControl'].value).subscribe(
+        resp => {
+          console.log('log resp = ', resp);
+          if (resp.access) {
+            this.data.changeLogged('true');
+            this.router.navigate(['/']);
+          } else {
+          }
+        }
+      );
+    }
   }
 
 

@@ -9,9 +9,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EmailInputComponent } from './email-input/email-input.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AccountsService } from './_services/accounts.service';
 import { RegisterComponent } from './register/register.component';
+import {ErrorInterceptor} from '@app/_helpers/error.interceptor';
+import {JwtInterceptor} from '@app/_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,19 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [
     HttpClientModule,
-    AccountsService
+    AccountsService,
+    ErrorInterceptor,
+    JwtInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent

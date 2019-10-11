@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,6 +9,8 @@ import { User } from '../_models/user';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    @Output() getLogged: EventEmitter<any> = new EventEmitter();
+
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -17,6 +19,10 @@ export class AuthenticationService {
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
+    }
+
+    public getToken(): string {
+      return localStorage.getItem('token');
     }
 
     login(email: string, password: string) {
@@ -31,12 +37,15 @@ export class AuthenticationService {
             .set('Content-Type', 'application/x-www-form-urlencoded')
         })
             .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                // To retrieve the current user
-                // let curUser = localStorage.getItem(currentUser);
-                this.currentUserSubject.next(user);
-                return user;
+              console.log(user);
+              this.getLogged.emit(true);
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              // localStorage.setItem('currentUser', JSON.stringify(user));
+              // To retrieve the current user
+              // let curUser = localStorage.getItem(currentUser);
+              this.currentUserSubject.next(user);
+              return user;
             }))
         ;
     }
