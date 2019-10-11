@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
+import {DataService} from "@app/_services/data.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,26 +9,22 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) {}
-  public showLogin: boolean = true;
+  constructor(private authService: AuthenticationService,
+              private data: DataService) {}
   public currentUser = this.authService.currentUserValue;
+  private logged: boolean;
 
   ngOnInit() {
-    if(this.authService.currentUserValue){
-      this.showLogin = false;
+    if (this.authService.currentUserValue){
+      this.logged = true;
     } else {
-      this.showLogin = true;
+      this.logged = false;
     }
-
-
+    this.authService.getLogged.subscribe(name => this.changeLog(name));
   }
 
-  checkLog() {
-    if(this.authService.currentUserValue){
-      this.showLogin = false;
-    } else {
-      this.showLogin = true;
-    }
+  changeLog(logger: boolean) {
+    this.logged = logger;
   }
 
   navLogout() {
