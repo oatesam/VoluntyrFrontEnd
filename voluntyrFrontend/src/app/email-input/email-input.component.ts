@@ -15,6 +15,7 @@ export class EmailInputComponent {
               private router: Router,
               private route: ActivatedRoute,
               private data: DataService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   email: string;
   emailControl = new FormControl('');
