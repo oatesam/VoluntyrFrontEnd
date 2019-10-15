@@ -9,6 +9,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
 COPY voluntyrFrontend/package.json package.json
+COPY voluntyrFrontend/package-lock.json package-lock.json
+
+# RUN npm install -g npm
 RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 

@@ -9,7 +9,6 @@ import { environment } from '@environments/environment';
 })
 export class AccountsService {
 
-  baseurl: string = environment.apiUrl;
   checkemailurl: string = `${environment.apiUrl}/api/signup/checkemail/`;
   orgregurl: string = `${environment.apiUrl}/api/signup/organization/`;
   volregurl: string = `${environment.apiUrl}/api/signup/volunteer/`;
