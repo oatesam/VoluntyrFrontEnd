@@ -7,6 +7,7 @@ import { RegisterComponent } from "./register/register.component";
 import { EmailInputComponent } from "./email-input/email-input.component";
 import { OrganizerDashboardComponent } from "./organizer-dashboard/organizer-dashboard.component";
 import { AuthGuard } from "./_helpers/auth.guard";
+import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: "Organization",
     component: OrganizerDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "Volunteer",
+    component: VolunteerDashboardComponent,
     canActivate: [AuthGuard]
   },
   // PageNotFound should always be last in routing, otherwise it will overtake others

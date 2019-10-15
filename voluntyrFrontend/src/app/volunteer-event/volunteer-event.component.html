@@ -1,0 +1,9 @@
+<div>
+  <h3><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.title }}</h3>
+  <h4><fa-icon [icon]="faLandmark"></fa-icon>{{ event.organization }}</h4>
+  <p>
+    <fa-icon [icon]="faClock"></fa-icon>
+    {{ event.start_time | date: "short" }} to
+    {{ event.end_time | date: "short" }}
+  </p>
+</div>
