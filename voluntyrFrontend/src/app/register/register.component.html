@@ -21,15 +21,16 @@
     <h3>Email</h3>
     <input type="text" [formControl]="emailControl">
     <h3>Password</h3>
-    <input type="text" [formControl]="password">
+    <input type="password" [formControl]="password" appHidePassword>
+    <h3>Confirm Password</h3>
+    <input type="password" [formControl]="passwordconfirm" appHidePassword>
     <h3> --- </h3>
   <ng-container *ngIf="showOrg">
     <h3>Address</h3>
     <input type="text" [formControl]="address">
     <h3>Phone Number</h3>
     <input type="text" [formControl]="phonenumber">
-    <h3>---</h3>
   </ng-container>
-
+  <alert></alert>
   <button (click)="verifyReg()">Register</button>
 </div>

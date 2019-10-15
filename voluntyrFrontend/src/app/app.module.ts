@@ -14,6 +14,8 @@ import { AccountsService } from './_services/accounts.service';
 import { RegisterComponent } from './register/register.component';
 import {ErrorInterceptor} from '@app/_helpers/error.interceptor';
 import {JwtInterceptor} from '@app/_helpers/jwt.interceptor';
+import { HidePasswordDirective } from './_helpers/hide-password.directive';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {JwtInterceptor} from '@app/_helpers/jwt.interceptor';
     PageNotFoundComponent,
     NavBarComponent,
     EmailInputComponent,
-    RegisterComponent
+    RegisterComponent,
+    HidePasswordDirective,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

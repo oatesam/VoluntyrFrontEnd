@@ -4,6 +4,7 @@ import {Router, ActivatedRoute, Data} from '@angular/router';
 import {AuthenticationService} from '@app/_services/authentication.service';
 import {throwError} from 'rxjs';
 import {DataService} from '@app/_services/data.service';
+import {AlertService} from '@app/_services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,21 @@ export class LoginComponent implements OnInit {
 
   @Input() email: string;
   loginForm = new FormGroup({
-      emailControl: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      passwordControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      emailControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4)]),
+      passwordControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
+        Validators.email]),
     });
 
   constructor(private authService: AuthenticationService,
               private router: Router,
               private route: ActivatedRoute,
-              private data: DataService) {
+              private data: DataService,
+              private alert: AlertService) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
@@ -43,18 +51,23 @@ export class LoginComponent implements OnInit {
     if (this.logged) {
       this.router.navigate(['/']);
     } else {
-      this.authService.login(this.loginForm.controls['emailControl'].value, this.loginForm.controls['passwordControl'].value).subscribe(
+      this.authService.login(this.loginForm.controls.emailControl.value, this.loginForm.controls.passwordControl.value).subscribe(
         resp => {
           console.log('log resp = ', resp);
           if (resp.access) {
             this.data.changeLogged('true');
             this.router.navigate(['/']);
-          } else {
           }
-        }
-      );
+        }, error => {
+          console.log('error is of type ', typeof error);
+          if (error === 'Unauthorized') {
+            this.alert.error('Wrong password. Try again or click Forgot password to reset it.');
+          } else if (error === 'Bad Request') {
+            this.alert.error('Couldn\'t find an account with that email');
+          }
+        });
+      }
     }
-  }
 
 
 }
