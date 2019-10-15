@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Event } from '../_helpers/Event';
 import { Volunteer} from '../_helpers/Volunteer';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class VolunteerService {
 
   constructor(private http: HttpClient) { }
 
-  private baseurl: string = "http://localhost:8000/";
+  private baseurl: string = `${environment.apiUrl}/`;
   private detailsAPI: string = "api/volunteer/";
   private eventsApi: string = "api/volunteer/events/";
 

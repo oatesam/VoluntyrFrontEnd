@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments/environment';
 import { User } from '../_models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+    private tokenUrl = `${environment.apiUrl}/api/token/`;
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
@@ -24,8 +25,7 @@ export class AuthenticationService {
         .set('email', email)
         .set('password', password);
       console.log(body);
-      return this.http.post<any>(`${environment.apiUrl}/api/token/`,
-          body.toString(),
+      return this.http.post<any>(this.tokenUrl, body.toString(),
         {
           headers: new HttpHeaders()
             .set('Content-Type', 'application/x-www-form-urlencoded')

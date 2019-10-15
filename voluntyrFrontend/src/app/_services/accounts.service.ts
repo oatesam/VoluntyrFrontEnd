@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { environment } from '@environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService {
 
-  baseurl: string = 'http://localhost:8000/api/';
-  checkemailurl: string = 'http://localhost:8000/api/signup/checkemail/';
-  orgregurl: string = 'http://localhost:8000/api/signup/organization/';
-  volregurl: string = 'http://localhost:8000/api/signup/volunteer/';
-  loginurl: string = 'http://localhost:8000/api/token/'
+  checkemailurl: string = `${environment.apiUrl}/api/signup/checkemail/`;
+  orgregurl: string = `${environment.apiUrl}/api/signup/organization/`;
+  volregurl: string = `${environment.apiUrl}/api/signup/volunteer/`;
+  loginurl: string = `${environment.apiUrl}/api/token/`;
   refreshtoken: string = '';
   accesstoken: string = '';
 

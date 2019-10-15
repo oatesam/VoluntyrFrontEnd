@@ -1,5 +1,8 @@
 div.emailinput{
   padding: 16px;
   display: block;
+}
 
+button {
+  margin: 15px;
 }

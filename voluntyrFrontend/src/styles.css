@@ -10,6 +10,18 @@ body.main {
   background-color: #cce0ff;
 }
 
+.responsive {
+  width: 60%;
+  height: auto;
+  margin-right:auto;
+  margin-left:auto;
+  display: block;
+}
+
+.center {
+  text-align: center;
+}
+
 
 
 

@@ -14,11 +14,11 @@ export class RegisterComponent implements OnInit {
   }
 
   public showOrg: boolean = false;
-  public buttonName: any = 'Volunteer';
-  firstname = new FormControl('Sam');
-  lastname = new FormControl('Fake');
-  email = new FormControl('samfake@gmail.com');
-  password = new FormControl('samfake');
+  public buttonName: any = 'Sign up as Organization';
+  firstname = new FormControl();
+  lastname = new FormControl();
+  email = new FormControl();
+  password = new FormControl();
   birthday = new FormControl('1998-06-12')
   orgname = new FormControl('')
   address = new FormControl('');
@@ -27,9 +27,9 @@ export class RegisterComponent implements OnInit {
   toggle() {
     this.showOrg = !this.showOrg;
     if (this.showOrg) {
-      this.buttonName = 'Organization';
+      this.buttonName = 'Sign up as Volunteer';
     } else {
-      this.buttonName = 'Volunteer';
+      this.buttonName = 'Sign up as Organization';
     }
   }
 

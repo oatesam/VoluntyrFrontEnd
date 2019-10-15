@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  email = new FormControl('testemail1@gmail.com');
-  password = new FormControl('testpassword123');
+  email = new FormControl();
+  password = new FormControl();
   accesstoken = '';
   refreshtoken = '';
 

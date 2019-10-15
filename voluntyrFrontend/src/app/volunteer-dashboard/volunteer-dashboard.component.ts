@@ -14,10 +14,10 @@ export class VolunteerDashboardComponent implements OnInit {
   faUser = faUser;
   faCalendarPlus = faCalendarPlus;
 
-  private volunteer: Volunteer = new Volunteer();
-  private events: Event[];
+  public volunteer: Volunteer = new Volunteer();
+  public events: Event[];
 
-  private token = JSON.parse(localStorage.getItem("currentUser")).access;
+  public token = JSON.parse(localStorage.getItem("currentUser")).access;
 
   ngOnInit() {
     this.getDetails();
