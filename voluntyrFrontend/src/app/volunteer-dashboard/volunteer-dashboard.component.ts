@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import {VolunteerService} from '../_services/volunteer.service';
-import {Volunteer} from '../_helpers/Volunteer';
-import {Event} from '../_helpers/Event';
+import { Component, OnInit } from "@angular/core";
+import { VolunteerService } from "../_services/volunteer.service";
+import { Volunteer } from "../_helpers/Volunteer";
+import { Event } from "../_helpers/Event";
+import { faUser, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'app-volunteer-dashboard',
-  templateUrl: './volunteer-dashboard.component.html',
-  styleUrls: ['./volunteer-dashboard.component.css']
+  selector: "app-volunteer-dashboard",
+  templateUrl: "./volunteer-dashboard.component.html",
+  styleUrls: ["./volunteer-dashboard.component.css"]
 })
 export class VolunteerDashboardComponent implements OnInit {
-
-  constructor(private VolunteerService: VolunteerService) { }
+  constructor(private VolunteerService: VolunteerService) {}
+  faUser = faUser;
+  faCalendarPlus = faCalendarPlus;
 
   private volunteer: Volunteer = new Volunteer();
   private events: Event[];
 
-  private token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTcwNTE0ODU2LCJqdGkiOiI4M2ViODZjZTI1ZjA0MDE4OTEwMjY0YmZiZjMwNGVmOSIsInVzZXJfaWQiOjEsInNjb3BlIjoidm9sdW50ZWVyIn0.g0uHOtNEjgAlov4-jxGwdkcI1U0GAi7LqcC97vkeatQ";
+  private token = JSON.parse(localStorage.getItem("currentUser")).access;
 
   ngOnInit() {
     this.getDetails();
@@ -26,20 +28,21 @@ export class VolunteerDashboardComponent implements OnInit {
     this.VolunteerService.getDetails(this.token).subscribe(
       data => {
         this.volunteer = data;
-      }, error => {
+      },
+      error => {
         console.error(error);
       }
-    )
+    );
   }
 
   private getEvents() {
     this.VolunteerService.getEvents(this.token).subscribe(
       data => {
         this.events = data;
-      }, error => {
+      },
+      error => {
         console.error(error);
       }
-    )
+    );
   }
-
 }

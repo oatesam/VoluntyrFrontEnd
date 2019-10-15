@@ -1,12 +1,18 @@
-<h1> Account Details </h1>
-<h2>{{ volunteer.first_name }} {{ volunteer.last_name }}</h2>
-<p>{{ volunteer.birthday }}</p>
-
-<h1> Registered Events </h1>
-<ul>
-  <li *ngFor="let event of events">
-    <h3>Title: {{ event.title }}</h3>
-    <h4>Organizer: {{ event.organization }}</h4>
-    <p>From {{ event.start_time | date: "short" }} to {{ event.end_time | date: "short" }}</p>
-  </li>
-</ul>
+<div class="container">
+  <h1>Account Details</h1>
+  <h2>
+    <fa-icon [icon]="faUser"></fa-icon>{{ volunteer.first_name }}
+    {{ volunteer.last_name }}
+  </h2>
+  <p><fa-icon [icon]="faCalendarPlus"></fa-icon>{{ volunteer.birthday }}</p>
+  <div class="row">
+    <app-calendar class="col-md-6"></app-calendar>
+    <div class="col-md-6">
+      <h1>Registered Events</h1>
+      <app-volunteer-event
+        *ngFor="let event of events"
+        [event]="event"
+      ></app-volunteer-event>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ import { AccountsService } from "./_services/accounts.service";
 import { RegisterComponent } from "./register/register.component";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 import { VolunteerService } from "./_services/volunteer.service";
+import { VolunteerEventComponent } from './volunteer-event/volunteer-event.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { VolunteerService } from "./_services/volunteer.service";
     NavBarComponent,
     EmailInputComponent,
     RegisterComponent,
-    VolunteerDashboardComponent
+    VolunteerDashboardComponent,
+    VolunteerEventComponent
   ],
   imports: [
     BrowserModule,

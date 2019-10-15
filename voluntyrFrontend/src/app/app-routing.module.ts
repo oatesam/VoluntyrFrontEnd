@@ -23,7 +23,11 @@ const routes: Routes = [
     component: OrganizerDashboardComponent,
     canActivate: [AuthGuard]
   },
-  { path: "dashboard/volunteer", component: VolunteerDashboardComponent },
+  {
+    path: "Volunteer",
+    component: VolunteerDashboardComponent,
+    canActivate: [AuthGuard]
+  },
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
 ];
