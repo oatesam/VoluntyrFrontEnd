@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { organization } from "../organizer-dashboard/organization";
 import { Observable } from "rxjs";
+import {environment} from '@environments/environment';
 @Injectable({
   providedIn: "root"
 })
 export class OrganizationService {
-  private baseurl = "http://localhost:8000/api/organization/";
+  private orgUrl = `${environment.apiUrl}/api/organization/`;
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
@@ -15,6 +16,6 @@ export class OrganizationService {
     })
   };
   getOrganizationInfo(): Observable<organization> {
-    return this.httpClient.get<organization>(this.baseurl, this.httpOptions);
+    return this.httpClient.get<organization>(this.orgUrl, this.httpOptions);
   }
 }
