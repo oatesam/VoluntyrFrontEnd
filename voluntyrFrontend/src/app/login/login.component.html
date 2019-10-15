@@ -3,8 +3,8 @@
     <h3>Email</h3>
     <input type="text" formControlName="emailControl">
     <h3>Password</h3>
-    <input placeholder="Password" type="text" formControlName="passwordControl">
-    <h3> ---</h3>
+    <input placeholder="Password" type="password" formControlName="passwordControl" appHidePassword>
+    <alert> </alert>
   </form>
   <button (click)="verifyLogin()">Login</button>
 </div>

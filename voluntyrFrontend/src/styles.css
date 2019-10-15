@@ -44,6 +44,20 @@ input{
   font-size: 16px;
 }
 
+.alert {
+  font-size: 12px;
+  padding-bottom: 20px;
+}
+
+.alert-success{
+  color: green;
+}
+
+.alert-danger {
+  color: red;
+}
+
+
 
 
 

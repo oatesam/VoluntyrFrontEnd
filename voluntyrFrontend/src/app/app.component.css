@@ -5,3 +5,9 @@ div.center_content{
   margin-left:auto;
   padding: 16px;
 }
+
+alert {
+  position: center;
+  top: 15px;
+  padding: 20px;
+}
