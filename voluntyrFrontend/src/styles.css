@@ -57,6 +57,11 @@ input{
   color: red;
 }
 
+re-captcha {
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 10px;
+}
 
 
 

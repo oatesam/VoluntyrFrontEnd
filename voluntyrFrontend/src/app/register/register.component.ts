@@ -21,22 +21,28 @@ export class RegisterComponent implements OnInit {
   ) {  }
 
   model: NgbDateStruct;
-  date: {year: number, month: number}
+  date: {year: number, month: number};
   public showOrg = false;
   public buttonName: any = 'Volunteer';
   public oppReg: any = 'an Organization';
-  public curReg: any = 'a Volunteer'
-  firstname = new FormControl('');
-  lastname = new FormControl('');
+  public curReg: any = 'a Volunteer';
+  firstname = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1) ]);
+  lastname = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
   birthday: string;
-  emailControl = new FormControl('');
-  password = new FormControl('', [
+  emailControl = new FormControl('', [
         Validators.required,
         Validators.minLength(8),
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
-        Validators.email])
+        Validators.email]);
+  password = new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)]);
   passwordconfirm = new FormControl('');
-  orgname = new FormControl('')
+  orgname = new FormControl('');
   address = new FormControl('');
   phonenumber = new FormControl('');
   captchaResolved = false;
@@ -56,26 +62,35 @@ export class RegisterComponent implements OnInit {
   }
 
   public resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
-    this.captchaResolved = true;
+    console.log(`Resolved captcha with response: `, captchaResponse);
+    if (captchaResponse) {
+      this.captchaResolved = true;
+    }
   }
 
   verifyVolunteerRegistration() {
-    this.birthday = '' + this.model.day.toString() + '-' + this.model.month.toString() + '-' + this.model.year.toString();
-    console.log(this.birthday);
-    if (!this.emailControl.valid) {
+    if (!this.firstname.valid || !this.lastname.valid) {
+      this.alert.error('Please enter your name');
+    } else if (!this.model) {
+      this.alert.error('Please choose your birthday in calendar');
+    } else if (!this.emailControl.valid) {
       this.alert.error('Invalid email');
+    } else if (!this.password.valid) {
+      this.alert.error('Invalid password');
     } else if (this.password.value !== this.passwordconfirm.value) {
       this.alert.error('Passwords don\'t match');
+    } else if (!this.captchaResolved) {
+       this.alert.error('Submit captcha before logging in.');
     } else {
-      this.accountService.registerVolunteer(
+       this.birthday = '' + this.model.day.toString() + '-' + this.model.month.toString() + '-' + this.model.year.toString();
+       this.accountService.registerVolunteer(
         this.firstname.value,
         this.lastname.value,
         this.emailControl.value,
         this.password.value,
         this.birthday).subscribe(
         resp => {
-          console.log(resp)
+          console.log(resp);
           if (resp.status === 202) {
             console.log(resp);
             this.router.navigateByUrl('login');
@@ -101,11 +116,11 @@ export class RegisterComponent implements OnInit {
         this.address.value,
         this.phonenumber.value).subscribe(
         resp => {
-          console.log('is this thing working?')
-          if (resp['status'] === 409) {
+          console.log('is this thing working?');
+          if (resp.status === 409) {
             console.log('got into status');
             this.router.navigateByUrl('login');
-          } else if (resp['status'] === 204) {
+          } else if (resp.status === 204) {
             console.log(resp);
             this.router.navigateByUrl('');
           }

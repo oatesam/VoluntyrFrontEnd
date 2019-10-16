@@ -6,5 +6,10 @@
     <input placeholder="Password" type="password" formControlName="passwordControl" appHidePassword>
     <alert> </alert>
   </form>
+  <re-captcha
+    (resolved)="resolved($event)"
+    siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+  ></re-captcha>
+  <br>
   <button (click)="verifyLogin()">Login</button>
 </div>
