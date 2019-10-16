@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
       emailControl: new FormControl('', [
         Validators.required,
-        Validators.minLength(4)]),
-      passwordControl: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(4),
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
         Validators.email]),
+      passwordControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)]),
     });
 
   constructor(private authService: AuthenticationService,
@@ -60,6 +60,10 @@ export class LoginComponent implements OnInit {
   verifyLogin() {
     if (this.logged) {
       this.router.navigate(['/']);
+    } else if (!this.loginForm.controls.emailControl.valid) {
+       this.alert.error('Email invalid.');
+    } else if (!this.loginForm.controls.passwordControl.valid) {
+       this.alert.error('Password invalid.');
     } else if (!this.captchaResolved) {
        this.alert.error('Submit captcha before logging in.');
     } else {
