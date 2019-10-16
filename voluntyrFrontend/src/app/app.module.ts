@@ -19,7 +19,6 @@ import { AlertComponent } from './alert/alert.component';
 import {NgbDatepickerModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RecaptchaFormsModule, RecaptchaModule} from 'ng-recaptcha';
 
-
 @NgModule({
   declarations: [
     AppComponent,

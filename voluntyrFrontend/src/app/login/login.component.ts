@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   private logged  = false;
   emailControl: any;
   passwordControl: any;
+  private captchaResolved = false;
 
   ngOnInit() {
     this.authService.getLogged.subscribe(name => this.changeLog(name));
@@ -49,26 +50,35 @@ export class LoginComponent implements OnInit {
     this.logged = log;
   }
 
+  public resolved(captchaResponse: JSON) {
+    console.log(`Resolved captcha with response: `, captchaResponse);
+    if (captchaResponse) {
+      this.captchaResolved = true;
+    }
+  }
+
   verifyLogin() {
     if (this.logged) {
       this.router.navigate(['/']);
+    } else if (!this.captchaResolved) {
+       this.alert.error('Submit captcha before logging in.');
     } else {
-      this.authService.login(this.loginForm.controls.emailControl.value, this.loginForm.controls.passwordControl.value).subscribe(
-        resp => {
-          console.log('log resp = ', resp);
-          if (resp.access) {
-            this.data.changeLogged('true');
-            this.router.navigate(['/']);
-          }
-        }, error => {
-          console.log('error is of type ', typeof error);
-          if (error === 'Unauthorized') {
-            this.alert.error('Wrong password. Try again or click Forgot password to reset it.');
-          } else if (error === 'Bad Request') {
-            this.alert.error('Couldn\'t find an account with that email');
-          }
-        });
-      }
+        this.authService.login(this.loginForm.controls.emailControl.value, this.loginForm.controls.passwordControl.value).subscribe(
+          resp => {
+            console.log('log resp = ', resp);
+            if (resp.access) {
+              this.data.changeLogged('true');
+              this.router.navigate(['/']);
+            }
+          }, error => {
+            console.log('error is of type ', typeof error);
+            if (error === 'Unauthorized') {
+              this.alert.error('Wrong password. Try again or click Forgot password to reset it.');
+            } else if (error === 'Bad Request') {
+              this.alert.error('Couldn\'t find an account with that email');
+            }
+          })
+      };
     }
 
 
