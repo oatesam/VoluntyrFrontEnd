@@ -26,6 +26,7 @@ export class HidePasswordDirective {
     span.innerHTML = 'Show Password';
     span.setAttribute('class', 'password-toggle');
     span.setAttribute('padding-bottom', '0px');
+    span.setAttribute('padding-top', '5px');
     span.setAttribute('display', 'block');
     span.setAttribute('font-size','80px');
     span.addEventListener('click', (event) => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
-import {DataService} from "@app/_services/data.service";
+import {DataService} from '@app/_services/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,7 @@ import {DataService} from "@app/_services/data.service";
 export class NavBarComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
-              private data: DataService) {}
+              private router: Router) {}
   public currentUser = this.authService.currentUserValue;
   private logged: boolean;
 
@@ -29,7 +30,7 @@ export class NavBarComponent implements OnInit {
 
   navLogout() {
     this.authService.logout();
-    this.ngOnInit();
+    window.location.reload();
   }
 
 

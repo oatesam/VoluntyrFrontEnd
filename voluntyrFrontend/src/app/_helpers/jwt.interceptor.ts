@@ -11,10 +11,12 @@ export class JwtInterceptor implements HttpInterceptor {
       console.log('JWT intercepted, pre intercept = ', request.headers);
       // add authorization header with jwt token if available
       let curUser = JSON.parse(localStorage.getItem('currentUser'));
-      if (curUser && curUser.token) {
+      console.log('curuser = ', curUser, ' curser.access = ', curUser.access);
+      if (curUser && curUser.access) {
+        console.log('JWT Interceptor found curUser, token = ', curUser.access);
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${curUser.token}`
+            Authorization: `Bearer ${curUser.access}`
           }
         });
       }

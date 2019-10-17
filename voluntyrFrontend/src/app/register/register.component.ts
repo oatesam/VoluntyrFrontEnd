@@ -69,13 +69,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: `, captchaResponse);
-    if (captchaResponse) {
-      this.captchaResolved = true;
-    }
-  }
-
   verifyVolunteerRegistration() {
     if (!this.firstname.valid || !this.lastname.valid) {
       this.alert.error('Please enter your name');
