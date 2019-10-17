@@ -8,6 +8,7 @@ import { EmailInputComponent } from "./email-input/email-input.component";
 import { OrganizerDashboardComponent } from "./organizer-dashboard/organizer-dashboard.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
+import { NewEventComponent } from "./new-event/new-event.component";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -19,15 +20,21 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   {
-    path: "Organization",
+    path: "organization",
     component: OrganizerDashboardComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: "Volunteer",
+    path: "organization/newEvent",
+    component: NewEventComponent
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "volunteer",
     component: VolunteerDashboardComponent,
     canActivate: [AuthGuard]
   },
+
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
 ];
