@@ -1,0 +1,68 @@
+<section class="form">
+  <h1>Post a New Event</h1>
+  <form #f="ngForm" (ngSubmit)="createEvent()">
+    <div class="form-group">
+      <label>Event Title:</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        [(ngModel)]="newEvent.title"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Location: {{ location }}</label>
+      <input
+        type="text"
+        class="form-control"
+        name="location"
+        [(ngModel)]="newEvent.location"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Date:</label>
+      <input
+        type="date"
+        class="form-control"
+        name="date"
+        [(ngModel)]="newEvent.date"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Start Time:</label>
+      <input
+        type="time"
+        class="form-control"
+        name="start_time"
+        [(ngModel)]="newEvent.start_time"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>End Time:</label>
+      <input
+        type="time"
+        class="form-control"
+        name="end_time"
+        [(ngModel)]="newEvent.end_time"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <br />
+      <textarea
+        [(ngModel)]="newEvent.description"
+        class="form-control"
+        name="description"
+        required
+      ></textarea>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!f.valid">Submit</button>
+    </div>
+  </form>
+</section>
