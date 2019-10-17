@@ -40,7 +40,7 @@ export class AccountsService {
     const body = new HttpParams()
     .set('email', email)
     .set('password', password);
-    console.log(body);
+    //console.log(body);
 
     return this.http.post(this.loginurl,
       body.toString(),

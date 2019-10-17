@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router, ActivatedRoute, Data} from '@angular/router';
 import {AuthenticationService} from '@app/_services/authentication.service';
-import { NavBarComponent} from "@app/nav-bar/nav-bar.component";
-import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
+import {throwError} from 'rxjs';
+import {DataService} from '@app/_services/data.service';
+import {AlertService} from '@app/_services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -12,39 +13,77 @@ import { ErrorInterceptor } from "@app/_helpers/error.interceptor";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice: AuthenticationService,
+  @Input() email: string;
+  loginForm = new FormGroup({
+      emailControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
+        Validators.email]),
+      passwordControl: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)]),
+    });
+
+  constructor(private authService: AuthenticationService,
               private router: Router,
-              private route: ActivatedRoute ) {
-    if (this.authservice.currentUserValue) {
+              private route: ActivatedRoute,
+              private data: DataService,
+              private alert: AlertService) {
+    if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
-
-  email = new FormControl();
-  password = new FormControl();
-  accesstoken = '';
-  refreshtoken = '';
+  private logged  = false;
+  emailControl: any;
+  passwordControl: any;
+  private captchaResolved = false;
 
   ngOnInit() {
+    this.authService.getLogged.subscribe(name => this.changeLog(name));
+    this.loginForm.patchValue({
+      emailControl: this.email
+    });
   }
 
-  get Token() {
-    return this.refreshtoken;
+  changeLog(log: boolean) {
+    this.logged = log;
+  }
+
+  public resolved(captchaResponse: JSON) {
+    console.log(`Resolved captcha with response: `, captchaResponse);
+    if (captchaResponse) {
+      this.captchaResolved = true;
+    }
   }
 
   verifyLogin() {
-    this.authservice.login(this.email.value, this.password.value).subscribe(
-      resp => {
-        this.accesstoken = resp.access;
-        this.refreshtoken = resp.refresh;
-        console.log(this.accesstoken);
-        console.log(this.refreshtoken);
-      }, error => {
-
-      }
-
-    );
-  }
+    if (this.logged) {
+      this.router.navigate(['/']);
+    } else if (!this.loginForm.controls.emailControl.valid) {
+       this.alert.error('Email invalid.');
+    } else if (!this.loginForm.controls.passwordControl.valid) {
+       this.alert.error('Password invalid.');
+    } else if (!this.captchaResolved) {
+       this.alert.error('Submit captcha before logging in.');
+    } else {
+        this.authService.login(this.loginForm.controls.emailControl.value, this.loginForm.controls.passwordControl.value).subscribe(
+          resp => {
+            console.log('log resp = ', resp);
+            if (resp.access) {
+              this.data.changeLogged('true');
+              this.router.navigate(['/']);
+            }
+          }, error => {
+            console.log('error is of type ', typeof error);
+            if (error === 'Unauthorized') {
+              this.alert.error('Wrong password. Try again or click Forgot password to reset it.');
+            } else if (error === 'Bad Request') {
+              this.alert.error('Couldn\'t find an account with that email');
+            }
+          })
+      };
+    }
 
 
 }
