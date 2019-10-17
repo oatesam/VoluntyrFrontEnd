@@ -59,6 +59,14 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.emailControl.setValue(this.email);
+  }
+
+  public resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: `, captchaResponse);
+    if (captchaResponse) {
+      this.captchaResolved = true;
+    }
   }
 
   public resolved(captchaResponse: string) {
