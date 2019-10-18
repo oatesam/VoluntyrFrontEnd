@@ -19,6 +19,7 @@ import { RegisterComponent } from "./register/register.component";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 import { VolunteerService } from "./_services/volunteer.service";
 import { VolunteerEventComponent } from './volunteer-event/volunteer-event.component';
+import { VolunteerEventSignupComponent } from './volunteer-event-signup/volunteer-event-signup.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { VolunteerEventComponent } from './volunteer-event/volunteer-event.compo
     EmailInputComponent,
     RegisterComponent,
     VolunteerDashboardComponent,
-    VolunteerEventComponent
+    VolunteerEventComponent,
+    VolunteerEventSignupComponent
   ],
   imports: [
     BrowserModule,

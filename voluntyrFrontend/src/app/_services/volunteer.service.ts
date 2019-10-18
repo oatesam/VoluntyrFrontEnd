@@ -16,6 +16,7 @@ export class VolunteerService {
   private baseurl: string = `${environment.apiUrl}/`;
   private detailsAPI: string = "api/volunteer/";
   private eventsApi: string = "api/volunteer/events/";
+  private eventsSignupAPI: string = 'api/events/volunteer';
 
   getDetails(token): Observable<Volunteer> {
     const httpOptions = {
@@ -36,5 +37,16 @@ export class VolunteerService {
     };
 
     return this.http.get<Event[]>(this.baseurl + this.eventsApi, httpOptions);
+  }
+
+  getUpcomingEvents(token): Observable<Event[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
+
+    return this.http.get<Event[]>(this.baseurl + this.eventsSignupAPI, httpOptions);
   }
 }
