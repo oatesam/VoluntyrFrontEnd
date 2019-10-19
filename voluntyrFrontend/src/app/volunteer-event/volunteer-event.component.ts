@@ -10,7 +10,7 @@ import {
 import { Event } from "../_helpers/Event";
 
 @Component({
-  selector: "app-volunteer-event",
+  selector: 'app-volunteer-event',
   templateUrl: "./volunteer-event.component.html",
   styleUrls: ["./volunteer-event.component.css"]
 })
@@ -26,4 +26,7 @@ export class VolunteerEventComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+  selectedEvent() {
+    console.log('Just selected ');
+  }
 }
