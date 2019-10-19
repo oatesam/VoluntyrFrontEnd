@@ -4,7 +4,7 @@
     <div class="col-md-6">
       <h1>Upcoming Events</h1>
         <app-volunteer-event
-          *ngFor="let event of events" (click)="signupEvents()" [event]="event">
+          *ngFor="let event of events" (click)="selectedEvent()" [event]="event">
         </app-volunteer-event>
     </div>
   </div>
