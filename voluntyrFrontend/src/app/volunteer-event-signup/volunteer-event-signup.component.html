@@ -3,10 +3,9 @@
     <app-calendar class="col-md-6"></app-calendar>
     <div class="col-md-6">
       <h1>Upcoming Events</h1>
-      <app-volunteer-event
-        *ngFor="let event of events"
-        [event]="event"
-      ></app-volunteer-event>
+        <app-volunteer-event
+          *ngFor="let event of events" (click)="signupEvents()" [event]="event">
+        </app-volunteer-event>
     </div>
   </div>
 </div>
