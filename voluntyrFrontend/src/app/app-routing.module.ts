@@ -8,7 +8,7 @@ import { EmailInputComponent } from "./email-input/email-input.component";
 import { OrganizerDashboardComponent } from "./organizer-dashboard/organizer-dashboard.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
-import { VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
+import { VolunteerEventSignupComponent } from "@app/volunteer-event-signup/volunteer-event-signup.component";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: "email-input", component: EmailInputComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: 'volunteereventsignup', component: VolunteerEventSignupComponent },
+  { path: "Events", component: VolunteerEventSignupComponent },
   {
     path: "Organization",
     component: OrganizerDashboardComponent,
@@ -31,7 +31,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   // PageNotFound should always be last in routing, otherwise it will overtake others
-  { path: "**", component: PageNotFoundComponent },
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
