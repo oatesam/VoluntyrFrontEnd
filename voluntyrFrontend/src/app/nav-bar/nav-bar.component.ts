@@ -3,6 +3,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 import {DataService} from '@app/_services/data.service';
 import {Router} from '@angular/router';
 
+// TODO: Filter by scope of logged in user
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
