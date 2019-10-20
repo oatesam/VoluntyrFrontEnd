@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { event } from "../organizer-dashboard/event";
 import { Observable } from "rxjs";
-import { environment } from "@environments/environment";
+import {environment} from '@environments/environment';
 @Injectable({
   providedIn: "root"
 })
 export class EventsService {
-  private baseurl = `${environment.apiUrl} + "/api/events/"`;
+  private organizationEvents = `${environment.apiUrl}/organization/events/`;
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
@@ -16,6 +16,6 @@ export class EventsService {
     })
   };
   getEventInfo(): Observable<event[]> {
-    return this.httpClient.get<event[]>(this.baseurl, this.httpOptions);
+    return this.httpClient.get<event[]>(this.organizationEvents, this.httpOptions);
   }
 }

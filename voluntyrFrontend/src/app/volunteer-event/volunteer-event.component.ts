@@ -7,9 +7,9 @@ import {
   faHandHoldingHeart,
   faLandmark
 } from "@fortawesome/free-solid-svg-icons";
-import { Event } from "../_helpers/Event";
 import { HostListener } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
+import { Event } from "../_models/Event";
 
 @Component({
   selector: "app-volunteer-event",

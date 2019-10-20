@@ -7,8 +7,8 @@ import {
   faLandmark,
   faMapPin
 } from "@fortawesome/free-solid-svg-icons";
-import { OrganizationService } from "../_helpers/organization.service";
-import { EventsService } from "../_helpers/events.service";
+import { OrganizationService } from "../_services/organization.service";
+import { EventsService } from "../_services/events.service";
 import { Observable } from "rxjs";
 import { organization } from "./organization";
 import { event } from "./event";

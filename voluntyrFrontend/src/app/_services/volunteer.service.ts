@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Event } from "../_helpers/Event";
-import { Volunteer } from "../_helpers/Volunteer";
+import { Event } from "../_models/Event";
+import { Volunteer } from "../_models/Volunteer";
 import { environment } from "@environments/environment";
 
 @Injectable({
