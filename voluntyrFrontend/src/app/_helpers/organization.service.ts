@@ -3,11 +3,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { organization } from "../organizer-dashboard/organization";
 import { Observable } from "rxjs";
 import { event } from "../organizer-dashboard/event";
+import { environment } from "@environments/environment";
 @Injectable({
   providedIn: "root"
 })
 export class OrganizationService {
-  private baseurl = "http://localhost:8000/api/";
+  private baseurl = environment.apiUrl + "/api/";
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
@@ -23,14 +24,13 @@ export class OrganizationService {
   }
   createNewEvent(payloaddata: event) {
     this.httpClient
-      .post(
-        this.baseurl + "organization/createNewEvent/",
-        JSON.stringify(payloaddata),
-        this.httpOptions
-      )
-      .toPromise()
-      .then(resp => {
-        return resp;
+      .post(this.baseurl + "organization/event/", payloaddata, this.httpOptions)
+      .subscribe(resp => {
+        if (resp === 200) {
+          return "sucess";
+        } else {
+          return "Unable to create event";
+        }
       });
   }
 }

@@ -34,7 +34,7 @@
     <div class="form-group">
       <label>Start Time:</label>
       <input
-        type="time"
+        type="datetime-local"
         class="form-control"
         name="start_time"
         [(ngModel)]="newEvent.start_time"
@@ -44,7 +44,7 @@
     <div class="form-group">
       <label>End Time:</label>
       <input
-        type="time"
+        type="datetime-local"
         class="form-control"
         name="end_time"
         [(ngModel)]="newEvent.end_time"
@@ -63,6 +63,11 @@
     </div>
     <div>
       <button type="submit" [disabled]="!f.valid">Submit</button>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="routeToDashBoard()">
+        Return to Dashboard
+      </button>
     </div>
   </form>
 </section>

@@ -3,7 +3,7 @@ import { event } from "../organizer-dashboard/event";
 import { NgForm } from "@angular/forms";
 import { OrganizationService } from "../_helpers/organization.service";
 import { HttpClient } from "@angular/common/http";
-
+import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-new-event",
   templateUrl: "./new-event.component.html",
@@ -26,13 +26,22 @@ export class NewEventComponent implements OnInit {
   );
 
   createEvent() {
-    console.log("submitted", this.newEvent);
-    this.OrganizationService.createNewEvent(this.newEvent);
-    alert("created new event!");
+    let resp = this.OrganizationService.createNewEvent(this.newEvent);
+    alert("New Event has been created");
+
+    this.router.navigateByUrl("organization").then(() => {
+      window.location.reload();
+    });
+  }
+
+  routeToDashBoard() {
+    this.router.navigateByUrl("organization");
   }
   constructor(
     private http: HttpClient,
-    private OrganizationService: OrganizationService
+    private OrganizationService: OrganizationService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {}
