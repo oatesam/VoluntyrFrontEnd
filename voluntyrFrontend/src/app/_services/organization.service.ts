@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { organization } from "../organizer-dashboard/organization";
+import { organization } from "../_models/organization";
 import { Observable } from "rxjs";
 import { event } from "../organizer-dashboard/event";
 import { environment } from "@environments/environment";

@@ -42,9 +42,22 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(8)]);
   passwordconfirm = new FormControl('');
-  orgname = new FormControl('');
-  address = new FormControl('');
-  phonenumber = new FormControl('');
+  orgname = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
+  address = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
+  city = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
+  state = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
+  motto = new FormControl();
+  phonenumber = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
   captchaResolved = false;
 
   toggle() {
@@ -120,15 +133,16 @@ export class RegisterComponent implements OnInit {
         this.emailControl.value,
         this.password.value,
         this.address.value,
-        this.phonenumber.value).subscribe(
+        this.phonenumber.value,
+        this.city.value,
+        this.state.value,
+        this.motto.value).subscribe(
         resp => {
-          console.log('is this thing working?');
-          if (resp.status === 409) {
-            console.log('got into status');
+          if (resp.status === 201) {
             this.router.navigateByUrl('login');
-          } else if (resp.status === 204) {
-            console.log(resp);
-            this.router.navigateByUrl('');
+          } else if (resp.status === 409) {
+            alert("This email already has an account. Please login at the next page.");
+            this.router.navigateByUrl('login');
           }
         }
       );

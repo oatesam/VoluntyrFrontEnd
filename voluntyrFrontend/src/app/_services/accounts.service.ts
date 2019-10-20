@@ -23,10 +23,10 @@ export class AccountsService {
     return this.http.post(this.checkemailurl, {'email': email}, { observe: 'response' });
   }
 
-  registerOrganization(name, email, password, address, phonenumber): Observable<any> {
+  registerOrganization(name, email, password, address, phonenumber, city, state, motto): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    let body = {'name': name, 'email': email, 'password': password, 'address': address, 'phonenumber': phonenumber};
-    console.log(body)
+    let body = {'name': name, 'email': email, 'password': password, 'street_address': address, 'phone_number': phonenumber, 'city': city, 'state': state, 'organization_motto': motto};
+    console.log(body);
     return this.http.post(this.orgregurl, body, { observe: 'response' });
   }
 

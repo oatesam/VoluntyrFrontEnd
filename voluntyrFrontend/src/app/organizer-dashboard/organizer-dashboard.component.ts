@@ -10,8 +10,8 @@ import {
 import { OrganizationService } from "../_services/organization.service";
 import { EventsService } from "../_services/events.service";
 import { Observable } from "rxjs";
-import { organization } from "./organization";
-import { event } from "./event";
+import { organization } from "../_models/organization";
+import {Event} from '@app/_models/Event';
 //TODO: add icons [organization, phone, email, ratings, motto]
 
 @Component({
@@ -36,7 +36,7 @@ export class OrganizerDashboardComponent implements OnInit {
   //Initiate the varibales
   public org_lst: organization;
   public org_info;
-  public event_lst: event[];
+  public event_lst: Event[];
   public calendar_event: [];
   //TODO: The API calls currently doesn't do anything due to django error
   ngOnInit() {
