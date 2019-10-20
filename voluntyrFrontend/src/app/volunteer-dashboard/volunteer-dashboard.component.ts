@@ -29,7 +29,7 @@ export class VolunteerDashboardComponent implements OnInit {
     this.getEvents();
   }
 
-  private getDetails() {
+  public getDetails() {
     this.VolunteerService.getDetails(this.token).subscribe(
       data => {
         this.volunteer = data;
@@ -39,10 +39,12 @@ export class VolunteerDashboardComponent implements OnInit {
       }
     );
   }
-  private routeToEvents() {
+
+  public routeToEvents() {
     this.router.navigateByUrl("Events");
   }
-  private getEvents() {
+
+  public getEvents() {
     this.VolunteerService.getEvents(this.token).subscribe(
       data => {
         this.events = data;

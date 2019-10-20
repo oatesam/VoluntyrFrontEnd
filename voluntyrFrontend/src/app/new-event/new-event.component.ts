@@ -10,13 +10,13 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./new-event.component.css"]
 })
 export class NewEventComponent implements OnInit {
-  private title;
-  private location;
-  private start_time;
-  private end_time;
-  private date;
-  private description;
-  private newEvent = new Event(
+  public title;
+  public location;
+  public start_time;
+  public end_time;
+  public date;
+  public description;
+  public newEvent = new Event(
     this.title,
     this.start_time,
     this.end_time,
