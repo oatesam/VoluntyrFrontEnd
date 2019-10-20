@@ -8,7 +8,7 @@ import { environment } from "@environments/environment";
   providedIn: "root"
 })
 export class OrganizationService {
-  private baseurl = environment.apiUrl + "/api/";
+  private baseurl = `${environment.apiUrl} + "/api/"`;
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {
