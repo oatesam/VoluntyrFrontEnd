@@ -1,34 +1,13 @@
 * {
   font-family: 'Roboto', Arial, sans-serif;
-  /*color: #616161;*/
+  color: #616161;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  background-color: #1976d2;
-  border: none;
-  color: red;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
-.button:hover {
-  background-color: #000bd2; /* Green */
-  color: white;
-}
-
-
 body.main {
   background-color: #cce0ff;
-}
-
-div.logreg {
-  text-align: center;
 }
 
 .responsive {
@@ -43,31 +22,7 @@ div.logreg {
   text-align: center;
 }
 
-input{
-  text-align: center;
-  padding: 8px 12px;
-  text-decoration: none;
-  font-size: 16px;
-}
 
-.alert {
-  font-size: 12px;
-  padding-bottom: 20px;
-}
-
-.alert-success{
-  color: green;
-}
-
-.alert-danger {
-  color: red;
-}
-
-re-captcha {
-  display: inline-block;
-  text-align: center;
-  padding-bottom: 10px;
-}
 
 
 

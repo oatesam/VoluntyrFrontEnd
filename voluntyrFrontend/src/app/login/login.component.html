@@ -1,15 +1,8 @@
-<div class="logreg">
-  <form [formGroup]="loginForm" (ngSubmit)="verifyLogin()">
-    <h3>Email</h3>
-    <input type="text" formControlName="emailControl">
-    <h3>Password</h3>
-    <input placeholder="Password" type="password" formControlName="passwordControl" appHidePassword>
-    <alert> </alert>
-  </form>
-  <re-captcha
-    (resolved)="resolved($event)"
-    siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
-  ></re-captcha>
+<div class="responsive center">
+  <h3>Email</h3>
+  <input type="text" [formControl]="email">
+  <h3>Password</h3>
+  <input type="password" [formControl]="password">
   <br>
   <button (click)="verifyLogin()">Login</button>
 </div>

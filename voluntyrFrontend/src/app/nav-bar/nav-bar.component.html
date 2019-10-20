@@ -1,36 +1,40 @@
-  <div class="navtext">
-    &nbsp;<div class = "leftnav">
+<div class="navtext">
+  &nbsp;
+  <div class="leftnav">
     <a routerLink="/">
-        Home
-      </a>
-      &nbsp;
-      <a routerLink="/Events">
-        Events
-      </a>
-      &nbsp;
-      <a routerLink="/Organizations">
-        Organizations
-      </a>
-      &nbsp;
-      <a routerLink="/Support">
-        Support
-      </a>
-      &nbsp;
-      <a routerLink="/Account">
-        Account
-      </a>
-    </div>
-    <div class ='rightnav'>
-      <ng-container *ngIf="!logged">
-        <a routerLink="email-input" class="rightnav ">
-          Login
-        </a>
-      </ng-container>
-      <ng-container *ngIf="logged">
-        <a routerLink="/" class="rightnav" (click)="navLogout()">
-          Logout
-        </a>
-      </ng-container>
-    </div>
+      Home
+    </a>
+    &nbsp;
+    <a routerLink="/Events">
+      Events
+    </a>
+    &nbsp;
+    <a routerLink="/Organization">
+      Organization
+    </a>
+    &nbsp;
+    <a routerLink="/Volunteer">
+      Volunteer
+    </a>
+    &nbsp;
+    <a routerLink="/Support">
+      Support
+    </a>
+    &nbsp;
+    <a routerLink="/Account">
+      Account
+    </a>
   </div>
-
+  <div class="rightnav">
+    <ng-container *ngIf="showLogin">
+      <a routerLink="email-input" class="rightnav ">
+        Login
+      </a>
+    </ng-container>
+    <ng-container *ngIf="!showLogin">
+      <a routerLink="/" class="rightnav" (click)="navLogout()">
+        Logout
+      </a>
+    </ng-container>
+  </div>
+</div>
