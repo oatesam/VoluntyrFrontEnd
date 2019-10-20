@@ -11,7 +11,7 @@ export class JwtInterceptor implements HttpInterceptor {
       console.log('JWT intercepted, pre intercept = ', request.headers);
       // add authorization header with jwt token if available
       let curUser = JSON.parse(localStorage.getItem('currentUser'));
-      console.log('curuser = ', curUser, ' curser.access = ', curUser.access);
+      console.log('curuser = ', curUser);
       if (curUser && curUser.access) {
         console.log('JWT Interceptor found curUser, token = ', curUser.access);
         request = request.clone({

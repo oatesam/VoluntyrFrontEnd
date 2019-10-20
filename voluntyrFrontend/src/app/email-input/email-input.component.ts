@@ -18,7 +18,7 @@ export class EmailInputComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   email: string;
-  emailControl = new FormControl('testemail1@gmail.com');
+  emailControl = new FormControl();
   accountStatus = 0;
 
   // tslint:disable-next-line:use-lifecycle-interface

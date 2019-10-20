@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
               private alert: AlertService
   ) {  }
 
-  model: NgbDateStruct;
+  dateStruct: NgbDateStruct;
   date: {year: number, month: number};
   public showOrg = false;
   public buttonName: any = 'Volunteer';
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
   verifyVolunteerRegistration() {
     if (!this.firstname.valid || !this.lastname.valid) {
       this.alert.error('Please enter your name');
-    } else if (!this.model) {
+    } else if (!this.dateStruct) {
       this.alert.error('Please choose your birthday in calendar');
     } else if (!this.emailControl.valid) {
       this.alert.error('Invalid email');
@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
     } else if (!this.captchaResolved) {
        this.alert.error('Submit captcha before logging in.');
     } else {
-       this.birthday = '' + this.model.day.toString() + '-' + this.model.month.toString() + '-' + this.model.year.toString();
+       this.birthday = '' + this.dateStruct.year.toString() + '-' + this.dateStruct.month.toString() + '-' + this.dateStruct.day.toString();
        this.accountService.registerVolunteer(
         this.firstname.value,
         this.lastname.value,
@@ -92,14 +92,19 @@ export class RegisterComponent implements OnInit {
         this.birthday).subscribe(
         resp => {
           console.log(resp);
-          if (resp.status === 202) {
+          if (resp.status === 201) {
             console.log(resp);
             this.router.navigateByUrl('login');
-          } else if (resp.status === 204) {
+          } else if (resp.status === 409) {
             console.log(resp);
-            this.router.navigateByUrl('register');
+            alert("This email already has an account. Please login at the next page.");
+            this.router.navigateByUrl('login');
           }
-        }
+        }, error1 => {
+          alert("There was a problem with your registration. Please try again later.");
+          // TODO: Make this more user friendly
+           this.router.navigateByUrl("");
+         }
       );
     }
   }
