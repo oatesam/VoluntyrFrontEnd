@@ -20,19 +20,23 @@ const routes: Routes = [
   { path: "email-input", component: EmailInputComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "Events", component: VolunteerEventSignupComponent },
   {
-    path: "organization",
+    path: "Events",
+    component: VolunteerEventSignupComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "Organization",
     component: OrganizerDashboardComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: "organization/newEvent",
-    component: NewEventComponent
-    //canActivate: [AuthGuard]
+    path: "Organization/newEvent",
+    component: NewEventComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: "volunteer",
+    path: "Volunteer",
     component: VolunteerDashboardComponent,
     canActivate: [AuthGuard]
   },

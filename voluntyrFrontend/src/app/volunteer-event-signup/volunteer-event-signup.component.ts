@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VolunteerService } from '../_services/volunteer.service';
-import { Volunteer } from '../_helpers/Volunteer';
-import { Event } from '../_helpers/Event';
+import { Volunteer } from '../_models/Volunteer';
+import { Event } from '../_models/Event';
 import { faUser, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { organization } from "../_models/organization";
 import { Observable } from "rxjs";
-import { event } from "../organizer-dashboard/event";
+import { Event} from '@app/_models/Event';
 import { environment } from "@environments/environment";
 @Injectable({
   providedIn: "root"
@@ -22,7 +22,7 @@ export class OrganizationService {
       this.httpOptions
     );
   }
-  createNewEvent(payloaddata: event) {
+  createNewEvent(payloaddata: Event) {
     this.httpClient
       .post(this.baseurl + "organization/event/", payloaddata, this.httpOptions)
       .subscribe(resp => {
