@@ -1,9 +1,12 @@
-<div class="logreg" *ngIf="accountStatus === 0">
-  <input type="text" [formControl]="emailControl">
-  <h1></h1>
-  <button class="emailinput" (click)="verifyEmail()">Enter Email</button>
-</div>
-<div>
-  <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>
-  <app-register [email]="email" *ngIf="accountStatus === 1"></app-register>
+<div class="responsive center">
+  <input type="text" [formControl]="email">
+  <button (click)="verifyEmail()">Check Email</button>
+  <br>
+  <a routerLink="/../../login" >
+    <button>Login</button>
+  </a>
+  <br>
+  <a routerLink="/../../register" >
+    <button>Register</button>
+  </a>
 </div>

@@ -1,17 +1,8 @@
-input{
+input {
   text-align:center;
 }
 
-div.emailinput {
-  display: block;
-  align-items: center;
+a button {
+  margin: 5px;
+  width: 25%;
 }
-
-button.emailinput{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-}
-
-

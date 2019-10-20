@@ -1,25 +1,6 @@
-.responsive{
-  width: 60%;
-  height: auto;
-  margin-right:auto;
-  margin-left:auto;
-  display: block;
-}
-
 div.center_content{
   background-color:white;
   width:60%;
   margin-right:auto;
   margin-left:auto;
-  padding: 16px;
-}
-
-alert {
-  position: center;
-  top: 15px;
-  padding: 20px;
-}
-
-button {
-  color: white;
 }

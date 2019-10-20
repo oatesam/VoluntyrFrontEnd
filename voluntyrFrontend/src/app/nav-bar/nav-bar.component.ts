@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
-import {DataService} from '@app/_services/data.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,27 +8,41 @@ import {Router} from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService,
-              private router: Router) {}
+  constructor(private authService: AuthenticationService) {}
+  public showLogin: boolean = true;
   public currentUser = this.authService.currentUserValue;
-  private logged: boolean;
 
   ngOnInit() {
-    if (this.authService.currentUserValue) {
-      this.logged = true;
+    this.authService.login(this.currentUser.username, this.currentUser.password).subscribe(
+      (data) => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error => {
+        console.log('Error');
+      }
+    );
+
+    if(this.authService.currentUserValue){
+      this.showLogin = false;
     } else {
-      this.logged = false;
+      this.showLogin = true;
     }
-    this.authService.getLogged.subscribe(name => this.changeLog(name));
+
+
   }
 
-  changeLog(logger: boolean) {
-    this.logged = logger;
+  checkLog() {
+    if(this.authService.currentUserValue){
+      this.showLogin = false;
+    } else {
+      this.showLogin = true;
+    }
   }
 
   navLogout() {
     this.authService.logout();
-    window.location.reload();
+    this.ngOnInit();
   }
 
 
