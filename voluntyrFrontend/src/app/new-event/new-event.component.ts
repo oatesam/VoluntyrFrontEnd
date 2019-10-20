@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { event } from "../organizer-dashboard/event";
+import { Event } from '@app/_models/Event';
 import { NgForm } from "@angular/forms";
-import { OrganizationService } from "../_helpers/organization.service";
+import { OrganizationService } from "../_services/organization.service";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 @Component({
@@ -16,7 +16,7 @@ export class NewEventComponent implements OnInit {
   private end_time;
   private date;
   private description;
-  private newEvent = new event(
+  private newEvent = new Event(
     this.title,
     this.start_time,
     this.end_time,

@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
-import { Volunteer } from "../_helpers/Volunteer";
-import { Event } from "../_helpers/Event";
+import { Volunteer } from "../_models/Volunteer";
+import { Event } from "../_models/Event";
 import { faUser, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-volunteer-dashboard",
@@ -10,7 +11,11 @@ import { faUser, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./volunteer-dashboard.component.css"]
 })
 export class VolunteerDashboardComponent implements OnInit {
-  constructor(private VolunteerService: VolunteerService) {}
+  constructor(
+    private VolunteerService: VolunteerService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   faUser = faUser;
   faCalendarPlus = faCalendarPlus;
 
@@ -34,7 +39,9 @@ export class VolunteerDashboardComponent implements OnInit {
       }
     );
   }
-
+  private routeToEvents() {
+    this.router.navigateByUrl("Events");
+  }
   private getEvents() {
     this.VolunteerService.getEvents(this.token).subscribe(
       data => {

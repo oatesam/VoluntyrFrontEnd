@@ -6,7 +6,7 @@ import {
   faCalendarAlt,
   faHandHoldingHeart
 } from "@fortawesome/free-solid-svg-icons";
-import { event } from "../organizer-dashboard/event";
+import {Event} from '@app/_models/Event';
 
 //TODO: add icons [description ]
 @Component({
@@ -15,7 +15,7 @@ import { event } from "../organizer-dashboard/event";
   styleUrls: ["./individual-event-summary.component.css"]
 })
 export class IndividualEventSummaryComponent implements OnInit {
-  @Input() event: event;
+  @Input() event: Event;
   //declaration of the icons
   faBullhorn = faBullhorn;
   faClock = faClock;

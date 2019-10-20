@@ -7,7 +7,9 @@ import {
   faHandHoldingHeart,
   faLandmark
 } from "@fortawesome/free-solid-svg-icons";
-import { Event } from "../_helpers/Event";
+import { HostListener } from "@angular/core";
+import { VolunteerService } from "../_services/volunteer.service";
+import { Event } from "../_models/Event";
 
 @Component({
   selector: "app-volunteer-event",
@@ -16,14 +18,23 @@ import { Event } from "../_helpers/Event";
 })
 export class VolunteerEventComponent implements OnInit {
   @Input() event: Event;
+  @HostListener("click") onClick() {
+    console.log("clicked!!!!", this.event.id);
+    this.signUpEvent();
+  }
+  token = JSON.parse(localStorage.getItem("currentUser")).access;
   //declaration of the icons
+
   faBullhorn = faBullhorn;
   faLandmark = faLandmark;
   faClock = faClock;
   faMapPin = faMapPin;
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
-  constructor() {}
+  signUpEvent() {
+    this.VolunteerService.signupEvents(this.token, this.event.id);
+  }
+  constructor(private VolunteerService: VolunteerService) {}
 
   ngOnInit() {}
 }

@@ -8,6 +8,7 @@ import { EmailInputComponent } from "./email-input/email-input.component";
 import { OrganizerDashboardComponent } from "./organizer-dashboard/organizer-dashboard.component";
 import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
+import { VolunteerEventSignupComponent } from "@app/volunteer-event-signup/volunteer-event-signup.component";
 import { NewEventComponent } from "./new-event/new-event.component";
 
 const routes: Routes = [
@@ -20,17 +21,22 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   {
-    path: "organization",
+    path: "Events",
+    component: VolunteerEventSignupComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "Organization",
     component: OrganizerDashboardComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: "organization/newEvent",
-    component: NewEventComponent
-    //canActivate: [AuthGuard]
+    path: "Organization/newEvent",
+    component: NewEventComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: "volunteer",
+    path: "Volunteer",
     component: VolunteerDashboardComponent,
     canActivate: [AuthGuard]
   },
@@ -40,7 +46,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
