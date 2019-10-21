@@ -15,16 +15,18 @@
 
     <h3> Birthday</h3>
     <ngb-datepicker #dp [(ngModel)]="dateStruct" (navigate)="date = $event.next" [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2020, month: 1, day: 1}"></ngb-datepicker>
-
   </ng-container>
+
 
   <ng-container *ngIf="showOrg">
     <h3> Organization Name </h3>
     <input type="text" [formControl]="orgname">
+  </ng-container>
 
-    <!--<h3>Email</h3>-->
-    <!--<input type="text" [formControl]="emailControl">-->
+  <h3>Email</h3>
+  <input type="text" [formControl]="emailControl">
 
+  <ng-container *ngIf="showOrg">
     <h3>Address</h3>
     <input type="text" [formControl]="address">
 
@@ -50,7 +52,7 @@
   <alert></alert>
   <re-captcha
     (resolved)="resolved($event)"
-    siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+    siteKey="6Lctwr4UAAAAAE0QrcnljdsfXlQBmemMBqeEwe1H"
   ></re-captcha>
   <br>
   <button (click)="verifyReg()">Register</button>
