@@ -18,12 +18,13 @@
 
   </ng-container>
 
+
   <ng-container *ngIf="showOrg">
     <h3> Organization Name </h3>
     <input type="text" [formControl]="orgname">
 
-    <!--<h3>Email</h3>-->
-    <!--<input type="text" [formControl]="emailControl">-->
+<!--  <h3>Email</h3>-->
+<!--  <input type="text" [formControl]="emailControl">-->
 
     <h3>Address</h3>
     <input type="text" [formControl]="address">
@@ -50,7 +51,7 @@
   <alert></alert>
   <re-captcha
     (resolved)="resolved($event)"
-    siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+    siteKey="6Lctwr4UAAAAAE0QrcnljdsfXlQBmemMBqeEwe1H"
   ></re-captcha>
   <br>
   <button (click)="verifyReg()">Register</button>
