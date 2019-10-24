@@ -8,7 +8,7 @@ import {Event} from '@app/_models/Event';
   providedIn: "root"
 })
 export class EventsService {
-  private organizationEvents = `${environment.apiUrl}/organization/events/`;
+  private organizationEvents = `${environment.apiUrl}/api/organization/events/`;
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
   constructor(private httpClient: HttpClient) {}
   httpOptions = {

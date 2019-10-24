@@ -30,18 +30,21 @@
     </div>
   </div>
   <div class="row">
-    <app-calendar class="col-md-6"></app-calendar>
+    <app-calendar class="col-md-6" [events]="event_lst"></app-calendar>
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-6">
           <h3>Events</h3>
         </div>
-        <div class="col-md-6">
-          <button class="btn btn-primary" [routerLink]="['newEvent']">
-            Post New Event
-          </button>
-        </div>
+        <!--<div class="col-md-6">-->
+          <!--<button class="btn btn-primary" [routerLink]="['newEvent']">-->
+            <!--Post New Event-->
+          <!--</button>-->
+        <!--</div>-->
       </div>
+      <button class="btn btn-primary" [routerLink]="['newEvent']">
+            Post New Event
+      </button>
       <app-individual-event-summary
         *ngFor="let event of event_lst"
         [event]="event"

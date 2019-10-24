@@ -4,16 +4,14 @@ background-color: lightcoral;"
 >
   <div>
     <p><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</p>
-    <p><fa-icon [icon]="faMapPin"></fa-icon>{{ event.location }}</p>
+    <p><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</p>
     <p>
-      <fa-icon [icon]="faClock"></fa-icon
-      >{{ event.start_time | date: "shortTime" }}
+      <fa-icon [icon]="faClock"></fa-icon> {{ event.start_time | date: "shortTime" }}
     </p>
     <p>
-      <fa-icon [icon]="faCalendarAlt"></fa-icon
-      >{{ event.date | date: "fullDate" }}
+      <fa-icon [icon]="faCalendarAlt"></fa-icon> {{ event.date | date: "fullDate" }}
     </p>
-    <p><fa-icon [icon]="faBullhorn"></fa-icon>{{ event.description }}</p>
+    <p><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.description }}</p>
   </div>
   <br />
 </div>

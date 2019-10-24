@@ -5,6 +5,7 @@ import {AuthenticationService} from '@app/_services/authentication.service';
 import {throwError} from 'rxjs';
 import {DataService} from '@app/_services/data.service';
 import {AlertService} from '@app/_services/alert.service';
+import {environment} from '@environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -14,16 +15,12 @@ import {AlertService} from '@app/_services/alert.service';
 export class LoginComponent implements OnInit {
 
   @Input() email: string;
-  loginForm = new FormGroup({
-      emailControl: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
-        Validators.email]),
-      passwordControl: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)]),
-    });
+  public CAPTCHAKEY = `${environment.captchaKey}`;
+
+  private logged  = false;
+  emailControl: any;
+  passwordControl: any;
+  private captchaResolved = false;
 
   constructor(private authService: AuthenticationService,
               private router: Router,
@@ -34,10 +31,17 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-  private logged  = false;
-  emailControl: any;
-  passwordControl: any;
-  private captchaResolved = false;
+
+  loginForm = new FormGroup({
+    emailControl: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
+      Validators.email]),
+    passwordControl: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8)]),
+  });
 
   ngOnInit() {
     this.authService.getLogged.subscribe(name => this.changeLog(name));

@@ -8,23 +8,30 @@ import { environment } from "@environments/environment";
   providedIn: "root"
 })
 export class OrganizationService {
-  private baseurl = `${environment.apiUrl} + "/api/"`;
+  private createEventUrl = `${environment.apiUrl}/api/organization/event/`;
+  private organizationInfoUrl = `${environment.apiUrl}/api/organization/`;
+  private organizationEventsUrl = `${environment.apiUrl}/api/organization/events/`;
+
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
+
   constructor(private httpClient: HttpClient) {}
+
   httpOptions = {
     headers: new HttpHeaders({
       Authorization: ` Bearer ${this.token}`
     })
   };
+
   getOrganizationInfo(): Observable<organization> {
     return this.httpClient.get<organization>(
-      this.baseurl + "organization/",
+      this.organizationInfoUrl,
       this.httpOptions
     );
   }
+
   createNewEvent(payloaddata: Event) {
     this.httpClient
-      .post(this.baseurl + "organization/event/", payloaddata, this.httpOptions)
+      .post(this.createEventUrl, payloaddata, this.httpOptions)
       .subscribe(resp => {
         if (resp === 200) {
           return "sucess";
@@ -32,5 +39,9 @@ export class OrganizationService {
           return "Unable to create event";
         }
       });
+  }
+
+  getEvents(): Observable<Event[]> {
+    return this.httpClient.get<Event[]>(this.organizationEventsUrl, this.httpOptions);
   }
 }
