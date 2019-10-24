@@ -9,7 +9,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
   styleUrls: ["./calendar.component.css"]
 })
 export class CalendarComponent implements OnInit {
-  @Input() event: [];
+  @Input() events: Event[];
   calendarPlugins = [dayGridPlugin];
 
   constructor() {}

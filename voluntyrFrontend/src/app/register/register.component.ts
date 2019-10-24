@@ -4,6 +4,7 @@ import {AccountsService} from '../_services/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AlertService} from '@app/_services/alert.service';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import {environment} from '@environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit {
   public buttonName: any = 'Volunteer';
   public oppReg: any = 'an Organization';
   public curReg: any = 'a Volunteer';
+  public CAPTCHAKEY = `${environment.captchaKey}`;
+
   firstname = new FormControl('', [
         Validators.required,
         Validators.minLength(1) ]);

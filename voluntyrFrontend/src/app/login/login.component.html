@@ -8,7 +8,7 @@
   </form>
   <re-captcha
     (resolved)="resolved($event)"
-    siteKey="6Lctwr4UAAAAAE0QrcnljdsfXlQBmemMBqeEwe1H"
+    [siteKey]="CAPTCHAKEY"
   ></re-captcha>
   <br>
   <button (click)="verifyLogin()">Login</button>
