@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Event } from '@app/_models/Event';
+import { Event } from "@app/_models/Event";
 import { NgForm } from "@angular/forms";
 import { OrganizationService } from "../_services/organization.service";
 import { HttpClient } from "@angular/common/http";
@@ -26,8 +26,15 @@ export class NewEventComponent implements OnInit {
   );
 
   createEvent() {
+    if (this.date != this.start_time.getDate()) {
+      alert("The start time and date needs to be same date");
+    }
+    if (this.start_time > this.end_time) {
+      alert("The end date must be later than start time");
+      return;
+    }
     let resp = this.OrganizationService.createNewEvent(this.newEvent);
-    alert("New Event has been created");
+    alert(resp);
 
     this.router.navigateByUrl("organization").then(() => {
       window.location.reload();

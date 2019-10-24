@@ -5,6 +5,8 @@
       <label>Event Title:</label>
       <input
         type="text"
+        required
+        minlength="1"
         class="form-control"
         name="title"
         [(ngModel)]="newEvent.title"
@@ -15,6 +17,8 @@
       <label>Location: {{ location }}</label>
       <input
         type="text"
+        required
+        minlength="1"
         class="form-control"
         name="location"
         [(ngModel)]="newEvent.location"
@@ -25,6 +29,7 @@
       <label>Date:</label>
       <input
         type="date"
+        required
         class="form-control"
         name="date"
         [(ngModel)]="newEvent.date"
@@ -35,6 +40,7 @@
       <label>Start Time:</label>
       <input
         type="datetime-local"
+        required
         class="form-control"
         name="start_time"
         [(ngModel)]="newEvent.start_time"
@@ -45,6 +51,7 @@
       <label>End Time:</label>
       <input
         type="datetime-local"
+        required
         class="form-control"
         name="end_time"
         [(ngModel)]="newEvent.end_time"
@@ -56,6 +63,8 @@
       <br />
       <textarea
         [(ngModel)]="newEvent.description"
+        required
+        minlength="1"
         class="form-control"
         name="description"
         required
