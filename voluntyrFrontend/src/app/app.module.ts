@@ -28,6 +28,8 @@ import {VolunteerDashboardComponent} from '@app/volunteer-dashboard/volunteer-da
 import {VolunteerEventComponent} from '@app/volunteer-event/volunteer-event.component';
 import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
 import {NewEventComponent} from '@app/new-event/new-event.component';
+import { LoginwrapperComponent } from './loginwrapper/loginwrapper.component';
+import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {NewEventComponent} from '@app/new-event/new-event.component';
     VolunteerDashboardComponent,
     VolunteerEventComponent,
     VolunteerEventSignupComponent,
-    NewEventComponent
+    NewEventComponent,
+    LoginwrapperComponent,
+    RegisterwrapperComponent
   ],
   imports: [
     BrowserModule,

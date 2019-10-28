@@ -1,10 +1,92 @@
-h1.reg {
-  font-size: 12px;
-}
-h3.reg{
-  font-size: 24px;
+input{
+  text-align: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  width:150px;
+  max-width: 60%;
+  min-width: 40%;
+
 }
 
-button {
+div.logreg{
+  padding-bottom: 5%;
+}
+
+button.register {
+  box-sizing: border-box;
+  background-color: #5494d1;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.g-recaptcha {
+  width: 100%;
+  border-radius: 4px;
+  border-right: 1px solid #d8d8d8;
+  overflow: hidden;
+}
+
+h3 {
   color: white;
 }
+
+h4 {
+  color: white;
+}
+
+ngb-datepicker.registerdate {
+  border: 1px solid #dfdfdf;
+  border-radius: 0.25rem;
+  display: inline-block;
+  background-color: #f8f9fa;
+}
+ngb-datepicker-month-view.registerdate {
+  pointer-events: auto;
+}
+ngb-datepicker.dropdown-menu.registerdate {
+  padding: 500px;
+}
+.ngb-dp-body {
+  z-index: 1050;
+}
+.ngb-dp-header {
+  border:30px solid #dfdfdf;
+  border-bottom: 0;
+  border-radius: 0.25rem 0.25rem 0 0;
+  padding-top: 0.25rem;
+  background-color: #f8f9fa;
+}
+.ngb-dp-months {
+  display: flex;
+}
+.ngb-dp-month {
+  pointer-events: none;
+}
+.ngb-dp-month-name {
+  font-size: larger;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+.ngb-dp-month + .ngb-dp-month .ngb-dp-month-name, .ngb-dp-month + .ngb-dp-month .ngb-dp-week {
+  padding-left: 50rem;
+}
+.ngb-dp-month:last-child .ngb-dp-week {
+  padding-right: 100rem;
+}
+.ngb-dp-month:first-child .ngb-dp-week {
+  padding-left: 100rem;
+}
+.ngb-dp-month .ngb-dp-week:last-child {
+  padding-bottom: 100rem;
+}
+
