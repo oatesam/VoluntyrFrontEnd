@@ -1,7 +1,7 @@
 <div class="logreg" *ngIf="accountStatus === 0">
   <input type="text" [formControl]="emailControl">
   <h1></h1>
-  <button class="emailinput" (click)="verifyEmail()">Enter Email</button>
+  <button class="email-input" (click)="verifyEmail()">Enter Email</button>
 </div>
 <div>
   <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>

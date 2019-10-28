@@ -24,7 +24,10 @@ button {
 
 
 body.main {
-  background-color: #cce0ff;
+  background-image: url('assets/voluntyr_ background_30.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #cccccc;
 }
 
 div.logreg {
