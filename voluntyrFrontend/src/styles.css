@@ -6,6 +6,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  background-color: #1976d2;
+  border: none;
+  color: red;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .button:hover {
   background-color: #000bd2; /* Green */
   color: white;

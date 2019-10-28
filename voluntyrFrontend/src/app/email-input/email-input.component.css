@@ -14,8 +14,7 @@ div.email-input {
   margin: 0 auto;
   text-align: center;
 }
-
-div.wrapper{
+div.wrapper {
   display: block;
   align-items: center;
 }
@@ -32,4 +31,5 @@ button.email-input {
   font-size: 16px;
   border-radius: 6px;
 }
+
 
