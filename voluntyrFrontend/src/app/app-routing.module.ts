@@ -7,7 +7,6 @@ import {VolunteerDashboardComponent} from './volunteer-dashboard/volunteer-dashb
 import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
 import {NewEventComponent} from './new-event/new-event.component';
 import {MessageVolunteersComponent} from '@app/message-volunteers/message-volunteers.component';
-import {MessageVolunteersComponent} from '@app/message-volunteers/message-volunteers.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
 import {RoleGuardService} from './_helpers/role-guard.service';
