@@ -31,16 +31,23 @@ export class NewEventComponent implements OnInit {
       alert("The end date must be later than start time");
       return;
     }
-    let resp = this.OrganizationService.createNewEvent(this.newEvent);
-    alert(resp + "after call");
-
-    this.router.navigateByUrl("organization").then(() => {
-      window.location.reload();
+    this.OrganizationService.createNewEvent(this.newEvent).subscribe(resp => {
+      console.log(resp);
+      if (resp["status"] === 201) {
+        alert("Event has been created");
+        this.router.navigateByUrl("Organization").then(() => {
+          window.location.reload();
+        });
+      } else if (resp["status"] === 400) {
+        alert("Information is invalid, Try again");
+      } else {
+        alert("Something is wrong, Try again");
+      }
     });
   }
 
   routeToDashBoard() {
-    this.router.navigateByUrl("organization");
+    this.router.navigateByUrl("Organization");
   }
   constructor(
     private http: HttpClient,

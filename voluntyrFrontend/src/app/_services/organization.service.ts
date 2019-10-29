@@ -30,12 +30,12 @@ export class OrganizationService {
   }
 
   createNewEvent(payloaddata: Event) {
-    this.httpClient
-      .post(this.createEventUrl, payloaddata, this.httpOptions)
-      .subscribe(resp => {
-        console.log(resp);
-        return resp;
-      });
+    return this.httpClient.post(this.createEventUrl, payloaddata, {
+      headers: new HttpHeaders({
+        Authorization: ` Bearer ${this.token}`
+      }),
+      observe: "response"
+    });
   }
 
   getEvents(): Observable<Event[]> {
