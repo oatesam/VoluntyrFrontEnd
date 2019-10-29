@@ -1,0 +1,17 @@
+<div [formGroup]="emailForm">
+  <h3>Send Email</h3>
+  <p>
+    <label>
+      Subject:
+      <input type="text" formControlName="subject">
+  </label>
+  </p>
+  <p>
+    <label>
+      Message: <br>
+      <textarea formControlName="message"></textarea>
+    </label>
+  </p>
+  <button type="button" (click)="sendEmail()" [disabled]="!emailForm.valid">Send</button>
+</div>
+<h5>{{emailForm.valid}}</h5> <!-- TODO: Remove; testing only -->

@@ -29,6 +29,7 @@ export class OrganizationService {
     );
   }
 
+  // TODO: Should be moved to events.service.ts
   createNewEvent(payloaddata: Event) {
     this.httpClient
       .post(this.createEventUrl, payloaddata, this.httpOptions)
