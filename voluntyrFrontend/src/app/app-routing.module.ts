@@ -58,8 +58,12 @@ const routes: Routes = [
   },
   {
     path: "test/:eventid",
-    component: MessageVolunteersComponent
-  }, // TODO Change this route to match Nihkil's route; end with /email
+    component: MessageVolunteersComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "organization"
+    }
+  }, // TODO Remove this route; testing purposes only
 
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
