@@ -28,6 +28,7 @@ import {VolunteerDashboardComponent} from '@app/volunteer-dashboard/volunteer-da
 import {VolunteerEventComponent} from '@app/volunteer-event/volunteer-event.component';
 import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
 import {NewEventComponent} from '@app/new-event/new-event.component';
+import { MessageVolunteersComponent } from './message-volunteers/message-volunteers.component';
 import { LoginwrapperComponent } from './loginwrapper/loginwrapper.component';
 import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.component';
 
@@ -51,8 +52,9 @@ import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.comp
     VolunteerEventComponent,
     VolunteerEventSignupComponent,
     NewEventComponent,
+    MessageVolunteersComponent,
     LoginwrapperComponent,
-    RegisterwrapperComponent
+    RegisterwrapperComponent,
   ],
   imports: [
     BrowserModule,
