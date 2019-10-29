@@ -1,8 +1,8 @@
 <div class="logreg">
   <form [formGroup]="loginForm" (ngSubmit)="verifyLogin()">
-    <h3>Email</h3>
+    <h3 class="login">Email</h3>
     <input type="text" formControlName="emailControl">
-    <h3>Password</h3>
+    <h3 class="login">Password</h3>
     <input placeholder="Password" type="password" formControlName="passwordControl" appHidePassword>
     <alert> </alert>
   </form>
@@ -11,5 +11,5 @@
     [siteKey]="CAPTCHAKEY"
   ></re-captcha>
   <br>
-  <button (click)="verifyLogin()">Login</button>
+  <button class="login" (click)="verifyLogin()">Login</button>
 </div>

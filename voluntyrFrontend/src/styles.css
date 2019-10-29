@@ -6,12 +6,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.button:hover {
-  background-color: #000bd2; /* Green */
-  color: white;
-}
-
-
 body.main {
   background: url('assets/voluntyr_ background_30.png') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -58,5 +52,3 @@ span.emphasis {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
 }
-
-

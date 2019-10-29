@@ -1,11 +1,11 @@
 
 <div class="wrapper responsive">
-  <div class = "email-input responsive">
-    <div *ngIf="accountStatus === 0">
+  <div class="logreg" *ngIf="accountStatus === 0">
       <input type="text" [formControl]="emailControl">
       <h1></h1>
       <button class="email-input" (click)="verifyEmail()">Enter Email</button>
     </div>
+  <div class = "responsive" *ngIf="accountStatus !== 0">
     <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>
     <app-register [email]="email" *ngIf="accountStatus === 1"></app-register>
   </div>
