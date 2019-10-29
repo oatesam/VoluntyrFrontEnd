@@ -10,6 +10,7 @@ import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 import { VolunteerEventSignupComponent } from "@app/volunteer-event-signup/volunteer-event-signup.component";
 import { NewEventComponent } from "./new-event/new-event.component";
+import { RoleGuardService } from "./_helpers/role-guard.service";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -23,22 +24,34 @@ const routes: Routes = [
   {
     path: "Events",
     component: VolunteerEventSignupComponent,
-    canActivate: [AuthGuard]
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "Volunteer"
+    }
   },
   {
     path: "Organization",
     component: OrganizerDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "Organization"
+    }
   },
   {
     path: "Organization/newEvent",
     component: NewEventComponent,
-    canActivate: [AuthGuard]
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "Organization"
+    }
   },
   {
     path: "Volunteer",
     component: VolunteerDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "Volunteer"
+    }
   },
 
   // PageNotFound should always be last in routing, otherwise it will overtake others
@@ -46,9 +59,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload'
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: "reload"
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
