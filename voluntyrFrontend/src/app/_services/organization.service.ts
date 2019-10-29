@@ -8,11 +8,9 @@ import { environment } from "@environments/environment";
   providedIn: "root"
 })
 export class OrganizationService {
-
   private createEventUrl = `${environment.apiUrl}/api/organization/event/`;
   private organizationInfoUrl = `${environment.apiUrl}/api/organization/`;
   private organizationEventsUrl = `${environment.apiUrl}/api/organization/events/`;
-
 
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
 
@@ -32,18 +30,12 @@ export class OrganizationService {
   }
 
   createNewEvent(payloaddata: Event) {
-    let msg;
     this.httpClient
       .post(this.createEventUrl, payloaddata, this.httpOptions)
       .subscribe(resp => {
-        if (resp === 201) {
-          msg = "sucessfully created event";
-        } else {
-          msg = "Unable to create event";
-        }
+        console.log(resp);
+        return resp;
       });
-    return msg;
-<<<<<<< HEAD
   }
 
   getEvents(): Observable<Event[]> {
@@ -51,7 +43,5 @@ export class OrganizationService {
       this.organizationEventsUrl,
       this.httpOptions
     );
-=======
->>>>>>> c8290f4b8a0b5baa60e506a688a32224d1564b99
   }
 }

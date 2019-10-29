@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { OrganizationService } from "../_services/organization.service";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
 @Component({
   selector: "app-new-event",
   templateUrl: "./new-event.component.html",
@@ -26,15 +27,12 @@ export class NewEventComponent implements OnInit {
   );
 
   createEvent() {
-    if (this.date != this.start_time.getDate()) {
-      alert("The start time and date needs to be same date");
-    }
     if (this.start_time > this.end_time) {
       alert("The end date must be later than start time");
       return;
     }
     let resp = this.OrganizationService.createNewEvent(this.newEvent);
-    alert(resp);
+    alert(resp + "after call");
 
     this.router.navigateByUrl("organization").then(() => {
       window.location.reload();
