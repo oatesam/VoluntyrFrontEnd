@@ -12,7 +12,7 @@ img.logo {
   padding-bottom: 5%;
 }
 
-div.email-input {
+div.email-input-landing {
   width: 60%;
   background-color: #666666;
   background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
