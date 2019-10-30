@@ -1,7 +1,7 @@
 <div class="logreg">
   <h3 class="reg">You're signing up as {{curReg}}</h3>
-  <h1 class="reg">Click here to sign up as {{oppReg}}</h1>
-  <button id="orgtoggle"(click)="toggle()" id="bt">
+  <h4 class="reg">Click here to sign up as {{oppReg}}</h4>
+  <button class="register" id="orgtoggle"(click)="toggle()" id="bt">
       {{buttonName}}
   </button>
 
@@ -14,7 +14,7 @@
     <input type="text" [formControl]="lastname">
 
     <h3> Birthday</h3>
-    <ngb-datepicker #dp [(ngModel)]="dateStruct" (navigate)="date = $event.next" [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2020, month: 1, day: 1}"></ngb-datepicker>
+    <ngb-datepicker class="registerdate" #dp [(ngModel)]="dateStruct" (navigate)="date = $event.next" [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2020, month: 1, day: 1}"></ngb-datepicker>
 
   </ng-container>
 
@@ -54,5 +54,5 @@
     [siteKey]="CAPTCHAKEY"
   ></re-captcha>
   <br>
-  <button (click)="verifyReg()">Register</button>
+  <button class="register"(click)="verifyReg()">Register</button>
 </div>

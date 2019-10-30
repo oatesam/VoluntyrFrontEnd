@@ -6,6 +6,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  width: 100%;
+}
+
 body.main {
   background: url('assets/voluntyr_ background_30.png') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -52,3 +56,4 @@ span.emphasis {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
 }
+
