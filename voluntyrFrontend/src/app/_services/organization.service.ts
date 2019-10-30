@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { organization } from "../_models/organization";
 import { Observable } from "rxjs";
-import { Event} from '@app/_models/Event';
+import { Event } from "@app/_models/Event";
 import { environment } from "@environments/environment";
 @Injectable({
   providedIn: "root"
@@ -30,18 +30,18 @@ export class OrganizationService {
   }
 
   createNewEvent(payloaddata: Event) {
-    this.httpClient
-      .post(this.createEventUrl, payloaddata, this.httpOptions)
-      .subscribe(resp => {
-        if (resp === 200) {
-          return "sucess";
-        } else {
-          return "Unable to create event";
-        }
-      });
+    return this.httpClient.post(this.createEventUrl, payloaddata, {
+      headers: new HttpHeaders({
+        Authorization: ` Bearer ${this.token}`
+      }),
+      observe: "response"
+    });
   }
 
   getEvents(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(this.organizationEventsUrl, this.httpOptions);
+    return this.httpClient.get<Event[]>(
+      this.organizationEventsUrl,
+      this.httpOptions
+    );
   }
 }
