@@ -5,6 +5,7 @@ import { OrganizationService } from "../_services/organization.service";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
+import { ReturnStatement } from "@angular/compiler";
 @Component({
   selector: "app-new-event",
   templateUrl: "./new-event.component.html",
@@ -27,8 +28,33 @@ export class NewEventComponent implements OnInit {
   );
 
   createEvent() {
-    if (this.start_time > this.end_time) {
-      alert("The end date must be later than start time");
+    var start_date = new Date(this.newEvent.start_time);
+    var start_format =
+      start_date.getUTCFullYear() +
+      "/" +
+      start_date.getUTCMonth() +
+      "/" +
+      start_date.getUTCDate();
+    var end_date = new Date(this.newEvent.end_time);
+    var end_format =
+      end_date.getUTCFullYear() +
+      "/" +
+      end_date.getUTCMonth() +
+      "/" +
+      end_date.getUTCDate();
+    var date_date = new Date(this.newEvent.date);
+    var date_fomart =
+      date_date.getUTCFullYear() +
+      "/" +
+      date_date.getUTCMonth() +
+      "/" +
+      date_date.getUTCDate();
+    if (start_format !== date_fomart) {
+      alert("The start date must have the same date as Date");
+      return;
+    }
+    if (this.newEvent.start_time > this.newEvent.end_time) {
+      alert("The end time must be later than start time");
       return;
     }
     this.OrganizationService.createNewEvent(this.newEvent).subscribe(resp => {
