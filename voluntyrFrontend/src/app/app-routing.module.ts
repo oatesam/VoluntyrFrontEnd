@@ -10,6 +10,8 @@ import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 import { VolunteerEventSignupComponent } from "@app/volunteer-event-signup/volunteer-event-signup.component";
 import { NewEventComponent } from "./new-event/new-event.component";
+import {LoginwrapperComponent} from "@app/loginwrapper/loginwrapper.component";
+import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.component";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -18,8 +20,8 @@ const routes: Routes = [
   // {path: '', component: ExampleComponent, canActivate: [AuthGuard]},
   // will uncomment the above line once AuthGuard is integrated
   { path: "email-input", component: EmailInputComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginwrapperComponent },
+  { path: "register", component: RegisterwrapperComponent },
   {
     path: "Events",
     component: VolunteerEventSignupComponent,
