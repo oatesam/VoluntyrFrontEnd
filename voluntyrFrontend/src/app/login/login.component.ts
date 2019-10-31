@@ -1,46 +1,49 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router, ActivatedRoute, Data} from '@angular/router';
-import {AuthenticationService} from '@app/_services/authentication.service';
-import {throwError} from 'rxjs';
-import {DataService} from '@app/_services/data.service';
-import {AlertService} from '@app/_services/alert.service';
-import {environment} from '@environments/environment';
+import { Component, Input, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router, ActivatedRoute, Data } from "@angular/router";
+import { AuthenticationService } from "@app/_services/authentication.service";
+import { throwError } from "rxjs";
+import { DataService } from "@app/_services/data.service";
+import { AlertService } from "@app/_services/alert.service";
+import { environment } from "@environments/environment";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-
   @Input() email: string;
   public CAPTCHAKEY = `${environment.captchaKey}`;
 
-  private logged  = false;
+  private logged = false;
   emailControl: any;
   passwordControl: any;
   private captchaResolved = false;
 
-  constructor(private authService: AuthenticationService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private data: DataService,
-              private alert: AlertService) {
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private data: DataService,
+    private alert: AlertService
+  ) {
     if (this.authService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(["/"]);
     }
   }
 
   loginForm = new FormGroup({
-    emailControl: new FormControl('', [
+    emailControl: new FormControl("", [
       Validators.required,
       Validators.minLength(4),
-      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
-      Validators.email]),
-    passwordControl: new FormControl('', [
+      Validators.pattern("[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"),
+      Validators.email
+    ]),
+    passwordControl: new FormControl("", [
       Validators.required,
-      Validators.minLength(8)]),
+      Validators.minLength(8)
+    ])
   });
 
   ngOnInit() {
@@ -63,31 +66,42 @@ export class LoginComponent implements OnInit {
 
   verifyLogin() {
     if (this.logged) {
-      this.router.navigate(['/']);
+      this.router.navigateByUrl("/").then(() => {
+        window.location.reload();
+      });
     } else if (!this.loginForm.controls.emailControl.valid) {
-       this.alert.error('Email invalid.');
+      this.alert.error("Email invalid.");
     } else if (!this.loginForm.controls.passwordControl.valid) {
-       this.alert.error('Password invalid.');
+      this.alert.error("Password invalid.");
     } else if (!this.captchaResolved) {
-       this.alert.error('Submit captcha before logging in.');
+      this.alert.error("Submit captcha before logging in.");
     } else {
-        this.authService.login(this.loginForm.controls.emailControl.value, this.loginForm.controls.passwordControl.value).subscribe(
+      this.authService
+        .login(
+          this.loginForm.controls.emailControl.value,
+          this.loginForm.controls.passwordControl.value
+        )
+        .subscribe(
           resp => {
-            console.log('log resp = ', resp);
+            console.log("log resp = ", resp);
             if (resp.access) {
-              this.data.changeLogged('true');
-              this.router.navigate(['/']);
+              this.data.changeLogged("true");
+              this.router.navigateByUrl("/").then(() => {
+                window.location.reload();
+              });
             }
-          }, error => {
-            console.log('error is of type ', typeof error);
-            if (error === 'Unauthorized') {
-              this.alert.error('Wrong password. Try again or click Forgot password to reset it.');
-            } else if (error === 'Bad Request') {
-              this.alert.error('Couldn\'t find an account with that email');
+          },
+          error => {
+            console.log("error is of type ", typeof error);
+            if (error === "Unauthorized") {
+              this.alert.error(
+                "Wrong password. Try again or click Forgot password to reset it."
+              );
+            } else if (error === "Bad Request") {
+              this.alert.error("Couldn't find an account with that email");
             }
-          })
-      };
+          }
+        );
     }
-
-
+  }
 }
