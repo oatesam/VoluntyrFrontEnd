@@ -3,7 +3,11 @@ import { AuthenticationService } from "../_services/authentication.service";
 import { DataService } from "@app/_services/data.service";
 import { Router } from "@angular/router";
 import { decode } from "punycode";
+<<<<<<< HEAD
 import * as jwt_decode from "jwt-decode";
+=======
+import { decode as decoder } from "jwt-decode";
+>>>>>>> b9b650f86d6ebaeb504afbf6b730c67f71a51f72
 
 // TODO: Filter by scope of logged in user
 
@@ -23,6 +27,7 @@ export class NavBarComponent implements OnInit {
   public currentUser = this.authService.currentUserValue;
   public logged: boolean;
 
+
   ngOnInit() {
     if (this.authService.currentUserValue) {
       this.logged = true;
@@ -30,7 +35,6 @@ export class NavBarComponent implements OnInit {
       this.logged = false;
     }
     this.scopeRender();
-    console.log(this.showOrganization, this.showVolunteer);
     this.authService.getLogged.subscribe(name => this.changeLog(name));
   }
 
