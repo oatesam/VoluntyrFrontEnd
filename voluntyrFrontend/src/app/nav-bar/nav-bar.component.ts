@@ -3,7 +3,7 @@ import { AuthenticationService } from "../_services/authentication.service";
 import { DataService } from "@app/_services/data.service";
 import { Router } from "@angular/router";
 import { decode } from "punycode";
-import { decode as decoder } from "jwt-decode";
+import * as jwt_decode from "jwt-decode";
 
 // TODO: Filter by scope of logged in user
 
@@ -23,20 +23,6 @@ export class NavBarComponent implements OnInit {
   public currentUser = this.authService.currentUserValue;
   public logged: boolean;
 
-  scopeRender() {
-    var decodedToken = decoder(
-      JSON.parse(localStorage.getItem("currentUser")).access
-    );
-    var tokenScope = decodedToken.scope;
-    if (tokenScope === "Volunteer") {
-      this.showVolunteer = true;
-      this.showOrganization = false;
-    } else if (tokenScope === "Organization") {
-      this.showOrganization = true;
-      this.showVolunteer = true;
-    }
-  }
-
   ngOnInit() {
     if (this.authService.currentUserValue) {
       this.logged = true;
@@ -44,9 +30,23 @@ export class NavBarComponent implements OnInit {
       this.logged = false;
     }
     this.scopeRender();
+    console.log(this.showOrganization, this.showVolunteer);
     this.authService.getLogged.subscribe(name => this.changeLog(name));
   }
 
+  scopeRender() {
+    var decodedToken = jwt_decode(
+      JSON.parse(localStorage.getItem("currentUser")).access
+    );
+    var tokenScope = decodedToken.scope;
+    if (tokenScope === "volunteer") {
+      this.showVolunteer = true;
+      this.showOrganization = false;
+    } else if (tokenScope === "organization") {
+      this.showOrganization = true;
+      this.showVolunteer = false;
+    }
+  }
   changeLog(logger: boolean) {
     this.logged = logger;
   }

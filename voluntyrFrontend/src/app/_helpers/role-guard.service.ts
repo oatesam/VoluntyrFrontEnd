@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router, CanActivate, ActivatedRouteSnapshot } from "@angular/router";
-import { decode } from "jwt-decode";
+import * as decode from "jwt-decode";
 @Injectable({
   providedIn: "root"
 })
@@ -15,6 +15,7 @@ export class RoleGuardService implements CanActivate {
     const token = JSON.parse(localStorage.getItem("currentUser")).access;
     //decode token to get scope
     const tokenScope = decode(token);
+    console.log(tokenScope);
     //check scope
     if (tokenScope.scope === expectedRole) {
       return true;

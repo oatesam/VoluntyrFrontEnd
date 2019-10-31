@@ -26,7 +26,7 @@ const routes: Routes = [
     component: VolunteerEventSignupComponent,
     canActivate: [RoleGuardService],
     data: {
-      expectedRole: "Volunteer"
+      expectedRole: "volunteer"
     }
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: OrganizerDashboardComponent,
     canActivate: [RoleGuardService],
     data: {
-      expectedRole: "Organization"
+      expectedRole: "organization"
     }
   },
   {
@@ -42,7 +42,7 @@ const routes: Routes = [
     component: NewEventComponent,
     canActivate: [RoleGuardService],
     data: {
-      expectedRole: "Organization"
+      expectedRole: "organization"
     }
   },
   {
@@ -50,7 +50,7 @@ const routes: Routes = [
     component: VolunteerDashboardComponent,
     canActivate: [RoleGuardService],
     data: {
-      expectedRole: "Volunteer"
+      expectedRole: "volunteer"
     }
   },
 
