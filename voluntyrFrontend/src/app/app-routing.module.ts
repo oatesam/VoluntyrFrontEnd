@@ -63,7 +63,7 @@ const routes: Routes = [
     data: {
       expectedRole: "organization"
     }
-  }, // TODO Remove this route; testing purposes only
+  }, // TODO Change this route to match Nihkil's route; end with /email
   {
     path: "Organization/editEvent/:id",
     component: EditEventComponent,
