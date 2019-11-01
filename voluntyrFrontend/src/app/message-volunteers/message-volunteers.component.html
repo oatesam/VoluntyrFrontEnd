@@ -1,17 +1,50 @@
-<div [formGroup]="emailForm">
+<div [hidden]="hide">
   <h3>Send Email</h3>
   <p>
     <label>
       Subject:
-      <input type="text" formControlName="subject">
+      <input id="subject" name="subject" type="text" class="form-control" [formControl]="subject" required>
   </label>
   </p>
+  <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
+    <div *ngIf="subject.errors.required">
+      Subject is required.
+    </div>
+  </div>
+
+  <p>
+    <label>
+      Email for volunteers to reply to:
+      <input type="email" [formControl]="replyto" class="form-control" required>
+    </label>
+  </p>
+  <div *ngIf="replyto.invalid && (replyto.dirty || replyto.touched)" class="alert alert-danger">
+    <div *ngIf="replyto.errors.required">
+      Reply to is required.
+    </div>
+    <div *ngIf="replyto.errors.email">
+      Reply to must be an email.
+    </div>
+  </div>
+
   <p>
     <label>
       Message: <br>
-      <textarea formControlName="message"></textarea>
+      <textarea [formControl]="message" class="form-control" required></textarea>
     </label>
   </p>
-  <button type="button" (click)="sendEmail()" [disabled]="!emailForm.valid">Send</button>
+  <div *ngIf="message.invalid && (message.dirty || message.touched)" class="alert alert-danger">
+    <div *ngIf="message.errors.required">
+      Message is required.
+    </div>
+  </div>
+  <button type="button" (click)="sendEmail()" [disabled]="replyto.invalid || subject.invalid || message.invalid">Send</button>
+  <div *ngIf="emailError" class="alert alert-danger">
+    Our apologies but there was a problem sending this email, please try again later.
+  </div>
 </div>
-<h5>{{emailForm.valid}}</h5> <!-- TODO: Remove; testing only -->
+<ngx-spinner>
+  <h1>
+    Your message is sending to the attending volunteers...
+  </h1>
+</ngx-spinner>

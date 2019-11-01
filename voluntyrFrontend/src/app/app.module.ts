@@ -29,6 +29,8 @@ import {VolunteerEventComponent} from '@app/volunteer-event/volunteer-event.comp
 import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
 import {NewEventComponent} from '@app/new-event/new-event.component';
 import { MessageVolunteersComponent } from './message-volunteers/message-volunteers.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 import { LoginwrapperComponent } from './loginwrapper/loginwrapper.component';
 import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.component';
 
@@ -55,6 +57,7 @@ import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.comp
     MessageVolunteersComponent,
     LoginwrapperComponent,
     RegisterwrapperComponent,
+    MessageVolunteersComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.comp
     NgbModule,
     NgbDatepickerModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     HttpClientModule,
