@@ -7,8 +7,8 @@
 }
 
 div.center_content{
-  background-color:white;
-  width:60%;
+  width: 100%;
+  min-width: 400px;
   margin-right:auto;
   margin-left:auto;
   padding: 16px;

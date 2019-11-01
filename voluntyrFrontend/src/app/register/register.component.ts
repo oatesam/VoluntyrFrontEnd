@@ -68,9 +68,11 @@ export class RegisterComponent implements OnInit {
     if (this.showOrg) {
       this.buttonName = 'Organization';
       this.oppReg = 'a Volunteer';
+      this.curReg = 'an Organization';
     } else {
       this.buttonName = 'Volunteer';
-      this.curReg = 'an Organization';
+      this.oppReg = 'an Organization';
+      this.curReg = 'a Volunteer';
     }
   }
 

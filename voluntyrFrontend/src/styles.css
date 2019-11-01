@@ -6,33 +6,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  background-color: #1976d2;
-  border: none;
-  color: red;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+body {
+  width: 100%;
 }
-
-.button:hover {
-  background-color: #000bd2; /* Green */
-  color: white;
-}
-
 
 body.main {
-  background-color: #cce0ff;
-}
-
-div.logreg {
-  text-align: center;
+  background: url('assets/voluntyr_ background_30.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .responsive {
-  width: 60%;
   height: auto;
   margin-right:auto;
   margin-left:auto;
@@ -44,10 +30,7 @@ div.logreg {
 }
 
 input{
-  text-align: center;
-  padding: 8px 12px;
-  text-decoration: none;
-  font-size: 16px;
+  box-sizing: border-box;
 }
 
 .alert {
@@ -69,6 +52,8 @@ re-captcha {
   padding-bottom: 10px;
 }
 
-
-
+span.emphasis {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: italic;
+}
 
