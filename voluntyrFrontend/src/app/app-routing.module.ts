@@ -57,7 +57,7 @@ const routes: Routes = [
     }
   },
   {
-    path: "test",
+    path: "test/:eventid",
     component: MessageVolunteersComponent,
     canActivate: [RoleGuardService],
     data: {
