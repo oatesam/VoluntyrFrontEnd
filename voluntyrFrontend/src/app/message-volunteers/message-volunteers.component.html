@@ -1,47 +1,35 @@
 <div class="wrapper responsive">
   <div class="center message-volunteers-wrapper">
     <div [hidden]="hide">
-      <h1>Email the Registered Volunteers</h1>
-      <h3>
-        <label>
-          Subject
-          <input id="subject" name="subject" type="text" class="form-control" [formControl]="subject" required>
-        </label>
-      </h3>
-      <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="center responsive alert alert-danger">
-        <div *ngIf="subject.errors.required">
-          Subject is required.
+      <h1>Email the Volunteers Registered for {{event?.title}}</h1>
+      <form [formGroup]="messageForm" (ngSubmit)="sendEmail()">
+        <h3>Subject</h3>
+        <input id="subject" name="subject" type="text" class="form-control" formControlName="subjectControl" required>
+        <div *ngIf="messageForm.controls.subjectControl.invalid && (messageForm.controls.subjectControl.dirty || messageForm.controls.subjectControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.subjectControl.errors.required">
+            Subject is required.
+          </div>
         </div>
-      </div>
-
-      <h3>
-        <label>
-          Email for volunteers to reply to
-          <input type="email" [formControl]="replyto" class="form-control" required>
-        </label>
-      </h3>
-      <div *ngIf="replyto.invalid && (replyto.dirty || replyto.touched)" class="center responsive alert alert-danger">
-        <div *ngIf="replyto.errors.required">
-          Reply to is required.
+        <h3>Email for volunteers to reply to</h3>
+        <input type="email" formControlName="replytoControl" class="form-control" required>
+        <div *ngIf="messageForm.controls.replytoControl.invalid && (messageForm.controls.replytoControl.dirty || messageForm.controls.replytoControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.replytoControl.errors.required">
+            Reply to is required.
+          </div>
+          <div *ngIf="messageForm.controls.replytoControl.errors.email">
+            Reply to must be an email.
+          </div>
         </div>
-        <div *ngIf="replyto.errors.email">
-          Reply to must be an email.
+        <h3>Message</h3>
+        <textarea formControlName="messageControl" class="form-control" required></textarea>
+        <div *ngIf="messageForm.controls.messageControl.invalid && (messageForm.controls.messageControl.dirty || messageForm.controls.messageControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.messageControl.errors.required">
+            Message is required.
+          </div>
         </div>
-      </div>
-
-      <h3>
-        <label>
-          Message <br>
-          <textarea [formControl]="message" class="form-control" required></textarea>
-        </label>
-      </h3>
-      <div *ngIf="message.invalid && (message.dirty || message.touched)" class="center responsive alert alert-danger">
-        <div *ngIf="message.errors.required">
-          Message is required.
-        </div>
-      </div>
-      <button type="button" (click)="sendEmail()" [disabled]="replyto.invalid || subject.invalid || message.invalid" class="btn btn-primary btn-lg">Send</button>
-      <div *ngIf="emailError" class="alert alert-danger">
+      </form>
+      <button type="button" (click)="sendEmail()" [disabled]="messageForm.controls.replytoControl.invalid || messageForm.controls.subjectControl.invalid || messageForm.controls.messageControl.invalid" class="btn btn-primary btn-lg">Send</button>
+      <div *ngIf="emailError" class="center responsive alert alert-danger error">
         Our apologies but there was a problem sending this email, please try again later.
       </div>
     </div>
