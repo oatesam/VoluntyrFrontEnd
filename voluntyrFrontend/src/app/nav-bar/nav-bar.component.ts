@@ -26,11 +26,11 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
     if (this.authService.currentUserValue) {
       this.logged = true;
+      this.scopeRender();
+      this.authService.getLogged.subscribe(name => this.changeLog(name));
     } else {
       this.logged = false;
     }
-    this.scopeRender();
-    this.authService.getLogged.subscribe(name => this.changeLog(name));
   }
 
   scopeRender() {
