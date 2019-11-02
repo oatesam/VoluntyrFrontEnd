@@ -6,20 +6,20 @@
   </h2>
   <p><fa-icon [icon]="faCalendarPlus"></fa-icon>{{ volunteer.birthday }}</p>
   <div class="row">
-    <app-calendar class="col-md-6"></app-calendar>
+    <app-calendar class="col-md-6" [events]="events"></app-calendar>
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-6"><h1>Registered Events</h1></div>
         <div class="col-md-6">
           <button class="btn btn-primary" (click)="routeToEvents()">
-            Find More Events
+            Register or Unregister<br>for events
           </button>
         </div>
       </div>
-      <app-volunteer-event
+      <app-individual-event-summary
         *ngFor="let event of events"
         [event]="event"
-      ></app-volunteer-event>
+      ></app-individual-event-summary>
     </div>
   </div>
 </div>
