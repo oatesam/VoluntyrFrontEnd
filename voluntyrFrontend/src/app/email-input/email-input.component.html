@@ -3,7 +3,7 @@
     <h4 class ="email-input">Enter your email to start making the world</h4>
     <h4 class="email-input">a better place, <span class="emphasis">together.</span></h4>
     <div class="logreg" *ngIf="accountStatus === 0">
-      <input type="text" [formControl]="emailControl">
+      <input type="email" [formControl]="emailControl">
       <h1></h1>
       <button class="email-input" (click)="verifyEmail()">Enter Email</button>
     </div>
