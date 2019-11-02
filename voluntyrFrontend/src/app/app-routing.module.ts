@@ -14,6 +14,7 @@ import {MessageVolunteersComponent} from '@app/message-volunteers/message-volunt
 import {LoginwrapperComponent} from "@app/loginwrapper/loginwrapper.component";
 import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.component";
 import { RoleGuardService } from "./_helpers/role-guard.service";
+import {EmailInputWrapperComponent} from '@app/email-input-wrapper/email-input-wrapper.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -21,7 +22,7 @@ const routes: Routes = [
   // basically the same as below, just replace 'ExampleComponent'
   // {path: '', component: ExampleComponent, canActivate: [AuthGuard]},
   // will uncomment the above line once AuthGuard is integrated
-  { path: "email-input", component: EmailInputComponent },
+  { path: "email-input", component: EmailInputWrapperComponent },
   { path: "login", component: LoginwrapperComponent },
   { path: "register", component: RegisterwrapperComponent },
   {

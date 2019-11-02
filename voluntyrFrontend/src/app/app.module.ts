@@ -32,6 +32,7 @@ import { MessageVolunteersComponent } from './message-volunteers/message-volunte
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoginwrapperComponent } from './loginwrapper/loginwrapper.component';
 import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.component';
+import { EmailInputWrapperComponent } from './email-input-wrapper/email-input-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { RegisterwrapperComponent } from './registerwrapper/registerwrapper.comp
     MessageVolunteersComponent,
     LoginwrapperComponent,
     RegisterwrapperComponent,
+    EmailInputWrapperComponent,
   ],
   imports: [
     BrowserModule,
