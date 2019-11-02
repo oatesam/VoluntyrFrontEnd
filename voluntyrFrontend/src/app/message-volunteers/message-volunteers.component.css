@@ -14,3 +14,12 @@
   margin: 0 25%;
   text-align: center;
 }
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.error {
+  padding: 3px;
+}

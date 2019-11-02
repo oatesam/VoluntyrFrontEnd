@@ -1,90 +1,78 @@
-<section class="center responsive new-event-wrapper">
-  <h1>Post a New Event</h1>
-  <form #f="ngForm" (ngSubmit)="createEvent()">
-    <h3>
-      <label class="bg-primary">Event Title
-        <input
-          type="text"
-          required
-          minlength="1"
-          class="form-control"
-          name="title"
-          [(ngModel)]="newEvent.title"
-          required
-        />
-      </label>
-    </h3>
-    <h3>
-      <label class="bg-primary">Location: {{ location }}
-        <input
-          type="text"
-          required
-          minlength="1"
-          class="form-control"
-          name="location"
-          [(ngModel)]="newEvent.location"
-          required
-        />
-      </label>
-    </h3>
-    <h3>
-      <label class="bg-primary">Date
-        <input
-          type="date"
-          required
-          class="form-control"
-          name="date"
-          [(ngModel)]="newEvent.date"
-          required
-        />
-      </label>
-    </h3>
-    <h3>
-      <label class="bg-primary">Start Time
-        <input
-          type="datetime-local"
-          required
-          class="form-control"
-          name="start_time"
-          [(ngModel)]="newEvent.start_time"
-          required
-        />
-      </label>
-    </h3>
-    <h3>
-      <label class="bg-primary"> End Time
-        <input
-          type="datetime-local"
-          required
-          class="form-control"
-          name="end_time"
-          [(ngModel)]="newEvent.end_time"
-          required
-        />
-      </label>
-    </h3>
-    <h3>
-      <label class="bg-primary">
+<div class="wrapper">
+  <section class="center responsive new-event-wrapper">
+    <h1>Create a New Event</h1>
+    <form #f="ngForm" (ngSubmit)="createEvent()">
+      <h3>
+        Event Title
+      </h3>
+      <input
+        type="text"
+        minlength="1"
+        class="form-control"
+        name="title"
+        [(ngModel)]="newEvent.title"
+        required
+      />
+      <h3>
+        Location
+      </h3>
+      <input
+        type="text"
+        minlength="1"
+        class="form-control"
+        name="location"
+        [(ngModel)]="newEvent.location"
+        required
+      />
+      <h3>
+        Date
+      </h3>
+      <input
+        type="date"
+        class="form-control"
+        name="date"
+        [(ngModel)]="newEvent.date"
+        required
+      />
+      <h3>
+        Start Time
+      </h3>
+      <input
+        type="datetime-local"
+        class="form-control"
+        name="start_time"
+        [(ngModel)]="newEvent.start_time"
+        required
+      />
+      <h3>
+        End Time
+      </h3>
+      <input
+        type="datetime-local"
+        class="form-control"
+        name="end_time"
+        [(ngModel)]="newEvent.end_time"
+        required
+      />
+      <h3>
         Description
-        <br>
-        <textarea
-          [(ngModel)]="newEvent.description"
-          required
-          minlength="1"
-          class="form-control"
-          name="description"
-          required
-        ></textarea>
-      </label>
-    </h3>
-    <div>
-      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!f.valid">Submit</button>
-    </div>
-    <br>
-    <div>
-      <button class="btn btn-primary" (click)="routeToDashBoard()">
-        Return to Dashboard
-      </button>
-    </div>
-  </form>
-</section>
+      </h3>
+      <textarea
+        [(ngModel)]="newEvent.description"
+        minlength="1"
+        class="form-control"
+        name="description"
+        required
+      ></textarea>
+      <div>
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!f.valid">Submit</button>
+      </div>
+      <br>
+      <div>
+        <button class="btn btn-primary" (click)="routeToDashBoard()">
+          Return to Dashboard
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

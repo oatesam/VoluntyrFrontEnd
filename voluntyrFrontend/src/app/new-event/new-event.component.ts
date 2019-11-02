@@ -11,6 +11,7 @@ import { ReturnStatement } from "@angular/compiler";
   templateUrl: "./new-event.component.html",
   styleUrls: ["./new-event.component.css"]
 })
+// TODO: Should be rewritten using FormGroups and FormControls
 export class NewEventComponent implements OnInit {
   public title;
   public location;
@@ -26,6 +27,19 @@ export class NewEventComponent implements OnInit {
     this.location,
     this.description
   );
+
+  constructor(
+    private http: HttpClient,
+    private OrganizationService: OrganizationService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {}
+
+  routeToDashBoard() {
+    this.router.navigateByUrl("Organization");
+  }
 
   createEvent() {
     var start_date = new Date(this.newEvent.start_time);
@@ -71,16 +85,4 @@ export class NewEventComponent implements OnInit {
       }
     });
   }
-
-  routeToDashBoard() {
-    this.router.navigateByUrl("Organization");
-  }
-  constructor(
-    private http: HttpClient,
-    private OrganizationService: OrganizationService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit() {}
 }
