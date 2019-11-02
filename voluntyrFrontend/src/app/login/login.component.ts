@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
+    this.email = this.email.toLowerCase();
     if (this.logged) {
       this.router.navigateByUrl("/").then(() => {
         window.location.reload();

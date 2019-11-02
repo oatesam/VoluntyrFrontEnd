@@ -28,6 +28,7 @@ export class EmailInputComponent {
 
   verifyEmail() {
     this.email = this.emailControl.value;
+    this.email = this.email.toLowerCase();
     console.log(this.email)
     // pass email into dataService to auto-access in Login/Register
     // this.data.changeCheckedEmail(this.emailControl.value);

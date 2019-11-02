@@ -88,6 +88,7 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyVolunteerRegistration() {
+    this.email = this.email.toLowerCase();
     if (!this.firstname.valid || !this.lastname.valid) {
       this.alert.error('Please enter your name');
     } else if (!this.dateStruct) {
