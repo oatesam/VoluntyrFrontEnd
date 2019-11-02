@@ -33,3 +33,6 @@ button.email-input {
   border-radius: 6px;
 }
 
+h4.email-input {
+  color: white;
+}
