@@ -1,11 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthenticationService } from "../_services/authentication.service";
-import { DataService } from "@app/_services/data.service";
-import { Router } from "@angular/router";
-import { decode } from "punycode";
-import * as jwt_decode from "jwt-decode";
-
-// TODO: Filter by scope of logged in user
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../_services/authentication.service';
+import {Router} from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: "app-nav-bar",
