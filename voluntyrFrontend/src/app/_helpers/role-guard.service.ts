@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router, CanActivate, ActivatedRouteSnapshot } from "@angular/router";
-import * as decode from "jwt-decode";
+import * as decode from "jwt-decode"; // Don't add @types/jwt-decode to dependencies
 @Injectable({
   providedIn: "root"
 })
