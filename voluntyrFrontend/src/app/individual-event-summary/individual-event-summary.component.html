@@ -1,21 +1,17 @@
-<div
-  style="border:1px solid black;
-background-color: lightcoral;"
->
+<div class="wrapper">
   <div>
     <button class="btn btn-primary">
       Manage Event
     </button>
-    <p><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</p>
-    <p><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</p>
-    <p>
-      <fa-icon [icon]="faClock"></fa-icon> {{ event.start_time | date: "shortTime" }}
-    </p>
-    <p>
+    <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</h3>
+    <h4><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</h4>
+    <h5>
+      <fa-icon [icon]="faClock"></fa-icon>
+      {{ event.start_time | date: "shortTime" }} to {{ event.end_time | date: "shortTime" }}
+    </h5>
+    <h5>
       <fa-icon [icon]="faCalendarAlt"></fa-icon> {{ event.date | date: "fullDate" }}
-    </p>
+    </h5>
     <p><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.description }}</p>
   </div>
-  <br />
 </div>
-

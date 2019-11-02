@@ -15,7 +15,9 @@ export class NavBarComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private router: Router
-  ) {}
+  ) {
+    this.authService.getLogged.subscribe(name => this.changeLog(name));
+  }
   public currentUser = this.authService.currentUserValue;
   public logged: boolean;
 
@@ -40,14 +42,22 @@ export class NavBarComponent implements OnInit {
     } else if (tokenScope === "organization") {
       this.showOrganization = true;
       this.showVolunteer = false;
+    } else {
+      this.showOrganization = false;
+      this.showVolunteer = false;
     }
   }
   changeLog(logger: boolean) {
     this.logged = logger;
+    if (logger) {
+      this.scopeRender();
+    }
   }
 
   navLogout() {
     this.authService.logout();
-    window.location.reload();
+    // window.location.reload();
+    this.showOrganization = false;
+    this.showVolunteer = false;
   }
 }
