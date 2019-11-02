@@ -55,7 +55,8 @@ export class VolunteerService {
       httpOptions
     );
   }
-  signupEvents(token: any, eventId: any) {
+
+  signupEvents(token: any, eventId: any): Observable<any> {
     const empty = {};
     const httpOptions = {
       headers: new HttpHeaders({
@@ -63,18 +64,6 @@ export class VolunteerService {
         Authorization: "Bearer " + token
       })
     };
-    this.http
-      .put(
-        this.baseurl + this.singleeventSignupAPI + eventId + "/volunteer/",
-        empty,
-        httpOptions
-      )
-      .subscribe(res => {
-        console.log(res);
-      });
-    console.log(
-      "passed!",
-      this.baseurl + this.singleeventSignupAPI + eventId + "/volunteer/"
-    );
+    return this.http.put(this.baseurl + this.singleeventSignupAPI + eventId + "/volunteer/", empty, httpOptions);
   }
 }

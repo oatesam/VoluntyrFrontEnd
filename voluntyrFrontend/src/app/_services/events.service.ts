@@ -17,4 +17,8 @@ export class EventsService {
     let body = {'subject': subject, 'message': message, 'replyto': replyto};
     return this.httpClient.post<any>(this.eventsBaseUrl + eventid + "/email/", body);
   }
+
+  checkSignUp(eventid: string): Observable<any> {
+    return this.httpClient.get<any>(this.eventsBaseUrl + eventid + "/check/");
+  }
 }
