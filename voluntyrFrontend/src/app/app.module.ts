@@ -30,10 +30,7 @@ import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunte
 import {NewEventComponent} from '@app/new-event/new-event.component';
 import {MessageVolunteersComponent} from './message-volunteers/message-volunteers.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {LoginwrapperComponent} from './loginwrapper/loginwrapper.component';
-import {RegisterwrapperComponent} from './registerwrapper/registerwrapper.component';
 import {EmailInputWrapperComponent} from './email-input-wrapper/email-input-wrapper.component';
-
 import {EditEventComponent} from './edit-event/edit-event.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
