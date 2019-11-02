@@ -1,5 +1,5 @@
 div.wrapper{
-  width: 60%;
+  width: 75%;
   min-width: 400px;
   background-color: #666666;
   background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
@@ -9,14 +9,6 @@ div.wrapper{
   text-align: center;
 }
 
-h1 {
-  color: white;
-}
-
-h3 {
-  color: white;
-}
-
-p {
+h1, h3, h4, p {
   color: white;
 }

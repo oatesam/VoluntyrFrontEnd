@@ -45,23 +45,23 @@ export class AuthenticationService {
             .pipe(map(user => {
               console.log(user);
               this.logged = true;
-              this.getLogged.emit(true);
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
               // localStorage.setItem('currentUser', JSON.stringify(user));
               // To retrieve the current user
               // let curUser = localStorage.getItem(currentUser);
               this.currentUserSubject.next(user);
+              this.getLogged.emit(true);
               return user;
             }))
         ;
     }
 
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.logged = false;
-        this.getLogged.emit(false);
-        this.currentUserSubject.next(null);
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.logged = false;
+      this.currentUserSubject.next(null);
+      this.getLogged.emit(false);
     }
 }
