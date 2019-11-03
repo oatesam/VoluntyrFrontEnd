@@ -1,0 +1,29 @@
+.inner:not(btn) {
+  color: white;
+  padding-left: 2% !important;
+  padding-right: 2% !important;
+}
+
+.wrapper {
+  background-color: #666666;
+  background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
+  display: block;
+  align-items: center;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 2% 25%;
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.btn {
+  margin: 1%;
+}
+
+.error {
+  padding: 3px;
+}

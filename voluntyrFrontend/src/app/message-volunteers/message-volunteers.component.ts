@@ -5,13 +5,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '@environments/environment';
 import { NgxSpinnerService } from "ngx-spinner";
 import {Event} from '@app/_models/Event';
+import {CanComponentDeactivate} from '@app/_helpers/can-deactivate.guard';
+import {Observable} from 'rxjs';
+import {DialogService} from '@app/_services/dialog.service';
 
 @Component({
   selector: 'app-message-volunteers',
   templateUrl: './message-volunteers.component.html',
   styleUrls: ['./message-volunteers.component.css']
 })
-export class MessageVolunteersComponent implements OnInit {
+export class MessageVolunteersComponent implements OnInit, CanComponentDeactivate {
 
   emailError: boolean = false;
   hide: boolean = false;
@@ -23,8 +26,9 @@ export class MessageVolunteersComponent implements OnInit {
     subjectControl: new FormControl('', [Validators.required]),
     messageControl: new FormControl('', [Validators.required])
   });
+  private submitted: boolean;
 
-  constructor(private fb: FormBuilder, private es: EventsService, private activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(private fb: FormBuilder, private dialogService: DialogService, private es: EventsService, private activatedRoute: ActivatedRoute, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
@@ -38,6 +42,9 @@ export class MessageVolunteersComponent implements OnInit {
     // TODO: Get event for event.title
   }
 
+  routeToDashBoard() {
+    this.router.navigateByUrl("Organization");
+  }
   sendEmail() {
     if (this.messageForm.controls.replytoControl.valid && this.messageForm.controls.subjectControl.valid && this.messageForm.controls.messageControl.valid) {
       this.spinner.show();
@@ -51,7 +58,8 @@ export class MessageVolunteersComponent implements OnInit {
           console.log(data);
           this.spinner.hide();
           this.hide = false;
-          this.router.navigate(['/Organization']); // TODO: Nav back to nikhil's component
+          this.submitted = true;
+          this.routeToEditEvent();
         },
         error1 => {
           console.log(error1);
@@ -63,4 +71,15 @@ export class MessageVolunteersComponent implements OnInit {
     }
   }
 
+  routeToEditEvent() {
+    this.router.navigateByUrl("Organization/editEvent/" + this.eventId);
+  }
+
+  canDeactivate(): Observable<boolean> | boolean {
+    if (!this.submitted && this.messageForm.dirty) {
+      return this.dialogService.confirm('Are you sure you want to cancel this email?');
+    } else {
+      return true;
+    }
+  }
 }

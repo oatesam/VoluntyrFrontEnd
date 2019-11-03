@@ -32,6 +32,14 @@
       <div *ngIf="emailError" class="center responsive alert alert-danger error">
         Our apologies but there was a problem sending this email, please try again later.
       </div>
+      <div>
+        <button class="btn btn-primary" (click)="routeToDashBoard()">
+          Return to Dashboard
+        </button>
+        <button class="btn btn-primary" (click)="routeToEditEvent()">
+          Return to Managing this Event
+        </button>
+      </div>
     </div>
     <ngx-spinner>
       <h1>

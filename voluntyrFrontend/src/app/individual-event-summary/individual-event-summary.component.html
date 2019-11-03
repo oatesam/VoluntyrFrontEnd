@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div>
-    <button class="btn btn-primary">
+    <button *ngIf="isOrg" (click)="this.getEventDetails();" class="btn btn-primary">
       Manage Event
     </button>
     <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</h3>

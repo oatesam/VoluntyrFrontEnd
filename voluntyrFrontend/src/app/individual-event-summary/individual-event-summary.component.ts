@@ -32,13 +32,8 @@ export class IndividualEventSummaryComponent implements OnInit {
   volunteers;
   numberOfVols;
 
-  // TODO: Use button, not clicking event
-  @HostListener('click') onClick() {
-    this.getEventDetails();
-  }
+
   getEventDetails() {
-    console.log('clicked', this.event.id);
-    // this.OrganizationService.editEvent(this.event.id);
     this.router.navigateByUrl("Organization/editEvent/" + this.event.id);
   }
   // tslint:disable-next-line:no-shadowed-variable

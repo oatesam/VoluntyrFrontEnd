@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
-    this.email = this.email.toLowerCase();  // TODO: this.loginForm.controls.emailControl?
+    this.email = this.loginForm.controls.emailControl.value.toLowerCase();  // TODO: this.loginForm.controls.emailControl?
     if (this.logged) {
       this.router.navigateByUrl("/").then(() => {
         window.location.reload();

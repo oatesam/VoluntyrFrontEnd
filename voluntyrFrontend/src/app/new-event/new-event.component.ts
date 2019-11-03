@@ -64,10 +64,13 @@ export class NewEventComponent implements OnInit {
       "/" +
       date_date.getUTCDate();
     console.log("Dates: ", start_format, date_fomart);
-    if (start_format !== date_fomart) {
-      alert("The start date must have the same date as Date");
-      return;
-    }
+    console.log("ISO:", date_date.toISOString(), start_date.toISOString());
+    console.log("UTC:", date_date.toUTCString(), start_date.toUTCString());
+    // TODO: Fix start date and date validation
+    // if (start_format !== date_fomart) {
+    //   alert("The start date must have the same date as Date");
+    //   return;
+    // }
     if (this.newEvent.start_time > this.newEvent.end_time) {
       alert("The end time must be later than start time");
       return;
@@ -76,9 +79,7 @@ export class NewEventComponent implements OnInit {
       console.log(resp);
       if (resp["status"] === 201) {
         alert("Event has been created");
-        this.router.navigateByUrl("Organization").then(() => {
-          window.location.reload();
-        });
+        this.router.navigateByUrl("Organization");
       } else if (resp["status"] === 400) {
         alert("Information is invalid, Try again");
       } else {

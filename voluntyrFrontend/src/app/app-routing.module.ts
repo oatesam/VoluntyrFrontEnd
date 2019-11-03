@@ -56,13 +56,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "test/:eventid",
+    path: "message/:eventid",
     component: MessageVolunteersComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "organization"
-    }
-  }, // TODO Change this route to match Nihkil's route; end with /email
+    },
+    canDeactivate: [CanDeactivateGuard]
+  },
   {
     path: "Organization/editEvent/:id",
     component: EditEventComponent,
