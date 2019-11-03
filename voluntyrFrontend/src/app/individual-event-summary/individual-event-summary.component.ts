@@ -4,11 +4,12 @@ import {
   faClock,
   faMapPin,
   faCalendarAlt,
-  faHandHoldingHeart
-} from "@fortawesome/free-solid-svg-icons";
+  faHandHoldingHeart, faLandmark, faUserFriends
+} from '@fortawesome/free-solid-svg-icons';
 import {Event} from '@app/_models/Event';
+import {EventsService} from '@app/_services/events.service';
+import * as decode from "jwt-decode";
 
-//TODO: add icons [description ]
 @Component({
   selector: "app-individual-event-summary",
   templateUrl: "./individual-event-summary.component.html",
@@ -22,8 +23,33 @@ export class IndividualEventSummaryComponent implements OnInit {
   faMapPin = faMapPin;
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
+  faLandmark = faLandmark;
+  faUsers = faUserFriends
 
-  constructor() {}
+  isOrg: boolean = false;
+  volunteers;
+  numberOfVols;
 
-  ngOnInit() {}
+  constructor(private es: EventsService) {}
+
+  ngOnInit() {
+    this.getScope();
+  }
+
+  getScope() {
+    const token = JSON.parse(localStorage.getItem("currentUser")).access;
+    const tokenScope = decode(token);
+    if (tokenScope.scope == "organization") {
+      this.isOrg = true;
+      this.es.getVolunteers(this.event.id).subscribe(
+        data => {
+          this.numberOfVols = data["number"];
+        },
+        error1 => {
+          console.error(error1);
+          this.isOrg = false;
+        }
+      )
+    }
+  }
 }
