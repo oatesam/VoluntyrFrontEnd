@@ -10,6 +10,7 @@ import { AuthGuard } from "./_helpers/auth.guard";
 import { VolunteerDashboardComponent } from "./volunteer-dashboard/volunteer-dashboard.component";
 import { VolunteerEventSignupComponent } from "@app/volunteer-event-signup/volunteer-event-signup.component";
 import { NewEventComponent } from "./new-event/new-event.component";
+import {MessageVolunteersComponent} from '@app/message-volunteers/message-volunteers.component';
 import {LoginwrapperComponent} from "@app/loginwrapper/loginwrapper.component";
 import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.component";
 import { RoleGuardService } from "./_helpers/role-guard.service";
@@ -66,6 +67,11 @@ const routes: Routes = [
     },
     canDeactivate: [CanDeactivateGuard]
   },
+  {
+    path: "test",
+    component: MessageVolunteersComponent
+  }, // TODO Remove this route; testing purposes only
+
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
 ];
