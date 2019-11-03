@@ -46,19 +46,13 @@ export class OrganizationService {
       this.httpOptions
     );
   }
+
   editEvent(eventId: any) {
     return this.httpClient.get<Event>(this.editUrl + eventId + '/', this.httpOptions);
   }
-  updateEditedEvent(payloaddata: Event) {
+
+  updateEditedEvent(payloaddata: Event): Observable<any> {
     console.log('In updateEditedEvent', payloaddata);
-    this.httpClient
-      .put(this.updateUrl , payloaddata, this.httpOptions)
-      .subscribe(resp => {
-        if (resp === 200) {
-          return "sucess";
-        } else {
-          return "Unable to update event";
-        }
-      });
+    return this.httpClient.put(this.updateUrl, payloaddata, this.httpOptions);
   }
 }

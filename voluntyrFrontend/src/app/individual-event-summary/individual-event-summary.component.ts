@@ -24,6 +24,8 @@ export class IndividualEventSummaryComponent implements OnInit {
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
   @Input() event: Event;
+
+  // TODO: Use button, not clicking event
   @HostListener('click') onClick() {
     this.getEventDetails();
   }

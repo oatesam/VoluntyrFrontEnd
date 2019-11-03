@@ -60,7 +60,10 @@ const routes: Routes = [
   {
     path: "Organization/editEvent/:id",
     component: EditEventComponent,
-    canActivate: [AuthGuard],
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "organization"
+    },
     canDeactivate: [CanDeactivateGuard]
   },
   // PageNotFound should always be last in routing, otherwise it will overtake others
