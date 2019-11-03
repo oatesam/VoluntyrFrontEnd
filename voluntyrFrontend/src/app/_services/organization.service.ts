@@ -11,6 +11,8 @@ export class OrganizationService {
   private createEventUrl = `${environment.apiUrl}/api/organization/event/`;
   private organizationInfoUrl = `${environment.apiUrl}/api/organization/`;
   private organizationEventsUrl = `${environment.apiUrl}/api/organization/events/`;
+  private editUrl = `${environment.apiUrl}/api/organization/event/`;
+  private updateUrl = `${environment.apiUrl}/api/organization/updateEvent/`;
 
   private token = JSON.parse(localStorage.getItem("currentUser")).access;
 
@@ -43,5 +45,14 @@ export class OrganizationService {
       this.organizationEventsUrl,
       this.httpOptions
     );
+  }
+
+  editEvent(eventId: any) {
+    return this.httpClient.get<Event>(this.editUrl + eventId + '/', this.httpOptions);
+  }
+
+  updateEditedEvent(payloaddata: Event): Observable<any> {
+    console.log('In updateEditedEvent', payloaddata);
+    return this.httpClient.put(this.updateUrl, payloaddata, this.httpOptions);
   }
 }

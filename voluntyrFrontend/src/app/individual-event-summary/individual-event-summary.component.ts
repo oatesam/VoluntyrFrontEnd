@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, HostListener} from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import {
   faBullhorn,
   faClock,
@@ -7,6 +8,7 @@ import {
   faHandHoldingHeart
 } from "@fortawesome/free-solid-svg-icons";
 import {Event} from '@app/_models/Event';
+import { OrganizationService } from '../_services/organization.service';
 
 //TODO: add icons [description ]
 @Component({
@@ -15,15 +17,27 @@ import {Event} from '@app/_models/Event';
   styleUrls: ["./individual-event-summary.component.css"]
 })
 export class IndividualEventSummaryComponent implements OnInit {
-  @Input() event: Event;
   //declaration of the icons
   faBullhorn = faBullhorn;
   faClock = faClock;
   faMapPin = faMapPin;
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
+  @Input() event: Event;
 
-  constructor() {}
+  // TODO: Use button, not clicking event
+  @HostListener('click') onClick() {
+    this.getEventDetails();
+  }
+  getEventDetails() {
+    console.log('clicked', this.event.id);
+    // this.OrganizationService.editEvent(this.event.id);
+    this.router.navigateByUrl("Organization/editEvent/" + this.event.id);
+  }
+  // tslint:disable-next-line:no-shadowed-variable
+  constructor(private OrganizationService: OrganizationService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {}
 }

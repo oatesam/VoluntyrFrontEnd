@@ -13,6 +13,8 @@ import { NewEventComponent } from "./new-event/new-event.component";
 import {LoginwrapperComponent} from "@app/loginwrapper/loginwrapper.component";
 import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.component";
 import { RoleGuardService } from "./_helpers/role-guard.service";
+import {EditEventComponent} from "@app/edit-event/edit-event.component";
+import {CanDeactivateGuard} from "@app/_helpers/can-deactivate.guard";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -55,7 +57,15 @@ const routes: Routes = [
       expectedRole: "volunteer"
     }
   },
-
+  {
+    path: "Organization/editEvent/:id",
+    component: EditEventComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "organization"
+    },
+    canDeactivate: [CanDeactivateGuard]
+  },
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
 ];
