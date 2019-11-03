@@ -28,10 +28,12 @@ import {VolunteerDashboardComponent} from '@app/volunteer-dashboard/volunteer-da
 import {VolunteerEventComponent} from '@app/volunteer-event/volunteer-event.component';
 import {VolunteerEventSignupComponent} from '@app/volunteer-event-signup/volunteer-event-signup.component';
 import {NewEventComponent} from '@app/new-event/new-event.component';
-import { EditEventComponent } from './edit-event/edit-event.component';
-import {LoginwrapperComponent} from "@app/loginwrapper/loginwrapper.component";
-import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.component";
-
+import {MessageVolunteersComponent} from './message-volunteers/message-volunteers.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {EmailInputWrapperComponent} from './email-input-wrapper/email-input-wrapper.component';
+import {EditEventComponent} from './edit-event/edit-event.component';
+import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
+import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,11 @@ import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.com
     VolunteerEventComponent,
     VolunteerEventSignupComponent,
     NewEventComponent,
+    MessageVolunteersComponent,
     LoginwrapperComponent,
     RegisterwrapperComponent,
-    EditEventComponent
+    EmailInputWrapperComponent,
+    EditEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,8 @@ import {RegisterwrapperComponent} from "@app/registerwrapper/registerwrapper.com
     NgbModule,
     NgbDatepickerModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     HttpClientModule,

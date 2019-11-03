@@ -6,6 +6,7 @@ import { throwError } from "rxjs";
 import { DataService } from "@app/_services/data.service";
 import { AlertService } from "@app/_services/alert.service";
 import { environment } from "@environments/environment";
+import * as decode from "jwt-decode";
 
 @Component({
   selector: "app-login",
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   verifyLogin() {
-    this.email = this.email.toLowerCase();  // TODO: this.loginForm.controls.emailControl?
+    this.email = this.loginForm.controls.emailControl.value.toLowerCase();  // TODO: this.loginForm.controls.emailControl?
     if (this.logged) {
       this.router.navigateByUrl("/").then(() => {
         window.location.reload();
@@ -87,9 +88,13 @@ export class LoginComponent implements OnInit {
             console.log("log resp = ", resp);
             if (resp.access) {
               this.data.changeLogged("true");
-              this.router.navigateByUrl("/").then(() => {
-                window.location.reload();
-              });
+
+              const token = decode(resp.access);
+              if (token.scope == "organization") {
+                this.router.navigateByUrl("/Organization");
+              } else if (token.scope == "volunteer") {
+                this.router.navigateByUrl("/Volunteer");
+              }
             }
           },
           error => {

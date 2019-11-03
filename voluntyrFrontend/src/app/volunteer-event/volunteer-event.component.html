@@ -1,9 +1,19 @@
-<div>
+<div class="wrapper">
   <h3><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.title }}</h3>
   <h4><fa-icon [icon]="faLandmark"></fa-icon>{{ event.organization }}</h4>
-  <p>
+  <h5><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</h5>
+  <h5>
+    <fa-icon [icon]="faCalendarAlt"></fa-icon>
+    {{ event.date | date: "fullDate" }}
+  </h5>
+  <h5>
     <fa-icon [icon]="faClock"></fa-icon>
-    {{ event.start_time | date: "short" }} to
-    {{ event.end_time | date: "short" }}
+    {{ event.start_time | date: "short" }} to {{ event.end_time | date: "short" }}
+  </h5>
+  <p>
+    <fa-icon [icon]="faBullhorn"></fa-icon>
+    {{event.description}}
   </p>
+  <button *ngIf="!signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Register for this event</button>
+  <button *ngIf="signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Unregister for this event</button>
 </div>

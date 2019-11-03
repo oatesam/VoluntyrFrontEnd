@@ -9,6 +9,7 @@ import {DataService} from "@app/_services/data.service";
 import {Observable} from "rxjs";
 import {CanComponentDeactivate, CanDeactivateGuard} from "@app/_helpers/can-deactivate.guard";
 import {DialogService} from "@app/_services/dialog.service";
+import {EventsService} from '@app/_services/events.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -17,7 +18,12 @@ import {DialogService} from "@app/_services/dialog.service";
 })
 export class EditEventComponent implements OnInit, CanComponentDeactivate  {
   event: Event;
-  unsavedEdits: boolean = false;
+  submitted: boolean = false;
+
+  numberOfVols: number;
+  volunteers;
+  private eventid: string;
+
   // tslint:disable-next-line:no-shadowed-variable
   constructor(private OrganizationService: OrganizationService,
               private router: Router,
@@ -26,7 +32,8 @@ export class EditEventComponent implements OnInit, CanComponentDeactivate  {
               private data: DataService,
               private alert: AlertService,
               private cdr: ChangeDetectorRef,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              private es: EventsService) {
   }
   loginForm = new FormGroup({
     title: new FormControl('', [
@@ -47,11 +54,21 @@ export class EditEventComponent implements OnInit, CanComponentDeactivate  {
   });
 
   ngOnInit() {
+    this.eventid = this.route.snapshot.paramMap.get('id');
     this.editEvent();
+    this.es.getVolunteers(this.eventid).subscribe(
+        data => {
+          this.numberOfVols = data["number"];
+          this.volunteers = data["volunteers"]
+        },
+        error1 => {
+          console.error(error1);
+        }
+      )
   }
 
   public editEvent() {
-    return this.OrganizationService.editEvent(this.route.snapshot.paramMap.get('id')).subscribe(
+    return this.OrganizationService.editEvent(this.eventid).subscribe(
       data => {
         this.event = data;
         this.setForm();
@@ -90,7 +107,7 @@ export class EditEventComponent implements OnInit, CanComponentDeactivate  {
 
       this.OrganizationService.updateEditedEvent(this.event).subscribe(
         data => {
-          this.unsavedEdits = false;
+          this.submitted = true;
           // alert("Event has been Updated");
           this.routeToDashBoard();
         },
@@ -110,10 +127,14 @@ export class EditEventComponent implements OnInit, CanComponentDeactivate  {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
     // Otherwise ask the user with the dialog service and return its
     // observable which resolves to true or false when the user decides
-    if (this.loginForm.dirty) { //!this.unsavedEdits
+    if (!this.submitted && this.loginForm.dirty) { //!this.unsavedEdits
       return this.dialogService.confirm('Discard changes?');
     } else {
       return true;
     }
+  }
+
+  messageVolunteers() {
+    this.router.navigateByUrl("message/" + this.event.id);
   }
 }

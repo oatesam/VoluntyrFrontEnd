@@ -10,6 +10,8 @@ export class AuthenticationService {
     private tokenUrl = `${environment.apiUrl}/api/token/`;
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    private logged: boolean = false;
+
     @Output() getLogged: EventEmitter<any> = new EventEmitter();
 
 
@@ -26,6 +28,10 @@ export class AuthenticationService {
       return localStorage.getItem('token');
     }
 
+    isLogged(): boolean {
+      return this.logged;
+    }
+
     login(email: string, password: string) {
       const body = new HttpParams()
         .set('email', email)
@@ -38,21 +44,24 @@ export class AuthenticationService {
         })
             .pipe(map(user => {
               console.log(user);
-              this.getLogged.emit(true);
+              this.logged = true;
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
               // localStorage.setItem('currentUser', JSON.stringify(user));
               // To retrieve the current user
               // let curUser = localStorage.getItem(currentUser);
               this.currentUserSubject.next(user);
+              this.getLogged.emit(true);
               return user;
             }))
         ;
     }
 
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+      // remove user from local storage to log user out
+      localStorage.removeItem('currentUser');
+      this.logged = false;
+      this.currentUserSubject.next(null);
+      this.getLogged.emit(false);
     }
 }

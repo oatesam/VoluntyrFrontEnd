@@ -1,0 +1,50 @@
+<div class="wrapper responsive">
+  <div class="center message-volunteers-wrapper">
+    <div [hidden]="hide">
+      <h1>Email the Volunteers Registered for {{event?.title}}</h1>
+      <form [formGroup]="messageForm" (ngSubmit)="sendEmail()">
+        <h3>Subject</h3>
+        <input id="subject" name="subject" type="text" class="form-control" formControlName="subjectControl" required>
+        <div *ngIf="messageForm.controls.subjectControl.invalid && (messageForm.controls.subjectControl.dirty || messageForm.controls.subjectControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.subjectControl.errors.required">
+            Subject is required.
+          </div>
+        </div>
+        <h3>Email for volunteers to reply to</h3>
+        <input type="email" formControlName="replytoControl" class="form-control" required>
+        <div *ngIf="messageForm.controls.replytoControl.invalid && (messageForm.controls.replytoControl.dirty || messageForm.controls.replytoControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.replytoControl.errors.required">
+            Reply to is required.
+          </div>
+          <div *ngIf="messageForm.controls.replytoControl.errors.email">
+            Reply to must be an email.
+          </div>
+        </div>
+        <h3>Message</h3>
+        <textarea formControlName="messageControl" class="form-control" required></textarea>
+        <div *ngIf="messageForm.controls.messageControl.invalid && (messageForm.controls.messageControl.dirty || messageForm.controls.messageControl.touched)" class="center responsive alert alert-danger error">
+          <div *ngIf="messageForm.controls.messageControl.errors.required">
+            Message is required.
+          </div>
+        </div>
+      </form>
+      <button type="button" (click)="sendEmail()" [disabled]="messageForm.controls.replytoControl.invalid || messageForm.controls.subjectControl.invalid || messageForm.controls.messageControl.invalid" class="btn btn-primary btn-lg">Send</button>
+      <div *ngIf="emailError" class="center responsive alert alert-danger error">
+        Our apologies but there was a problem sending this email, please try again later.
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="routeToDashBoard()">
+          Return to Dashboard
+        </button>
+        <button class="btn btn-primary" (click)="routeToEditEvent()">
+          Return to Managing this Event
+        </button>
+      </div>
+    </div>
+    <ngx-spinner>
+      <h1>
+        Your message is sending to the attending volunteers...
+      </h1>
+    </ngx-spinner>
+  </div>
+</div>
