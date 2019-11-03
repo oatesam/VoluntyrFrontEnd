@@ -21,4 +21,8 @@ export class EventsService {
   checkSignUp(eventid: string): Observable<any> {
     return this.httpClient.get<any>(this.eventsBaseUrl + eventid + "/check/");
   }
+
+  getVolunteers(eventId: string) {
+    return this.httpClient.get(this.eventsBaseUrl + eventId + "/volunteers/")
+  }
 }

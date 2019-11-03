@@ -44,25 +44,26 @@ export class NewEventComponent implements OnInit {
   createEvent() {
     var start_date = new Date(this.newEvent.start_time);
     var start_format =
-      start_date.getUTCFullYear() +
+      start_date.getFullYear() +
       "/" +
-      start_date.getUTCMonth() +
+      start_date.getMonth() +
       "/" +
-      start_date.getUTCDate();
+      start_date.getDate();
     var end_date = new Date(this.newEvent.end_time);
     var end_format =
-      end_date.getUTCFullYear() +
+      end_date.getFullYear() +
       "/" +
-      end_date.getUTCMonth() +
+      end_date.getMonth() +
       "/" +
-      end_date.getUTCDate();
+      end_date.getDate();
     var date_date = new Date(this.newEvent.date);
     var date_fomart =
-      date_date.getUTCFullYear() +
+      date_date.getFullYear() +
       "/" +
-      date_date.getUTCMonth() +
+      date_date.getMonth() +
       "/" +
       date_date.getUTCDate();
+    console.log("Dates: ", start_format, date_fomart);
     if (start_format !== date_fomart) {
       alert("The start date must have the same date as Date");
       return;

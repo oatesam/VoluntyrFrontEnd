@@ -4,7 +4,17 @@
       Manage Event
     </button>
     <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</h3>
+    <div *ngIf="!isOrg">
+      <h4>
+        <fa-icon [icon]="faLandmark"></fa-icon> {{event.organization}}
+      </h4>
+    </div>
     <h4><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</h4>
+    <div *ngIf="isOrg">
+      <h5>
+        <fa-icon [icon]="faUsers"></fa-icon> Number of registered volunteers: {{numberOfVols}}
+      </h5>
+    </div>
     <h5>
       <fa-icon [icon]="faClock"></fa-icon>
       {{ event.start_time | date: "shortTime" }} to {{ event.end_time | date: "shortTime" }}
