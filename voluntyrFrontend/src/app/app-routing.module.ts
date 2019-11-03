@@ -68,9 +68,9 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard]
   },
   {
-    path: "test",
+    path: "test/:eventid",
     component: MessageVolunteersComponent
-  }, // TODO Remove this route; testing purposes only
+  }, // TODO Change this route to match Nihkil's route; end with /email
 
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
