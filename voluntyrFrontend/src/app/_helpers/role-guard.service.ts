@@ -20,7 +20,7 @@ export class RoleGuardService implements CanActivate {
       //decode token to get scope
       const tokenScope = decode(token);
       //check scope
-      if (tokenScope.scope === expectedRole) {
+      if (tokenScope["scope"] === expectedRole) {
         return true;
       } else {
         //return error message or reroute

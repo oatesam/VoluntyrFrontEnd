@@ -90,9 +90,9 @@ export class LoginComponent implements OnInit {
               this.data.changeLogged("true");
 
               const token = decode(resp.access);
-              if (token.scope == "organization") {
+              if (token["scope"] == "organization") {
                 this.router.navigateByUrl("/Organization");
-              } else if (token.scope == "volunteer") {
+              } else if (token["scope"] == "volunteer") {
                 this.router.navigateByUrl("/Volunteer");
               }
             }

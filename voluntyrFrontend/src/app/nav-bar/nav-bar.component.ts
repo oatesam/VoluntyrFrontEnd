@@ -35,7 +35,7 @@ export class NavBarComponent implements OnInit {
     var decodedToken = jwt_decode(
       JSON.parse(localStorage.getItem("currentUser")).access
     );
-    var tokenScope = decodedToken.scope;
+    var tokenScope = decodedToken["scope"];
     if (tokenScope === "volunteer") {
       this.showVolunteer = true;
       this.showOrganization = false;
