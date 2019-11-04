@@ -49,7 +49,7 @@ export class IndividualEventSummaryComponent implements OnInit {
   getScope() {
     const token = JSON.parse(localStorage.getItem("currentUser")).access;
     const tokenScope = decode(token);
-    if (tokenScope.scope == "organization") {
+    if (tokenScope["scope"] == "organization") {
       this.isOrg = true;
       this.es.getVolunteers(this.event.id).subscribe(
         data => {
