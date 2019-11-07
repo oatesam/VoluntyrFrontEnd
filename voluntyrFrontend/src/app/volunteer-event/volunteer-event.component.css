@@ -13,3 +13,12 @@ button {
   background-color: #666666;
   color: white;
 }
+
+a {
+  color: white;
+}
+
+fa-icon {
+  margin-right: 5px;
+  margin-left: 5px;
+}

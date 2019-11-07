@@ -34,6 +34,7 @@ import {EmailInputWrapperComponent} from './email-input-wrapper/email-input-wrap
 import {EditEventComponent} from './edit-event/edit-event.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
+import { VolunteerOrganizationComponent } from './volunteer-organization/volunteer-organization.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.com
     RegisterwrapperComponent,
     EmailInputWrapperComponent,
     EditEventComponent,
+    VolunteerOrganizationComponent,
   ],
   imports: [
     BrowserModule,

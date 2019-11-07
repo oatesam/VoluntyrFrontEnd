@@ -13,6 +13,7 @@ import {RoleGuardService} from './_helpers/role-guard.service';
 import {EditEventComponent} from '@app/edit-event/edit-event.component';
 import {CanDeactivateGuard} from '@app/_helpers/can-deactivate.guard';
 import {EmailInputWrapperComponent} from '@app/email-input-wrapper/email-input-wrapper.component';
+import {VolunteerOrganizationComponent} from '@app/volunteer-organization/volunteer-organization.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -37,6 +38,14 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "organization"
+    }
+  },
+  {
+    path: "Organization/:id",
+    component: VolunteerOrganizationComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "volunteer"
     }
   },
   {

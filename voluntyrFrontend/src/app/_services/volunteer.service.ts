@@ -5,6 +5,8 @@ import { Observable } from "rxjs";
 import { Event } from "../_models/Event";
 import { Volunteer } from "../_models/Volunteer";
 import { environment } from "@environments/environment";
+import {SearchEvent} from '@app/_models/SearchEvent';
+import {VolunteerOrganziation} from '@app/_models/VolunteerOrganziation';
 
 @Injectable({
   providedIn: "root"
@@ -17,6 +19,7 @@ export class VolunteerService {
   private eventsApi: string = "api/volunteer/events/";
   private eventsSignupAPI: string = "api/events/";
   private singleeventSignupAPI: string = "api/event/";
+  private organizaionAPI: string = "api/organization/";
 
   getDetails(token): Observable<Volunteer> {
     const httpOptions = {
@@ -42,7 +45,7 @@ export class VolunteerService {
     return this.http.get<Event[]>(this.baseurl + this.eventsApi, httpOptions);
   }
 
-  getUpcomingEvents(token): Observable<Event[]> {
+  getUpcomingEvents(token): Observable<SearchEvent[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -50,7 +53,7 @@ export class VolunteerService {
       })
     };
 
-    return this.http.get<Event[]>(
+    return this.http.get<SearchEvent[]>(
       this.baseurl + this.eventsSignupAPI,
       httpOptions
     );
@@ -65,5 +68,9 @@ export class VolunteerService {
       })
     };
     return this.http.put(this.baseurl + this.singleeventSignupAPI + eventId + "/volunteer/", empty, httpOptions);
+  }
+
+  getOrganization(orgid: string): Observable<VolunteerOrganziation> {
+    return this.http.get<VolunteerOrganziation>(this.baseurl + this.organizaionAPI + orgid + "/");
   }
 }

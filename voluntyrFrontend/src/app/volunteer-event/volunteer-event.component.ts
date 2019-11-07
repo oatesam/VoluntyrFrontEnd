@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { HostListener } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
-import { Event } from "../_models/Event";
+import { SearchEvent } from "../_models/SearchEvent";
 import {EventsService} from '@app/_services/events.service';
 
 @Component({
@@ -19,7 +19,8 @@ import {EventsService} from '@app/_services/events.service';
   styleUrls: ["./volunteer-event.component.css"]
 })
 export class VolunteerEventComponent implements OnInit {
-  @Input() event: Event;
+  @Input() event: SearchEvent;
+  @Input() showOrg: boolean = true;
 
   token = JSON.parse(localStorage.getItem("currentUser")).access;
 
