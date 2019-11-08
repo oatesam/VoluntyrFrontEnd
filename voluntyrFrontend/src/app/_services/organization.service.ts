@@ -4,6 +4,7 @@ import { organization } from "../_models/organization";
 import { Observable } from "rxjs";
 import { Event } from "@app/_models/Event";
 import { environment } from "@environments/environment";
+import {SearchEvent} from '@app/_models/SearchEvent';
 @Injectable({
   providedIn: "root"
 })
@@ -41,8 +42,8 @@ export class OrganizationService {
     });
   }
 
-  getEvents(): Observable<Event[]> {
-    return this.httpClient.get<Event[]>(
+  getEvents(): Observable<SearchEvent[]> {
+    return this.httpClient.get<SearchEvent[]>(
       this.organizationEventsUrl,
       this.httpOptions
     );

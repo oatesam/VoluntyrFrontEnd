@@ -1,7 +1,9 @@
 <div class="wrapper">
-  <h3><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.title }}</h3>
-  <h4><fa-icon [icon]="faLandmark"></fa-icon>{{ event.organization }}</h4>
-  <h5><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</h5>
+  <h3><fa-icon [icon]="faBullhorn"></fa-icon>{{ event.title }}</h3>
+  <h4 *ngIf="showOrg"><fa-icon [icon]="faLandmark"></fa-icon>
+    <a routerLink="/Organization/{{event.organization.id}}">{{ event.organization.name }}</a>
+  </h4>
+  <h5><fa-icon [icon]="faMapPin"></fa-icon>{{ event.location }}</h5>
   <h5>
     <fa-icon [icon]="faCalendarAlt"></fa-icon>
     {{ event.date | date: "fullDate" }}

@@ -3,13 +3,13 @@
     <button *ngIf="isOrg" (click)="this.getEventDetails();" class="btn btn-primary">
       Manage Event
     </button>
-    <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon> {{ event.title }}</h3>
+    <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon>{{ event.title }}</h3>
     <div *ngIf="!isOrg">
       <h4>
-        <fa-icon [icon]="faLandmark"></fa-icon> {{event.organization}}
+        <fa-icon [icon]="faLandmark"></fa-icon><a routerLink="/Organization/{{event.organization.id}}">{{ event.organization.name }}</a>
       </h4>
     </div>
-    <h4><fa-icon [icon]="faMapPin"></fa-icon> {{ event.location }}</h4>
+    <h4><fa-icon [icon]="faMapPin"></fa-icon>{{ event.location }}</h4>
     <div *ngIf="isOrg">
       <h5>
         <fa-icon [icon]="faUsers"></fa-icon> Number of registered volunteers: {{numberOfVols}}
@@ -20,8 +20,8 @@
       {{ event.start_time | date: "shortTime" }} to {{ event.end_time | date: "shortTime" }}
     </h5>
     <h5>
-      <fa-icon [icon]="faCalendarAlt"></fa-icon> {{ event.date | date: "fullDate" }}
+      <fa-icon [icon]="faCalendarAlt"></fa-icon>{{ event.date | date: "fullDate" }}
     </h5>
-    <p><fa-icon [icon]="faBullhorn"></fa-icon> {{ event.description }}</p>
+    <p><fa-icon [icon]="faBullhorn"></fa-icon>{{ event.description }}</p>
   </div>
 </div>

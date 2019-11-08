@@ -1,0 +1,36 @@
+<div class="responsive wrapper">
+  <div class="wrapper-left">
+    <h1>
+      <fa-icon [icon]="faLandmark"></fa-icon> {{ organization.organization.name }}
+    </h1>
+    <h3>
+      <fa-icon [icon]="faRibbon"></fa-icon> {{ organization.organization.organization_motto }}
+    </h3>
+    <div class="children">
+      <div class="child">
+        <p>
+          <fa-icon [icon]="faEnvelopeOpen"></fa-icon> email: {{organization.organization.end_user.email}}
+        </p>
+        <p>
+          <fa-icon [icon]="faPhoneAlt"></fa-icon> phone: {{ organization.organization.phone_number }}
+        </p>
+      </div>
+      <div class="child">
+        <!-- TODO: Add rating; uncomment below p element-->
+        <!--<p>-->
+          <!--<fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}}-->
+        <!--</p>-->
+        <p>
+          <fa-icon [icon]="faMapPin"></fa-icon> {{ organization.organization.street_address }},
+          {{ organization.organization.city }}, {{ organization.organization.state }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper-right">
+    <h1>
+      {{ organization.organization.name }}'s Upcoming Events
+    </h1>
+    <app-volunteer-event *ngFor="let event of organization.events" [event]="event" [showOrg]="false"></app-volunteer-event>
+  </div>
+</div>

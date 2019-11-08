@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VolunteerService } from '../_services/volunteer.service';
 import { Volunteer } from '../_models/Volunteer';
-import { Event } from '../_models/Event';
+import { SearchEvent } from '../_models/SearchEvent';
 import { faUser, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,7 +17,7 @@ export class VolunteerEventSignupComponent implements OnInit {
   faCalendarPlus = faCalendarPlus;
 
   public volunteer: Volunteer = new Volunteer();
-  public events: Event[];
+  public events: SearchEvent[];
 
   public token = JSON.parse(localStorage.getItem('currentUser')).access;
   ngOnInit() {
