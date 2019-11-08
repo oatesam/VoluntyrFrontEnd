@@ -7,10 +7,10 @@ import {
   faCalendarAlt,
   faHandHoldingHeart, faLandmark, faUserFriends
 } from '@fortawesome/free-solid-svg-icons';
-import {Event} from '@app/_models/Event';
 import { OrganizationService } from '../_services/organization.service';
 import {EventsService} from '@app/_services/events.service';
 import * as decode from "jwt-decode";
+import {SearchEvent} from '@app/_models/SearchEvent';
 
 @Component({
   selector: "app-individual-event-summary",
@@ -18,7 +18,7 @@ import * as decode from "jwt-decode";
   styleUrls: ["./individual-event-summary.component.css"]
 })
 export class IndividualEventSummaryComponent implements OnInit {
-  @Input() event: Event;
+  @Input() event: SearchEvent;
   //declaration of the icons
   faBullhorn = faBullhorn;
   faClock = faClock;
@@ -26,12 +26,11 @@ export class IndividualEventSummaryComponent implements OnInit {
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
   faLandmark = faLandmark;
-  faUsers = faUserFriends
+  faUsers = faUserFriends;
 
   isOrg: boolean = false;
   volunteers;
   numberOfVols;
-
 
   getEventDetails() {
     this.router.navigateByUrl("Organization/editEvent/" + this.event.id);

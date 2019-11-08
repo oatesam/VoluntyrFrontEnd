@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
 import { Volunteer } from "../_models/Volunteer";
-import { Event } from "../_models/Event";
 import { faUser, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { Router, ActivatedRoute } from "@angular/router";
+import {SearchEvent} from '@app/_models/SearchEvent';
 
 @Component({
   selector: "app-volunteer-dashboard",
@@ -20,7 +20,7 @@ export class VolunteerDashboardComponent implements OnInit {
   faCalendarPlus = faCalendarPlus;
 
   public volunteer: Volunteer = new Volunteer();
-  public events: Event[];
+  public events: SearchEvent[];
 
   public token = JSON.parse(localStorage.getItem("currentUser")).access;
 

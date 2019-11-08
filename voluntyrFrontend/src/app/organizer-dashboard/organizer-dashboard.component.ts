@@ -10,6 +10,7 @@ import {
 import { OrganizationService } from "../_services/organization.service";
 import { organization } from "../_models/organization";
 import { Event } from '@app/_models/Event';
+import {SearchEvent} from '@app/_models/SearchEvent';
 //TODO: add icons [organization, phone, email, ratings, motto]
 
 @Component({
@@ -33,10 +34,9 @@ export class OrganizerDashboardComponent implements OnInit {
 
   //Initiate the variables
   public org_info: organization = new organization();
-  public event_lst: Event[];
-  public calendar_event: Event[];
+  public event_lst: SearchEvent[];
+  public calendar_event: SearchEvent[];
 
-  //TODO: The API calls currently doesn't do anything due to django error
   ngOnInit() {
     //httprequests to gather data for display
     this.OrganizationService.getOrganizationInfo().subscribe(

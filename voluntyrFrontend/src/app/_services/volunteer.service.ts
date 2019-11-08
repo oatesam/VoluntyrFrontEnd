@@ -34,7 +34,7 @@ export class VolunteerService {
     );
   }
 
-  getEvents(token): Observable<Event[]> {
+  getEvents(token): Observable<SearchEvent[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export class VolunteerService {
       })
     };
 
-    return this.http.get<Event[]>(this.baseurl + this.eventsApi, httpOptions);
+    return this.http.get<SearchEvent[]>(this.baseurl + this.eventsApi, httpOptions);
   }
 
   getUpcomingEvents(token): Observable<SearchEvent[]> {

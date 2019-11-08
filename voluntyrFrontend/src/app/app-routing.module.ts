@@ -41,19 +41,19 @@ const routes: Routes = [
     }
   },
   {
-    path: "Organization/:id",
-    component: VolunteerOrganizationComponent,
-    canActivate: [RoleGuardService],
-    data: {
-      expectedRole: "volunteer"
-    }
-  },
-  {
     path: "Organization/newEvent",
     component: NewEventComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "organization"
+    }
+  },
+  {
+    path: "Organization/:id",
+    component: VolunteerOrganizationComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "volunteer"
     }
   },
   {

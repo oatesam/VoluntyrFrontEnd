@@ -16,7 +16,7 @@
         </p>
       </div>
       <div class="child">
-        <!--TODO: Add rating-->
+        <!-- TODO: Add rating; uncomment below p element-->
         <!--<p>-->
           <!--<fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}}-->
         <!--</p>-->
@@ -28,9 +28,9 @@
     </div>
   </div>
   <div class="wrapper-right">
-    <h2>
+    <h1>
       {{ organization.organization.name }}'s Upcoming Events
-    </h2>
+    </h1>
     <app-volunteer-event *ngFor="let event of organization.events" [event]="event" [showOrg]="false"></app-volunteer-event>
   </div>
 </div>
