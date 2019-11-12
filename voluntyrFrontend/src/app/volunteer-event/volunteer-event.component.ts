@@ -10,14 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { HostListener } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
-<<<<<<< HEAD
 import { SearchEvent } from "../_models/SearchEvent";
-import {EventsService} from '@app/_services/events.service';
-
-=======
-import { Event } from "../_models/Event";
 import { EventsService } from "@app/_services/events.service";
->>>>>>> rebase with dev
+
 @Component({
   selector: "app-volunteer-event",
   templateUrl: "./volunteer-event.component.html",
