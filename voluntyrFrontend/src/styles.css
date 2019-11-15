@@ -57,3 +57,14 @@ span.emphasis {
   font-style: italic;
 }
 
+.modal-backdrop {
+  opacity: 0.5;
+}
+
+.modal-open .modal {
+  opacity: 1;
+}
+
+.modal-dialog {
+  transform: none !important;
+}

@@ -25,4 +25,8 @@ export class EventsService {
   getVolunteers(eventId: string) {
     return this.httpClient.get(this.eventsBaseUrl + eventId + "/volunteers/")
   }
+
+  getInviteCode(eventId: string) {
+    return this.httpClient.get(this.eventsBaseUrl + eventId + "/invite/")
+  }
 }

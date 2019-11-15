@@ -11,6 +11,8 @@ import { OrganizationService } from '../_services/organization.service';
 import {EventsService} from '@app/_services/events.service';
 import * as decode from "jwt-decode";
 import {SearchEvent} from '@app/_models/SearchEvent';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {InvitePopupComponent} from '@app/invite-popup/invite-popup.component';
 
 @Component({
   selector: "app-individual-event-summary",
@@ -39,7 +41,8 @@ export class IndividualEventSummaryComponent implements OnInit {
   constructor(private OrganizationService: OrganizationService,
               private router: Router,
               private route: ActivatedRoute,
-              private es: EventsService) {}
+              private es: EventsService,
+              private ms: NgbModal) {}
 
   ngOnInit() {
     this.getScope();
@@ -60,5 +63,13 @@ export class IndividualEventSummaryComponent implements OnInit {
         }
       )
     }
+  }
+
+  openInvites() {
+    console.log("Oepeninvites()");
+    // TODO: Story-59; When colors figured out, style popup: https://ng-bootstrap.github.io/#/components/modal/examples#options
+    const modalRef = this.ms.open(InvitePopupComponent, { centered: true });
+    modalRef.componentInstance.isOrg = this.isOrg;
+    modalRef.componentInstance.eventId = this.event.id;
   }
 }

@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h1 class="modal-title" style="color: black">Invite Volunteers</h1>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.dismiss('Cross click');">
+    <!--<span aria-hidden="true">&times;</span>-->
+  </button>
+</div>
+<div class="modal-body">
+  <h3>If you would like to invite other volunteers to this event, send them the invite code below and tell them to go
+    to voluntyr.com/invite/</h3>
+  <!--<h3>-->
+    <!--Your invite code: <span style="font-weight: bold; word-break: break-word">{{ this.inviteCode }}</span>-->
+  <!--</h3>-->
+  <!--<a copy-to-clipboard="{{this.inviteCode}}">-->
+    <button class="btn btn-primary" appCopyClipboard [data]="this.inviteCode">Copy your invite code to
+      clipboard</button>
+  <!--</a>-->
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="this.activeModal.close('Close click');">Close</button>
+</div>
