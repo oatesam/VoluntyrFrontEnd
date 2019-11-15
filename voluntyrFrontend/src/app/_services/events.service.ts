@@ -29,4 +29,8 @@ export class EventsService {
   getInviteCode(eventId: string) {
     return this.httpClient.get(this.eventsBaseUrl + eventId + "/invite/")
   }
+
+  getEvent(eventId: string): Observable<Event> {
+    return this.httpClient.get<Event>(this.eventsBaseUrl + eventId + "/")
+  }
 }

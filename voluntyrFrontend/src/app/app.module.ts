@@ -37,6 +37,7 @@ import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.com
 import { VolunteerOrganizationComponent } from './volunteer-organization/volunteer-organization.component';
 import { InvitePopupComponent } from './invite-popup/invite-popup.component';
 import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
+import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive
     VolunteerOrganizationComponent,
     InvitePopupComponent,
     CopyToClipboardDirective,
+    SingleEventWrapperComponent,
   ],
   imports: [
     BrowserModule,
