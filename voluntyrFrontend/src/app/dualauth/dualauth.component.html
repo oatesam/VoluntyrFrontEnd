@@ -1,0 +1,16 @@
+<div class="wrapper responsive">
+  <div class="center message-volunteers-wrapper">
+      <h1>Check your phone for an SMS code</h1>
+      <form [formGroup]="dualAuthForm" (ngSubmit)="sendPassword()">
+         <h3>Enter password</h3>
+        <textarea formControlName="passwordControl" class="form-control" required></textarea>
+        <alert></alert>
+      </form>
+      <button type="button" (click)="sendPassword()" class="btn btn-primary btn-lg">Send</button>
+    </div>
+    <ngx-spinner>
+      <h1>
+        Your code is being verified...
+      </h1>
+    </ngx-spinner>
+</div>

@@ -30,9 +30,9 @@ export class AccountsService {
     return this.http.post(this.orgregurl, body, { observe: 'response' });
   }
 
-  registerVolunteer(firstname, lastname, email, password, birthday): Observable<any> {
+  registerVolunteer(firstname, lastname, email, password, phonenumber, birthday): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    let body = {'first_name': firstname, 'last_name': lastname, 'email': email, 'password': password, 'birthday': birthday};
+    let body = {'first_name': firstname, 'last_name': lastname, 'email': email, 'password': password, 'phone_number': phonenumber, 'birthday': birthday};
     console.log(body);
     return this.http.post(this.volregurl, body, { observe: 'response' });
   }

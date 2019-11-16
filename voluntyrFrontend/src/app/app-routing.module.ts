@@ -14,6 +14,7 @@ import {EditEventComponent} from '@app/edit-event/edit-event.component';
 import {CanDeactivateGuard} from '@app/_helpers/can-deactivate.guard';
 import {EmailInputWrapperComponent} from '@app/email-input-wrapper/email-input-wrapper.component';
 import {VolunteerOrganizationComponent} from '@app/volunteer-organization/volunteer-organization.component';
+import {DualauthComponent} from "@app/dualauth/dualauth.component";
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
@@ -27,6 +28,10 @@ const routes: Routes = [
   { path: "email-input", component: EmailInputWrapperComponent },
   { path: "login", component: LoginwrapperComponent },
   { path: "register", component: RegisterwrapperComponent },
+  {
+    path: 'DualAuth',
+    component: DualauthComponent
+  },
   {
     path: "Events",
     component: VolunteerEventSignupComponent,

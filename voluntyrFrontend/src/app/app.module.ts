@@ -35,6 +35,7 @@ import {EditEventComponent} from './edit-event/edit-event.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
 import { VolunteerOrganizationComponent } from './volunteer-organization/volunteer-organization.component';
+import { DualauthComponent } from './dualauth/dualauth.component';
 import { InvitePopupComponent } from './invite-popup/invite-popup.component';
 import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
 import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
@@ -66,6 +67,7 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
     EmailInputWrapperComponent,
     EditEventComponent,
     VolunteerOrganizationComponent,
+    DualauthComponent,
     InvitePopupComponent,
     CopyToClipboardDirective,
     SingleEventWrapperComponent,

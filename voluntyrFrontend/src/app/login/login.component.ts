@@ -87,24 +87,7 @@ export class LoginComponent implements OnInit {
           resp => {
             console.log("log resp = ", resp);
             if (resp.access) {
-              this.data.changeLogged("true");
-
-              const token = decode(resp.access);
-              this.route.queryParams.subscribe(
-                params => {
-                  let returnTo = params['returnUrl'];
-                  console.warn("ReturnTo: " + returnTo);
-                  if (returnTo == null) {
-                    if (token["scope"] == "organization") {
-                      this.router.navigateByUrl("/Organization");
-                    } else if (token["scope"] == "volunteer") {
-                      this.router.navigateByUrl("/Volunteer");
-                    }
-                  } else {
-                    this.router.navigateByUrl(returnTo);
-                  }
-                }
-              );
+              this.router.navigateByUrl("/DualAuth");
             }
           },
           error => {
