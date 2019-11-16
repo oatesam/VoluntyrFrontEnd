@@ -38,6 +38,7 @@ import { VolunteerOrganizationComponent } from './volunteer-organization/volunte
 import { InvitePopupComponent } from './invite-popup/invite-popup.component';
 import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
 import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
+import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { SingleEventWrapperComponent } from './single-event-wrapper/single-event
     InvitePopupComponent,
     CopyToClipboardDirective,
     SingleEventWrapperComponent,
+    VolunteerInviteComponent,
   ],
   imports: [
     BrowserModule,

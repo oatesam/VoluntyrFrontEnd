@@ -111,14 +111,30 @@ export class RegisterComponent implements OnInit {
         this.birthday).subscribe(
         resp => {
           console.log(resp);
-          if (resp.status === 201) {
-            console.log(resp);
-            this.router.navigateByUrl('login');
-          } else if (resp.status === 409) {
-            console.log(resp);
-            alert("This email already has an account. Please login at the next page.");
-            this.router.navigateByUrl('login');
-          }
+          this.route.queryParams.subscribe(
+              params => {
+                let returnTo = params['returnUrl'];
+                if (returnTo == null) {
+                  if (resp.status === 201) {
+                    console.log(resp);
+                    this.router.navigateByUrl('login');
+                  } else if (resp.status === 409) {
+                    console.log(resp);
+                    alert("This email already has an account. Please login at the next page.");
+                    this.router.navigateByUrl('login');
+                  }
+                } else {
+                  if (resp.status === 201) {
+                    console.log(resp);
+                    this.router.navigate(['login'], { queryParams: { returnUrl: returnTo } });
+                  } else if (resp.status === 409) {
+                    console.log(resp);
+                    alert("This email already has an account. Please login at the next page.");
+                    this.router.navigate(['login'], { queryParams: { returnUrl: returnTo } });
+                  }
+                }
+              }
+            );
         }, error1 => {
           alert("There was a problem with your registration. Please try again later.");
           // TODO: Make this more user friendly

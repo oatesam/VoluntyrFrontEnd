@@ -15,6 +15,8 @@ import {CanDeactivateGuard} from '@app/_helpers/can-deactivate.guard';
 import {EmailInputWrapperComponent} from '@app/email-input-wrapper/email-input-wrapper.component';
 import {VolunteerOrganizationComponent} from '@app/volunteer-organization/volunteer-organization.component';
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
+import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
+import {AuthGuard} from '@app/_helpers/auth.guard';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -86,6 +88,14 @@ const routes: Routes = [
   {
     path: "Event/:id",
     component: SingleEventWrapperComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "volunteer"
+    }
+  },
+  {
+    path: "Invite/:invite",
+    component: VolunteerInviteComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "volunteer"

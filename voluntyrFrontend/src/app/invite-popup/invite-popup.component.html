@@ -5,15 +5,11 @@
   </button>
 </div>
 <div class="modal-body">
-  <h3>If you would like to invite other volunteers to this event, send them the invite code below and tell them to go
-    to voluntyr.com/invite/</h3>
-  <!--<h3>-->
-    <!--Your invite code: <span style="font-weight: bold; word-break: break-word">{{ this.inviteCode }}</span>-->
-  <!--</h3>-->
-  <!--<a copy-to-clipboard="{{this.inviteCode}}">-->
-    <button class="btn btn-primary" appCopyClipboard [data]="this.inviteCode">Copy your invite code to
-      clipboard</button>
-  <!--</a>-->
+  <h3>If you would like to invite other volunteers to this event, send them the link below:</h3>
+  <!--<h4 style="font-weight: bold; word-break: break-word">{{this.inviteLink}}</h4>-->
+  <div style="display: flex; justify-content: center">
+    <button class="btn btn-primary" appCopyClipboard [data]="this.inviteLink">Copy your invite link to clipboard</button>
+  </div>
 
 </div>
 <div class="modal-footer">

@@ -10,6 +10,7 @@ import {Event} from '@app/_models/Event';
 export class EventsService {
 
   private eventsBaseUrl = `${environment.apiUrl}/api/event/`;
+  private acceptInviteUrl = `${environment.apiUrl}/api/invite/`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -23,14 +24,18 @@ export class EventsService {
   }
 
   getVolunteers(eventId: string) {
-    return this.httpClient.get(this.eventsBaseUrl + eventId + "/volunteers/")
+    return this.httpClient.get(this.eventsBaseUrl + eventId + "/volunteers/");
   }
 
   getInviteCode(eventId: string) {
-    return this.httpClient.get(this.eventsBaseUrl + eventId + "/invite/")
+    return this.httpClient.get(this.eventsBaseUrl + eventId + "/invite/");
+  }
+
+  processInviteCode(inviteCode: string) {
+    return this.httpClient.get(this.acceptInviteUrl + inviteCode + "/");
   }
 
   getEvent(eventId: string): Observable<Event> {
-    return this.httpClient.get<Event>(this.eventsBaseUrl + eventId + "/")
+    return this.httpClient.get<Event>(this.eventsBaseUrl + eventId + "/");
   }
 }
