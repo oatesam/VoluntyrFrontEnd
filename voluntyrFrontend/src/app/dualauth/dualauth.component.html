@@ -1,9 +1,9 @@
-<div class="wrapper responsive">
+<div class="wrapper-dual responsive">
   <div class="center message-volunteers-wrapper">
-      <h1>Check your phone for an SMS code</h1>
+      <h3>Check your phone for an SMS code</h3>
       <form [formGroup]="dualAuthForm" (ngSubmit)="sendPassword()">
          <h3>Enter password</h3>
-        <textarea formControlName="passwordControl" class="form-control" required></textarea>
+        <input type="text" formControlName="passwordControl" class="form-control" required>
         <alert></alert>
       </form>
       <button type="button" (click)="sendPassword()" class="btn btn-primary btn-lg">Send</button>

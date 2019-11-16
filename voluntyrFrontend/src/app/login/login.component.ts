@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           resp => {
             console.log("log resp = ", resp);
-            if (resp.access) {
+            if (resp['access']) {
               this.router.navigateByUrl("/DualAuth");
             }
           },

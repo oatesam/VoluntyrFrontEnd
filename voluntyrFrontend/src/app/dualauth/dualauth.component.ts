@@ -15,8 +15,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class DualauthComponent implements OnInit {
 
   dualAuthForm = new FormGroup({
-    passwordControl: new FormControl('',[Validators.required])
-  })
+    passwordControl: new FormControl('', [Validators.required])
+  });
 
   constructor(private authService: AuthenticationService,
               private router: Router,
@@ -34,7 +34,7 @@ export class DualauthComponent implements OnInit {
       .subscribe(
         resp => {
           console.log('dual auth response = ', resp);
-          if(resp.status === 200) {
+          if (resp.status === 200) {
             this.data.changeLogged('true');
             const user = localStorage.getItem('currentUser');
             const token = decode(JSON.parse(user).access);
