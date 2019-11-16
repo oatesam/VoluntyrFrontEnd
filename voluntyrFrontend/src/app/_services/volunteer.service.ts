@@ -61,22 +61,41 @@ export class VolunteerService {
       httpOptions
     );
   }
-  searchEvents(token, start_time, end_time): Observable<SearchEvent[]> {
-    const httpparams = new HttpParams();
+  searchEvents(
+    token,
+    start_time,
+    end_time,
+    title,
+    keyword,
+    location,
+    orgName
+  ): Observable<SearchEvent[]> {
+    var params = new HttpParams();
     if (start_time !== null && start_time !== "") {
-      httpparams.set("start_time", start_time);
+      params = params.append("start_time", start_time);
     }
     if (end_time !== null && end_time !== "") {
-      httpparams.set("end_time", end_time);
+      params = params.append("end_time", end_time);
+    }
+    if (title !== null && title !== "") {
+      params = params.append("title", title);
+    }
+    if (keyword !== null && keyword !== "") {
+      params = params.append("keyword", keyword);
+    }
+    if (location !== null && location !== "") {
+      params = params.append("location", location);
+    }
+    if (orgName !== null && orgName !== "") {
+      params = params.append("orgName", orgName);
     }
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
         Authorization: "Bearer " + token
       }),
-      params: httpparams
+      params: params
     };
-
     return this.http.get<SearchEvent[]>(
       this.baseurl + this.eventsSignupAPI,
       httpOptions
