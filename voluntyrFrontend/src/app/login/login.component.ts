@@ -90,11 +90,21 @@ export class LoginComponent implements OnInit {
               this.data.changeLogged("true");
 
               const token = decode(resp.access);
-              if (token["scope"] == "organization") {
-                this.router.navigateByUrl("/Organization");
-              } else if (token["scope"] == "volunteer") {
-                this.router.navigateByUrl("/Volunteer");
-              }
+              this.route.queryParams.subscribe(
+                params => {
+                  let returnTo = params['returnUrl'];
+                  console.warn("ReturnTo: " + returnTo);
+                  if (returnTo == null) {
+                    if (token["scope"] == "organization") {
+                      this.router.navigateByUrl("/Organization");
+                    } else if (token["scope"] == "volunteer") {
+                      this.router.navigateByUrl("/Volunteer");
+                    }
+                  } else {
+                    this.router.navigateByUrl(returnTo);
+                  }
+                }
+              );
             }
           },
           error => {

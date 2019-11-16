@@ -54,6 +54,7 @@ export class VolunteerEventComponent implements OnInit {
   }
 
   checkSignup() {
+    console.log("getting events");
     this.es.checkSignUp(this.event.id).subscribe(
       data => {
         console.log(data);

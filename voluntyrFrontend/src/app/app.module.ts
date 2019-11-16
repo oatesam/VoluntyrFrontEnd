@@ -35,6 +35,10 @@ import {EditEventComponent} from './edit-event/edit-event.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
 import { VolunteerOrganizationComponent } from './volunteer-organization/volunteer-organization.component';
+import { InvitePopupComponent } from './invite-popup/invite-popup.component';
+import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
+import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
+import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,10 @@ import { VolunteerOrganizationComponent } from './volunteer-organization/volunte
     EmailInputWrapperComponent,
     EditEventComponent,
     VolunteerOrganizationComponent,
+    InvitePopupComponent,
+    CopyToClipboardDirective,
+    SingleEventWrapperComponent,
+    VolunteerInviteComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,10 +100,13 @@ import { VolunteerOrganizationComponent } from './volunteer-organization/volunte
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
-    }
+    },
   ],
   bootstrap: [
-    AppComponent
+    AppComponent,
+  ],
+  entryComponents: [
+    InvitePopupComponent,
   ]
 })
 export class AppModule {}

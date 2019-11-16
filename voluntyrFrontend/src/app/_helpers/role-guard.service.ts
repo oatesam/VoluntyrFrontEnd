@@ -9,7 +9,7 @@ export class RoleGuardService implements CanActivate {
 
   constructor(public router: Router, private as: AuthenticationService) { }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const currentUser = this.as.currentUserValue;
     if (currentUser) {
       //param from route data property
@@ -28,7 +28,7 @@ export class RoleGuardService implements CanActivate {
       }
     }
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['']);
+    this.router.navigate([''], { queryParams: { returnUrl: state.url } });
     return false;
   }
 }
