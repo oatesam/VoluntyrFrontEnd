@@ -15,8 +15,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class DualauthComponent implements OnInit {
 
   dualAuthForm = new FormGroup({
-    passwordControl: new FormControl('',[Validators.required])
-  })
+    passwordControl: new FormControl('', [Validators.required])
+  });
 
   constructor(private authService: AuthenticationService,
               private router: Router,
