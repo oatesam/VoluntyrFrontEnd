@@ -16,6 +16,9 @@
     <h3> Birthday</h3>
     <ngb-datepicker class="registerdate" #dp [(ngModel)]="dateStruct" (navigate)="date = $event.next" [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2020, month: 1, day: 1}"></ngb-datepicker>
 
+    <h3>Phone Number</h3>
+    <input type="text" [formControl]="volphonenumber">
+
   </ng-container>
 
 
