@@ -18,6 +18,7 @@ div.email-input {
 div.wrapper{
   display: block;
   align-items: center;
+  padding-top: 150px;
 }
 
 button.email-input {
