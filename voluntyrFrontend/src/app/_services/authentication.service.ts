@@ -8,8 +8,7 @@ import { User } from '../_models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private tokenUrl = `${environment.apiUrl}/api/token/`;
-    private dualAuthUrl = `${environment.apiUrl}/api/token/dualauth/`;
-    private
+    private dualAuthUrl = `${environment.apiUrl}/api/token/dualauth/`; 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     private logged: boolean = false;
