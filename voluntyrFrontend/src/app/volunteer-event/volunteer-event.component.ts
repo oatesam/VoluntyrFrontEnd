@@ -11,7 +11,7 @@ import {
 import { HostListener } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
 import { SearchEvent } from "../_models/SearchEvent";
-import {EventsService} from '@app/_services/events.service';
+import { EventsService } from "@app/_services/events.service";
 
 @Component({
   selector: "app-volunteer-event",
@@ -34,7 +34,10 @@ export class VolunteerEventComponent implements OnInit {
   faHandHoldingHeart = faHandHoldingHeart;
   signedup: boolean = false;
 
-  constructor(private VolunteerService: VolunteerService, private es: EventsService) {}
+  constructor(
+    private VolunteerService: VolunteerService,
+    private es: EventsService
+  ) {}
 
   ngOnInit() {
     this.checkSignup();
@@ -48,7 +51,9 @@ export class VolunteerEventComponent implements OnInit {
       },
       error1 => {
         console.error(error1);
-        alert("There was a problem registering or unregistering for this event, please try again later.");
+        alert(
+          "There was a problem registering or unregistering for this event, please try again later."
+        );
       }
     );
   }
@@ -58,7 +63,7 @@ export class VolunteerEventComponent implements OnInit {
     this.es.checkSignUp(this.event.id).subscribe(
       data => {
         console.log(data);
-        this.signedup = data['Signed-up'] == 'true';
+        this.signedup = data["Signed-up"] == "true";
       },
       error1 => {
         console.error(error1);

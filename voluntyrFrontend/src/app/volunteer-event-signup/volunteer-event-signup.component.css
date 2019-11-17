@@ -1,6 +1,6 @@
 .wrapper {
   background-color: #666666;
-  background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
   display: block;
   align-items: center;
   border-radius: 10px;
@@ -10,4 +10,11 @@
   color: white;
   padding-left: 2% !important;
   padding-right: 2% !important;
+}
+.form-control {
+  width: 15em;
+}
+
+button {
+  float: right;
 }
