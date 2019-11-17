@@ -111,7 +111,7 @@ export class RegisterComponent implements OnInit {
         this.lastname.value,
         this.emailControl.value,
         this.password.value,
-        this.volphonenumber,
+        this.volphonenumber.value,
         this.birthday).subscribe(
         resp => {
           console.log(resp);
