@@ -16,7 +16,6 @@ import * as decode from "jwt-decode";
 export class LoginComponent implements OnInit {
   @Input() email: string;
   public CAPTCHAKEY = `${environment.captchaKey}`;
-
   private logged = false;
   emailControl: any;
   passwordControl: any;
