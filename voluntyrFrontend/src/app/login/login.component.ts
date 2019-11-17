@@ -16,7 +16,6 @@ import * as decode from "jwt-decode";
 export class LoginComponent implements OnInit {
   @Input() email: string;
   public CAPTCHAKEY = `${environment.captchaKey}`;
-
   private logged = false;
   emailControl: any;
   passwordControl: any;
@@ -86,25 +85,8 @@ export class LoginComponent implements OnInit {
         .subscribe(
           resp => {
             console.log("log resp = ", resp);
-            if (resp.access) {
-              this.data.changeLogged("true");
-
-              const token = decode(resp.access);
-              this.route.queryParams.subscribe(
-                params => {
-                  let returnTo = params['returnUrl'];
-                  console.warn("ReturnTo: " + returnTo);
-                  if (returnTo == null) {
-                    if (token["scope"] == "organization") {
-                      this.router.navigateByUrl("/Organization");
-                    } else if (token["scope"] == "volunteer") {
-                      this.router.navigateByUrl("/Volunteer");
-                    }
-                  } else {
-                    this.router.navigateByUrl(returnTo);
-                  }
-                }
-              );
+            if (resp['access']) {
+              this.router.navigateByUrl("/DualAuth");
             }
           },
           error => {

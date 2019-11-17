@@ -61,6 +61,9 @@ export class RegisterComponent implements OnInit {
   phonenumber = new FormControl('', [
         Validators.required,
         Validators.minLength(1)]);
+  volphonenumber = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)]);
   captchaResolved = false;
 
   toggle() {
@@ -108,6 +111,7 @@ export class RegisterComponent implements OnInit {
         this.lastname.value,
         this.emailControl.value,
         this.password.value,
+        this.volphonenumber.value,
         this.birthday).subscribe(
         resp => {
           console.log(resp);

@@ -8,6 +8,7 @@ import { User } from '../_models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private tokenUrl = `${environment.apiUrl}/api/token/`;
+    private dualAuthUrl = `${environment.apiUrl}/api/token/dualauth/`; 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
     private logged: boolean = false;
@@ -43,7 +44,7 @@ export class AuthenticationService {
             .set('Content-Type', 'application/x-www-form-urlencoded')
         })
             .pipe(map(user => {
-              console.log(user);
+              console.log('log in passed, now dual auth, user = ', user);
               this.logged = true;
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
@@ -63,5 +64,11 @@ export class AuthenticationService {
       this.logged = false;
       this.currentUserSubject.next(null);
       this.getLogged.emit(false);
+    }
+
+    dual_auth(password: number) {
+      const body = {'token': password};
+      console.log(body);
+      return this.http.post(this.dualAuthUrl, body, { observe: 'response' }).pipe();
     }
 }
