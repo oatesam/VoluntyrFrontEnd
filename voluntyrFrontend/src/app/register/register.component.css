@@ -10,6 +10,10 @@ input{
 
 }
 
+.showhide {
+  text-align: left;
+}
+
 div.logreg{
   padding-bottom: 5%;
 }
