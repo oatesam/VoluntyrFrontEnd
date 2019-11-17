@@ -84,10 +84,22 @@ export class LoginComponent implements OnInit {
         )
         .subscribe(
           resp => {
-            console.log("log resp = ", resp);
-            if (resp['access']) {
-              this.router.navigateByUrl("/DualAuth");
-            }
+            this.route.queryParams.subscribe(
+              params => {
+                let returnTo = params['returnUrl'];
+                if (returnTo == null) {
+                  console.log("log resp = ", resp);
+                  if (resp['access']) {
+                    this.router.navigateByUrl("/DualAuth");
+                  }
+                } else {
+                  console.log("log resp = ", resp);
+                  if (resp['access']) {
+                    this.router.navigate(["DualAuth"], { queryParams: { returnUrl: returnTo } });
+                  }
+                }
+              }
+            )
           },
           error => {
             console.log("error is of type ", typeof error);
