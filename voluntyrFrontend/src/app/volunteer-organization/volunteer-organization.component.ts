@@ -21,8 +21,8 @@ export class VolunteerOrganizationComponent implements OnInit {
 
   constructor(private vs: VolunteerService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  private organization: VolunteerOrganziation;
-  private orgId: string;
+  public organization: VolunteerOrganziation;
+  public orgId: string;
 
   faRating = faStar;
   faPhoneAlt = faPhoneAlt;
