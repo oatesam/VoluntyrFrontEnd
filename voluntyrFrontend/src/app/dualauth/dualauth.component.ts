@@ -55,6 +55,8 @@ export class DualauthComponent implements OnInit {
                 }
               }
             );
+          } else {
+            alert("That code is incorrect, please double check it is correct.");
           }
         },
         error => {
