@@ -6,7 +6,7 @@
 
 .wrapper-left {
   background-color: #666666;
-  background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
   display: block;
   align-content: center;
   border-radius: 10px;
@@ -31,15 +31,15 @@ p.child {
   display: inline;
 }
 
-
-h1, h3 {
+h1,
+h3 {
   text-align: center !important;
   margin: 20px 0;
 }
 
 .wrapper-right {
   background-color: #666666;
-  background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
   display: block;
   align-items: center;
   border-radius: 10px;
@@ -50,4 +50,8 @@ h1, h3 {
   color: white;
   padding-left: 2% !important;
   padding-right: 2% !important;
+}
+
+#donateButton {
+  float: right;
 }
