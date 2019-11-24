@@ -1,36 +1,78 @@
 <div class="responsive wrapper">
   <div class="wrapper-left">
     <h1>
-      <fa-icon [icon]="faLandmark"></fa-icon> {{ organization.organization.name }}
+      <fa-icon [icon]="faLandmark"></fa-icon>
+      {{ organization.organization.name }}
     </h1>
+    <form
+      id="donateButton"
+      #form
+      action="https://www.paypal.com/cgi-bin/webscr"
+      method="post"
+      target="_blank"
+    >
+      <input type="hidden" name="cmd" value="_donations" />
+      <input type="hidden" name="business" value="QGLHTAL3GPBCG" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input
+        id="targetOrg"
+        type="hidden"
+        name="item_name"
+        value="{{ organization.organization.name }}"
+      />
+      <input
+        type="image"
+        src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+        border="0"
+        name="submit"
+        title="All of the donations will first to go Voluntyr, then we will distribute to individual organization accordingly"
+        alt="Donate with PayPal button"
+        (click)="form.submit()"
+      />
+      <img
+        alt=""
+        border="0"
+        src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+        width="1"
+        height="1"
+      />
+    </form>
+
     <h3>
-      <fa-icon [icon]="faRibbon"></fa-icon> {{ organization.organization.organization_motto }}
+      <fa-icon [icon]="faRibbon"></fa-icon>
+      {{ organization.organization.organization_motto }}
     </h3>
     <div class="children">
       <div class="child">
         <p>
-          <fa-icon [icon]="faEnvelopeOpen"></fa-icon> email: {{organization.organization.end_user.email}}
+          <fa-icon [icon]="faEnvelopeOpen"></fa-icon> email:
+          {{ organization.organization.end_user.email }}
         </p>
         <p>
-          <fa-icon [icon]="faPhoneAlt"></fa-icon> phone: {{ organization.organization.phone_number }}
+          <fa-icon [icon]="faPhoneAlt"></fa-icon> phone:
+          {{ organization.organization.phone_number }}
         </p>
       </div>
       <div class="child">
         <!-- TODO: Add rating; uncomment below p element-->
         <!--<p>-->
-          <!--<fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}}-->
+        <!--<fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}}-->
         <!--</p>-->
         <p>
-          <fa-icon [icon]="faMapPin"></fa-icon> {{ organization.organization.street_address }},
-          {{ organization.organization.city }}, {{ organization.organization.state }}
+          <fa-icon [icon]="faMapPin"></fa-icon>
+          {{ organization.organization.street_address }},
+          {{ organization.organization.city }},
+          {{ organization.organization.state }}
         </p>
       </div>
     </div>
   </div>
   <div class="wrapper-right">
-    <h1>
-      {{ organization.organization.name }}'s Upcoming Events
-    </h1>
-    <app-volunteer-event *ngFor="let event of organization.events" [event]="event" [showOrg]="false"></app-volunteer-event>
+    <h1>{{ organization.organization.name }}'s Upcoming Events</h1>
+    <app-volunteer-event
+      *ngFor="let event of organization.events"
+      [event]="event"
+      [showOrg]="false"
+    ></app-volunteer-event>
   </div>
 </div>
