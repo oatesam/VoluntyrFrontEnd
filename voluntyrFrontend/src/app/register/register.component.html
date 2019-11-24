@@ -109,7 +109,7 @@
         <div class="form-group">
           <h3 align="left">Password</h3>
           <label for="password" [ngClass]="orgregisterForm.controls.passwordControl.invalid ? 'text-danger' : ''"></label>
-          <input id="password" name="password" type="password" class="form-control" formControlName="passwordControl" [ngClass]="orgregisterForm.controls.passwordControl.invalid ? 'is-invalid' : ''">
+          <input id="password" name="password" type="password" class="form-control" formControlName="passwordControl" [ngClass]="orgregisterForm.controls.passwordControl.invalid ? 'is-invalid' : ''" appHidePassword>
           <div *ngIf="orgregisterForm.controls.passwordControl.invalid && (orgregisterForm.controls.passwordControl.dirty || orgregisterForm.controls.passwordControl.touched)" class="center responsive alert alert-danger error">
           <div *ngIf="orgregisterForm.controls.passwordControl.errors.required">
             Password is required
@@ -170,6 +170,15 @@
       <div *ngIf="volregisterForm.controls.birthDateControl.invalid && (volregisterForm.controls.birthDateControl.dirty || volregisterForm.controls.birthDateControl.touched)" class="center responsive alert alert-danger error">
         <div *ngIf="volregisterForm.controls.birthDateControl.errors.required">
           Please choose your birthday in calendar
+        </div>
+      </div>
+      <div class="form-group">
+        <h3 align="left">Phone Number</h3>
+        <input id="volphonenumber" name="volphonenumber" type="text" class="form-control" formControlName="volphonenumberControl" required>
+      </div>
+      <div *ngIf="volregisterForm.controls.volphonenumberControl.invalid && (volregisterForm.controls.volphonenumberControl.dirty || volregisterForm.controls.volphonenumberControl.touched)" class="center responsive alert alert-danger error">
+        <div *ngIf="volregisterForm.controls.volphonenumberControl.errors.required">
+          Phone Number is required
         </div>
       </div>
       <div class="form-group">

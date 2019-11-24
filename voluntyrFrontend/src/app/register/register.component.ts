@@ -14,6 +14,15 @@ import {CustomValidators} from "@app/custom-validator/custom-validators";
 })
 export class RegisterComponent implements OnInit {
 
+  @Input() email: string;
+
+  constructor(private accountService: AccountsService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private alert: AlertService,
+              public fb: FormBuilder
+  ) {  }
+
   dateStruct: NgbDateStruct;
   date: {year: number, month: number};
   public showOrg = false;
@@ -21,8 +30,7 @@ export class RegisterComponent implements OnInit {
   public oppReg: any = 'an Organization';
   public curReg: any = 'a Volunteer';
   public CAPTCHAKEY = `${environment.captchaKey}`;
-  captchaResolved = false;
-  @Input() email: string;
+
   emailControl = new FormControl('', [
         Validators.required,
         Validators.minLength(8),
@@ -51,6 +59,7 @@ export class RegisterComponent implements OnInit {
     firstNameControl: new FormControl('', [Validators.required]),
     lastNameControl: new FormControl('', [Validators.required]),
     birthDateControl: new FormControl('', [Validators.required]),
+    volphonenumberControl: new FormControl('', [Validators.required]),
     volpasswordControl: new FormControl('', Validators.compose([Validators.required,
       CustomValidators.patternValidator(/\d/, {
               hasNumber: true
@@ -61,17 +70,7 @@ export class RegisterComponent implements OnInit {
             }), Validators.minLength(8)])),
     confirmvolpasswordControl: new FormControl('', Validators.compose([Validators.required]))
   });
-
-  ngOnInit(): void {
-    this.emailControl.setValue(this.email);
-  }
-
-  constructor(private accountService: AccountsService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private alert: AlertService,
-              public fb: FormBuilder
-  ) {  }
+  captchaResolved = false;
 
   toggle() {
     this.showOrg = !this.showOrg;
@@ -84,6 +83,10 @@ export class RegisterComponent implements OnInit {
       this.oppReg = 'an Organization';
       this.curReg = 'a Volunteer';
     }
+  }
+
+  ngOnInit() {
+    this.emailControl.setValue(this.email);
   }
 
   public resolved(captchaResponse: string) {
@@ -112,6 +115,7 @@ export class RegisterComponent implements OnInit {
         this.volregisterForm.controls.lastNameControl.value,
         this.emailControl.value,
         this.volregisterForm.controls.volpasswordControl.value,
+        this.volregisterForm.controls.volphonenumberControl.value,
         this.volregisterForm.controls.birthDateControl.value).subscribe(
         resp => {
           console.log(resp);
