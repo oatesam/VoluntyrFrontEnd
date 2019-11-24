@@ -18,6 +18,8 @@ import {DualauthComponent} from "@app/dualauth/dualauth.component";
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
+import {RecoverPasswordComponent} from "@app/recover-password/recover-password.component";
+import {ResetPasswordComponent} from "@app/reset-password/reset-password.component";
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: "email-input", component: EmailInputWrapperComponent },
   { path: "login", component: LoginwrapperComponent },
   { path: "register", component: RegisterwrapperComponent },
+  { path: "recoverpassword", component: RecoverPasswordComponent},
   {
     path: 'DualAuth',
     component: DualauthComponent
@@ -105,6 +108,10 @@ const routes: Routes = [
     data: {
       expectedRole: "volunteer"
     }
+  },
+  {
+    path: "recoverpassword/:uniquereset",
+    component: ResetPasswordComponent
   },
   // PageNotFound should always be last in routing, otherwise it will overtake others
   { path: "**", component: PageNotFoundComponent }
