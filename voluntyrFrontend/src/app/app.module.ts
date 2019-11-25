@@ -40,6 +40,8 @@ import { InvitePopupComponent } from './invite-popup/invite-popup.component';
 import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
 import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
 import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { RateEventsComponent } from './rate-events/rate-events.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
 import { RatingPopupComponent } from './rating-popup/rating-popup.component';
@@ -78,6 +80,8 @@ import { RatingPopupComponent } from './rating-popup/rating-popup.component';
     RateEventsComponent,
     RateEventComponent,
     RatingPopupComponent,
+    RecoverPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

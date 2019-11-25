@@ -9,6 +9,7 @@ import { User } from "../_models/user";
 export class AuthenticationService {
   private tokenUrl = `${environment.apiUrl}/api/token/`;
   private dualAuthUrl = `${environment.apiUrl}/api/token/dualauth/`;
+  private recoverUrl = `${environment.apiUrl}/api/token/recover/`;
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   private logged: boolean = false;
@@ -81,4 +82,10 @@ export class AuthenticationService {
     const body = { refresh: refresher };
     return this.http.post<any>(this.refreshTokenUrl, body);
   }
+
+  sendRecoverEmail(email: string, url: string) {
+      const body = {'email': email, 'url': url};
+      console.log('recovery request ', body);
+      return this.http.post(this.recoverUrl, body, { observe: 'response' }).pipe();
+    }
 }
