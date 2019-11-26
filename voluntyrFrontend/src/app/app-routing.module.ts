@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   { path: "recoverpassword", component: RecoverPasswordComponent},
   {
-    path: "recoverpassword/:uniquereset",
+    path: "recoverpassword/:id",
     component: ResetPasswordComponent
   },
   {
