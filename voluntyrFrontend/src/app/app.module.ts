@@ -40,6 +40,8 @@ import { InvitePopupComponent } from './invite-popup/invite-popup.component';
 import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
 import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
 import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
+import { RateEventsComponent } from './rate-events/rate-events.component';
+import { RateEventComponent } from './rate-event/rate-event.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
     CopyToClipboardDirective,
     SingleEventWrapperComponent,
     VolunteerInviteComponent,
+    RateEventsComponent,
+    RateEventComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ export class VolunteerOrganziation {
     end_user: {
       email: string;
     };
+    rating: number;
+    raters: number;
   };
   events: Event[];
 }

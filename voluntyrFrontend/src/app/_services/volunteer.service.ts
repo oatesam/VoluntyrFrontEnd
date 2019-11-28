@@ -48,6 +48,19 @@ export class VolunteerService {
     );
   }
 
+  getUnratedEvent(): Observable<SearchEvent[]> {
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + token
+    //   })
+    // };
+
+    return this.http.get<SearchEvent[]>(
+      this.baseurl + "api/volunteer/events/unrated/"
+    );
+  }
+
   getUpcomingEvents(token): Observable<SearchEvent[]> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -61,6 +74,7 @@ export class VolunteerService {
       httpOptions
     );
   }
+
   searchEvents(
     token,
     start_time,

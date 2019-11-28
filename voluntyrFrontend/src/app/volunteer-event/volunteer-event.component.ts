@@ -6,8 +6,9 @@ import {
   faCalendarAlt,
   faHandHoldingHeart,
   faLandmark,
-  faFileAlt
-} from "@fortawesome/free-solid-svg-icons";
+  faFileAlt,
+  faStar
+} from '@fortawesome/free-solid-svg-icons';
 import { HostListener } from "@angular/core";
 import { VolunteerService } from "../_services/volunteer.service";
 import { SearchEvent } from "../_models/SearchEvent";
@@ -29,6 +30,7 @@ export class VolunteerEventComponent implements OnInit {
   faLandmark = faLandmark;
   faClock = faClock;
   faDescription = faFileAlt;
+  faRating = faStar;
   faMapPin = faMapPin;
   faCalendarAlt = faCalendarAlt;
   faHandHoldingHeart = faHandHoldingHeart;
