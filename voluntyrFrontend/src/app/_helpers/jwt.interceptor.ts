@@ -22,9 +22,12 @@ export class JwtInterceptor implements HttpInterceptor {
     let curUser = JSON.parse(localStorage.getItem("currentUser"));
     console.log("curuser = ", curUser);
     if (curUser && curUser.access) {
-      const isExpired = helper.isTokenExpired(curUser.access);
+      let isExpired = helper.isTokenExpired(curUser.access);
       if (isExpired) {
         const refreshToken = curUser.refresh;
+        this.authenticationService.refreshToken(refreshToken);
+        isExpired = false;
+        curUser = JSON.parse(localStorage.getItem("currentUser"));
       }
       console.log("JWT Interceptor found curUser, token = ", curUser.access);
       request = request.clone({
