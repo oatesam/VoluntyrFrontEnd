@@ -18,6 +18,10 @@ export class RateEventsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.vs.getUnratedEvent().subscribe(
       data => {
         this.events = data;
@@ -25,7 +29,6 @@ export class RateEventsComponent implements OnInit {
       error => {
         console.error(error);
       }
-    )
+    );
   }
-
 }

@@ -1,2 +1,9 @@
-<h1>Rate Your Past Events</h1>
-<app-rate-event *ngFor="let event of events" [event]="event"></app-rate-event>
+<div class="wrapper">
+  <div class="responsive center">
+    <h1>Rate Your Past Events</h1>
+    <app-rate-event *ngFor="let event of events" [event]="event" (refresh)="refresh()"></app-rate-event>
+    <h3 *ngIf="this.events?.length == 0">
+      You don't have any events to rate. You are only able to rate past events and each event can only be rated once.
+    </h3>
+  </div>
+</div>

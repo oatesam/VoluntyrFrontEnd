@@ -42,6 +42,7 @@ import { SingleEventWrapperComponent } from './single-event-wrapper/single-event
 import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
 import { RateEventsComponent } from './rate-events/rate-events.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
+import { RatingPopupComponent } from './rating-popup/rating-popup.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { RateEventComponent } from './rate-event/rate-event.component';
     VolunteerInviteComponent,
     RateEventsComponent,
     RateEventComponent,
+    RatingPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +115,7 @@ import { RateEventComponent } from './rate-event/rate-event.component';
   ],
   entryComponents: [
     InvitePopupComponent,
+    RatingPopupComponent,
   ]
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 .wrapper {
   background-color: #537aa1;
+  color: white;
   /*background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));*/
   display: block;
   align-items: center;
