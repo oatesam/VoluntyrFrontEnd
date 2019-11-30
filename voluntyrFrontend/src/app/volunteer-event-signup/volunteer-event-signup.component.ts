@@ -64,12 +64,13 @@ export class VolunteerEventSignupComponent implements OnInit {
         data => {
           this.events = data;
           console.log(data, "!!!");
+          this.eventResultChecker();
+          console.log(this.events);
         },
         error => {
           console.log(error);
         }
       );
-    this.eventResultChecker();
   }
   public dateInputChecker(start_time, end_time) {
     if (this.end_time !== "" && this.start_time !== "") {
@@ -82,6 +83,9 @@ export class VolunteerEventSignupComponent implements OnInit {
     if (this.events.length == 0 || this.events === undefined) {
       this.displayEmptyMsg = true;
       this.displayEventResult = false;
+    } else {
+      this.displayEmptyMsg = false;
+      this.displayEventResult = true;
     }
   }
   private getUpcomingEvents() {
