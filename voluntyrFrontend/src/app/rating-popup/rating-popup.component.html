@@ -5,13 +5,21 @@
   </button>
 </div>
 <div class="modal-body">
-  <h3>Please select a rating, 5 being the best and 1 being the worst, below for the {{event.title}} event with
+  <h4>Select a rating, 5 being the best and 1 being the worst, for the {{event.title}} event with
     {{event.organization.name}} on
     {{event.date}} at {{event.location}}.
-  </h3>
-  <div style="display: flex; justify-content: center; margin: 1%">
+  </h4>
+  <h4>
+    Please consider the following:
+  </h4>
+  <ul>
+    <li>How smoothly was the event managed? </li>
+    <li>How {{event.organization.name}} prepared for the event?</li>
+    <li> Did the event description leave out any important details?</li>
+  </ul>
+  <div style="display: flex; justify-content: center; margin: 5%">
     <form>
-      <select class="form-control" [formControl]="this.ratingForm" id="rating" required>
+      <select class="form-control" [formControl]="this.ratingForm" id="rating" required style="width: 150px">
         <option [value]="1">1 Star</option>
         <option [value]="2">2 Stars</option>
         <option [value]="3">3 Stars</option>
@@ -22,7 +30,7 @@
   </div>
   <div style="display: flex; justify-content: center; margin: 1%">
     <button class="btn btn-primary" (click)="this.onSubmitRating()"
-            [disabled]="this.ratingForm.invalid">Submit
+            [disabled]="this.ratingForm.invalid" style="width: 150px">Submit
       Rating</button>
   </div>
 </div>
