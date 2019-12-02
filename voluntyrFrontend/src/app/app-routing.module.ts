@@ -18,6 +18,7 @@ import {DualauthComponent} from "@app/dualauth/dualauth.component";
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
+import {RateEventsComponent} from '@app/rate-events/rate-events.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -101,6 +102,14 @@ const routes: Routes = [
   {
     path: "Invite/:invite",
     component: VolunteerInviteComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "volunteer"
+    }
+  },
+  {
+    path: "Ratings",
+    component: RateEventsComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "volunteer"

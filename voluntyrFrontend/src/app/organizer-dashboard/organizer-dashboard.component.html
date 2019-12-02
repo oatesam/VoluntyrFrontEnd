@@ -3,9 +3,12 @@
     <h1 class="organization-title col-md-6">
       <fa-icon [icon]="faLandmark"></fa-icon> {{ org_info.name }}
     </h1>
-<!--    <div class="col-md-6">-->
-<!--      <p>Ratings:*****</p>-->
-<!--    </div>-->
+    <div class="col-md-6">
+      <h4>
+        <fa-icon [icon]="faRating"></fa-icon> {{org_info.rating}} rating from
+          {{org_info.raters}} volunteers
+      </h4>
+    </div>
   </div>
 
   <div class="row">

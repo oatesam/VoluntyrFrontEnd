@@ -9,6 +9,8 @@ export class SearchEvent {
   organization: {
     id: string;
     name: string;
+    rating: number;
+    raters: number;
   };
 
   constructor(title, start_time, end_time, date, location, description) {

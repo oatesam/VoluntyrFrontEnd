@@ -48,6 +48,16 @@ export class VolunteerService {
     );
   }
 
+  getUnratedEvent(): Observable<SearchEvent[]> {
+    return this.http.get<SearchEvent[]>(
+      this.baseurl + "api/volunteer/events/unrated/"
+    );
+  }
+
+  postEventRating(eventId: any, rating: any): Observable<any> {
+    return this.http.post(this.baseurl + "api/event/" + eventId + "/rate/", {"rating": rating})
+  }
+
   getUpcomingEvents(token): Observable<SearchEvent[]> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -61,6 +71,7 @@ export class VolunteerService {
       httpOptions
     );
   }
+
   searchEvents(
     token,
     start_time,

@@ -5,4 +5,6 @@ export class organization {
   state: string;
   organization_motto: string;
   phone_number: string;
+  rating: number;
+  raters: number;
 }

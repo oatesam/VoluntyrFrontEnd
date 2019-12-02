@@ -1,0 +1,25 @@
+.wrapper {
+  background-color: #537aa1;
+  color: white;
+  /*background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));*/
+  display: block;
+  align-items: center;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 1% 5%;
+  text-align: center;
+}
+
+button {
+  background-color: #666666;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+fa-icon {
+  margin-right: 5px;
+  margin-left: 5px;
+}

@@ -54,10 +54,10 @@
         </p>
       </div>
       <div class="child">
-        <!-- TODO: Add rating; uncomment below p element-->
-        <!--<p>-->
-        <!--<fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}}-->
-        <!--</p>-->
+        <p>
+        <fa-icon [icon]="faRating"></fa-icon> {{organization.organization.rating}} rating from
+          {{organization.organization.raters}} volunteers
+        </p>
         <p>
           <fa-icon [icon]="faMapPin"></fa-icon>
           {{ organization.organization.street_address }},

@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h3><fa-icon [icon]="faBullhorn"></fa-icon>{{ event.title }}</h3>
-  <h4 *ngIf="showOrg"><fa-icon [icon]="faLandmark"></fa-icon>
+  <h4><fa-icon [icon]="faLandmark"></fa-icon>
     <a routerLink="/Organization/{{event.organization.id}}">{{ event.organization.name }}</a>
   </h4>
   <h5>
@@ -20,6 +20,7 @@
     <fa-icon [icon]="faBullhorn"></fa-icon>
     {{event.description}}
   </p>
-  <button *ngIf="!signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Register for this event</button>
-  <button *ngIf="signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Unregister for this event</button>
+  <button (click)="onVoteClick()" class="btn-primary btn-lg">
+    Rate This Event
+  </button>
 </div>
