@@ -27,7 +27,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError(err => {
         if (err.status === 401 || err.status === 500) {
           console.log("error interceptor here err message  = ", err.statusText);
-          window.location.reload();
+          //window.location.reload();
           // auto logout if 401 response returned from api
           //commented out logout because user unfriendly
           //this.authenticationService.logout();
