@@ -28,13 +28,19 @@ export class JwtInterceptor implements HttpInterceptor {
         this.authenticationService.refreshToken(refreshToken);
         isExpired = false;
         curUser = JSON.parse(localStorage.getItem("currentUser"));
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${curUser.access}`
+          }
+        });
+      } else {
+        console.log("JWT Interceptor found curUser, token = ", curUser.access);
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${curUser.access}`
+          }
+        });
       }
-      console.log("JWT Interceptor found curUser, token = ", curUser.access);
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${curUser.access}`
-        }
-      });
     }
     console.log("post intercept = ", request.headers);
     return next.handle(request);
