@@ -77,14 +77,8 @@ export class AuthenticationService {
       .pipe();
   }
 
-  refreshToken(refresher) {
+  refreshToken(refresher): Observable<any> {
     const body = { refresh: refresher };
-
-    this.http.post<any>(this.refreshTokenUrl, body).subscribe(res => {
-      var newAccess = res.access;
-      let oldUser = JSON.parse(localStorage.getItem("currentUser"));
-      oldUser.access = newAccess;
-      localStorage.setItem("currentUser", JSON.stringify(oldUser));
-    });
+    return this.http.post<any>(this.refreshTokenUrl, body);
   }
 }
