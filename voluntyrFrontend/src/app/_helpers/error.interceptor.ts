@@ -57,6 +57,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 return next.handle(request);
               }
             );
+          } else {
+            console.log(
+              "error interceptor here err message = ",
+              err.statusText
+            );
           }
           //window.location.reload();
           // auto logout if 401 response returned from api
