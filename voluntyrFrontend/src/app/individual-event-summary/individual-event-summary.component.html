@@ -1,12 +1,20 @@
 <div class="wrapper">
   <div>
+    <div class="row">
+    <div class="column">
     <button *ngIf="isOrg" (click)="this.getEventDetails();" class="btn btn-primary" style="background-color: #4CAF50;">
       Manage Event
     </button>
-    <button (click)="this.openInvites();" class="btn btn-primary">
+    </div>
+      <div class="column">
+    <button (click)="this.openInvites();" class="btn btn-primary" style="background-color: #4CAF50;">
       Invite Volunteers
     </button>
+      </div>
+    </div>
     <h3><fa-icon [icon]="faHandHoldingHeart"></fa-icon>{{ event.title }}</h3>
+    <div class="row">
+    <div class="column">
     <div *ngIf="!isOrg">
       <h4>
         <fa-icon [icon]="faLandmark"></fa-icon><a routerLink="/Organization/{{event.organization.id}}">{{ event.organization.name }}</a>
@@ -18,6 +26,8 @@
         <fa-icon [icon]="faUsers"></fa-icon> Number of registered volunteers: {{numberOfVols}}
       </h5>
     </div>
+    </div>
+    <div class="column">
     <h5>
       <fa-icon [icon]="faClock"></fa-icon>
       {{ event.start_time | date: "shortTime" }} to {{ event.end_time | date: "shortTime" }}
@@ -26,5 +36,7 @@
       <fa-icon [icon]="faCalendarAlt"></fa-icon>{{ event.date | date: "fullDate" }}
     </h5>
     <p><fa-icon [icon]="faBullhorn"></fa-icon>{{ event.description }}</p>
+    </div>
+    </div>
   </div>
 </div>

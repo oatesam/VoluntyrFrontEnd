@@ -5,7 +5,7 @@
 }
 
 .wrapper {
-  background-color: #666666;
+  background-color: transparent;
   background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
   display: block;
   align-items: center;
@@ -16,7 +16,8 @@
 }
 
 textarea {
-  width: 100%;
+  width: 50%;
+  height: 27.5px;
   resize: vertical;
 }
 
@@ -26,4 +27,8 @@ textarea {
 
 .error {
   padding: 3px;
+}
+
+button {
+  background-color: darkblue;
 }

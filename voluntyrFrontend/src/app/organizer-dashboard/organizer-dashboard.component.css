@@ -1,7 +1,7 @@
 div.wrapper{
   width: 75%;
   min-width: 400px;
-  background-color: #666666;
+  background-color: transparent;
   background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));
   border-radius: 10px;
   padding: 30px;

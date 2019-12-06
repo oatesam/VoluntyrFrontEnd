@@ -1,4 +1,13 @@
-<div class="wrapper responsive">
+<div *ngIf="accountStatus !== 0" class="wrapperreglog responsive">
+  <div class="wrapper-reg-log-form responsive">
+    <div class = "responsive" *ngIf="accountStatus !== 0">
+      <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>
+      <app-register [email]="email" *ngIf="accountStatus === 1"></app-register>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="accountStatus == 0" class="wrapper responsive">
   <div class="email-input responsive">
     <h4 class ="email-input">Enter your email to start making the world</h4>
     <h4 class="email-input">a better place, <span class="emphasis">together.</span></h4>
@@ -7,9 +16,9 @@
       <h1></h1>
       <button class="email-input" (click)="verifyEmail()">Enter Email</button>
     </div>
-    <div class = "responsive" *ngIf="accountStatus !== 0">
+    <!--<div class = "responsive" *ngIf="accountStatus !== 0">
       <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>
       <app-register [email]="email" *ngIf="accountStatus === 1"></app-register>
-    </div>
+    </div>-->
   </div>
 </div>
