@@ -2,7 +2,7 @@
   <section class="center responsive new-event-wrapper">
     <h1>Create a New Event</h1>
     <form #f="ngForm" (ngSubmit)="createEvent()">
-      <h3>
+      <h3 style="text-align: left">
         Event Title
       </h3>
       <input
@@ -11,9 +11,10 @@
         class="form-control"
         name="title"
         [(ngModel)]="newEvent.title"
+        style="width: 50%; height: 27.5px"
         required
       />
-      <h3>
+      <h3 style="text-align: left">
         Location
       </h3>
       <input
@@ -22,9 +23,10 @@
         class="form-control"
         name="location"
         [(ngModel)]="newEvent.location"
+        style="width: 50%; height: 27.5px"
         required
       />
-      <h3>
+      <h3 style="text-align: left">
         Date
       </h3>
       <input
@@ -32,9 +34,10 @@
         class="form-control"
         name="date"
         [(ngModel)]="newEvent.date"
+        style="width: 50%; height: 27.5px"
         required
       />
-      <h3>
+      <h3 style="text-align: left">
         Start Time
       </h3>
       <input
@@ -42,9 +45,10 @@
         class="form-control"
         name="start_time"
         [(ngModel)]="newEvent.start_time"
+        style="width: 50%; height: 27.5px"
         required
       />
-      <h3>
+      <h3 style="text-align: left">
         End Time
       </h3>
       <input
@@ -52,9 +56,10 @@
         class="form-control"
         name="end_time"
         [(ngModel)]="newEvent.end_time"
+        style="width: 50%; height: 27.5px"
         required
       />
-      <h3>
+      <h3 style="text-align: left">
         Description
       </h3>
       <textarea
@@ -62,6 +67,7 @@
         minlength="1"
         class="form-control"
         name="description"
+        style="width: 50%; height: 27.5px"
         required
       ></textarea>
       <div>
