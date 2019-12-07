@@ -19,6 +19,7 @@ import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-even
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
 import {RateEventsComponent} from '@app/rate-events/rate-events.component';
+import {ChatComponent} from '@app/chat/chat.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -40,6 +41,11 @@ const routes: Routes = [
     data: {
       expectedRole: "volunteer"
     }
+  },
+  {
+    path: "Chat",
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "Organization",

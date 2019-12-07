@@ -43,6 +43,8 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
 import { RateEventsComponent } from './rate-events/rate-events.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
 import { RatingPopupComponent } from './rating-popup/rating-popup.component';
+import { ChatComponent } from './chat/chat.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { RatingPopupComponent } from './rating-popup/rating-popup.component';
     RateEventsComponent,
     RateEventComponent,
     RatingPopupComponent,
+    ChatComponent,
+    ChatRoomComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,9 @@
     <!--<a routerLink="/">-->
       <!--Home-->
     <!--</a>-->
-    &nbsp;
+    <a *ngIf="showOrganization || showVolunteer" routerLink="/Chat">
+      Chat
+    </a>&nbsp;
     &nbsp;
     <a *ngIf="showOrganization" routerLink="/Organization">
       Dashboard
