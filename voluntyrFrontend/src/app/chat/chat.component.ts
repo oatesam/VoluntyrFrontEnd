@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
     this.chatService.getChatRooms().subscribe(
       data => {
         this.chatRooms = data;
-        console.log(data);
+        console.log("Chat rooms: ", data);
       },
       error => {
         console.error(error);
@@ -25,7 +25,6 @@ export class ChatComponent implements OnInit {
   }
 
   selectChatRoom(chatRoom) {
-    console.log(this.chatRooms);
     this.selectedChatRoom = chatRoom;
   }
 

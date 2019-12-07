@@ -1,11 +1,16 @@
-<div class="center responsive wrapper">
-  <h1>Voluntyr Chat</h1>
-<!--  TODO: Add no chat-room placeholder -->
-  <ul class="chat-rooms">
-    <li *ngFor="let chat of chatRooms" (click)="selectChatRoom(chat)">
-<!--      <span class="badge">{{chat.unread}}</span> TODO: Add unread for each-->
-      {{chat.name}}
-    </li>
-  </ul>
+<div class="outer">
+  <div class="wrapper-rooms">
+    <h1>Voluntyr Chat</h1>
+  <!--  TODO: Add no chat-room placeholder -->
+    <ul class="chat-rooms">
+      <li *ngFor="let chat of chatRooms" [class.selected]="chat === selectedChatRoom" (click)="selectChatRoom(chat)">
+        <span class="badge">5</span>
+  <!--      TODO: Add unread for each-->
+        <span class="name"> {{chat.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="wrapper-chat" *ngIf="selectedChatRoom != null">
+    <app-chat-room [chatRoom]="selectedChatRoom"></app-chat-room>
+  </div>
 </div>
-<app-chat-room *ngIf="selectedChatRoom != null" [chatRoom]="selectedChatRoom"></app-chat-room>

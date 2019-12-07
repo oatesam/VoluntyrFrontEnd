@@ -15,6 +15,16 @@ export class ChatRoom {
   }
 }
 
+export class ChatMember {
+  email: string;
+  online: boolean;
+
+  constructor(email, online) {
+    this.email = email;
+    this.online = online;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +38,7 @@ export class ChatService {
   constructor(private http: HttpClient) {
     let curUser = JSON.parse(localStorage.getItem("currentUser"));
     this._socket = new WebSocketSubject<SocketMessage>(`${environment.wsChatUrl}` + curUser.access + "/");
+    console.log("New Service!");
   }
 
   getChatRooms(): Observable<ChatRoom[]> {
@@ -35,6 +46,7 @@ export class ChatService {
   }
 
   get socket(): WebSocketSubject<SocketMessage> {
+    console.log("New Socket!");
     return this._socket;
   }
 
