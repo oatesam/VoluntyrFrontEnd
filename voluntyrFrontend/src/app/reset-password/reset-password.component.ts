@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
               }
             );
         }, error1 => {
-          alert("There was a problem with your registration. Please try again later.");
+          alert("There was a problem with your password reset. Please try again later.");
           // TODO: Make this more user friendly
            this.router.navigateByUrl("");
          }
