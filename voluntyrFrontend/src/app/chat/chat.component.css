@@ -1,22 +1,36 @@
-.wrapper {
+.wrapper-rooms {
+  float: left;
   background-color: #666666;
   background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
   display: block;
   align-items: center;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 0 25%;
+  border-radius: 0.8em 0 0 0.8em;
+  padding: 1em;
+  margin: 0;
   text-align: center;
   color: white;
-  padding-left: 2% !important;
-  padding-right: 2% !important;
+  width: 25em;
+  min-height: 40em;
+}
+
+.wrapper-chat {
+  min-width: 50em;
+  width: 50%;
+  display: inline-block;
+  margin: 0 auto;
+  min-height: 40em;
+  /*padding: 1em;*/
+}
+
+.outer {
+  min-width: 20em;
 }
 
 .chat-rooms {
-  margin: 0 0 2em 0;
+  margin: 2em auto;
   list-style-type: none;
-  /*padding: 0;*/
-  width: 75%;
+  padding: 1em;
+  width: 22em;
 }
 
 .chat-rooms li {
@@ -26,21 +40,43 @@
   left: 0;
   background-color: #EEE;
   margin: .5em;
-  padding: .3em 0;
+  padding: .3em 0.1em;
   height: 1.6em;
   border-radius: 4px;
 }
 
-.heroes .badge {
+.chat-rooms li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .2em;
+}
+
+.chat-rooms li.selected {
+  background-color: rgb(104, 23, 8);
+  color: white;
+}
+
+.chat-rooms li.selected:hover {
+  background-color: rgb(156, 39, 8);
+  color: white;
+}
+
+.chat-rooms .name {
+  padding: 0.2em 0;
+  position: relative;
+  left: 8px;
+}
+
+.chat-rooms .badge {
   display: inline-block;
   font-size: small;
   color: white;
-  padding: 0.8em 0.7em 0 0.7em;
+  padding: 0.8em 0.7em 0.8em 0.7em;
   background-color:#405061;
   line-height: 1em;
-  position: relative;
+  position: absolute;
   left: -1px;
-  top: -4px;
+  top: -1px;
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;

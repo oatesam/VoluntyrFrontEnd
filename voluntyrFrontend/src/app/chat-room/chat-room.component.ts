@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChatRoom, ChatService} from '@app/_services/chat.service';
 import {SocketMessage} from '@app/_models/SocketMessage';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 
 @Component({
@@ -20,12 +19,16 @@ export class ChatRoomComponent implements OnInit {
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
+    let curUser = JSON.parse(localStorage.getItem("currentUser"));
     this.chatService.chatId = this.chatRoom.id;
-    this.sender = "charlie.frank72@gmail.com"; // TODO: Get email from storage
+    this.sender = localStorage.getItem("sender");
     this.socket = this.chatService.socket;
     this.socket.subscribe(
       msg => {
-        this.messages.push(msg)
+        console.warn("Received Message: ", msg);
+        if (msg.type == "chat_message") {
+          this.messages.push(msg);
+        }
       },
       error => {
         console.error(error)
@@ -34,11 +37,8 @@ export class ChatRoomComponent implements OnInit {
         console.warn("Complete");
       }
     );
+    console.log("Sender: ", this.sender);
   }
-
-  // messageFormGroup = new FormGroup({
-  //   messageControl: new FormControl('', [Validators.required])
-  // }) ;
 
   public getMessage() {
     // return this.messageFormGroup.controls.messageControl.value
@@ -58,8 +58,8 @@ export class ChatRoomComponent implements OnInit {
 
   public send(): void {
     const message = new SocketMessage("chat_message", this.chatRoom.id, "", this.sender, this.getMessage());
-
-    this.messages.push(message);
+    console.warn("Sent Message: ", message);
+    // this.messages.push(message);
     this.socket.next(message);
     this.clientMessage = "";
   }

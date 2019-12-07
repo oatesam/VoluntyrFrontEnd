@@ -1,25 +1,35 @@
-<div class="center wrapper">
-  <div class="header">
-    <h1>
-      {{this.chatRoom.name}}
-    </h1>
-  </div>
-  <div class="viewer">
-    <div class="message" *ngFor="let msg of messages" [ngClass]="{'others': !isMine(msg)}">
-      <div *ngIf="msg.type === 'chat_message'">
-        <div class="badge" [style.backgroundColor]="getSenderColor(msg.sender)">{{getSenderLetter(msg.sender)}}</div>
-        <div class="content" [ngClass]="{'others': !isMine(msg)}">
-          <span>{{msg.message}}</span>
+<div class="ctn">
+  <div class="wrapper">
+    <div class="header">
+      <h1>
+        {{this.chatRoom.name}}
+      </h1>
+    </div>
+    <div class="body">
+      <div class="viewer">
+        <div class="message" *ngFor="let msg of messages" [ngClass]="{'mine': isMine(msg)}">
+          <div *ngIf="msg.type === 'chat_message'">
+            <div>
+              <div class="badge" *ngIf="!isMine(msg)"
+                  [style.backgroundColor]="getSenderColor(msg.sender)">
+                {{getSenderLetter(msg.sender)}}
+              </div>
+              <div class="content" [ngClass]="{'mine': isMine(msg)}">
+                {{msg.message}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer">
-    <form (ngSubmit)="send()">
-      <input name="clientMessage" placeholder="Enter a message" type="text" [(ngModel)]="clientMessage">
-      <button type="submit">
-        send
-      </button>
-    </form>
+    <div class="footer">
+      <form  #form="ngForm" (ngSubmit)="send()" autocomplete="off">
+        <input required name="clientMessage" placeholder="Enter a message" type="text"
+               [(ngModel)]="clientMessage">
+        <button [ngClass]="{'btn-success': form.valid}" type="submit" [disabled]="form.invalid">
+          send
+        </button>
+      </form>
+    </div>
   </div>
 </div>

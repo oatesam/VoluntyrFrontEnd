@@ -45,6 +45,7 @@ import { RateEventComponent } from './rate-event/rate-event.component';
 import { RatingPopupComponent } from './rating-popup/rating-popup.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { ChatMembersComponent } from './chat-members/chat-members.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
     RatingPopupComponent,
     ChatComponent,
     ChatRoomComponent,
+    ChatMembersComponent,
   ],
   imports: [
     BrowserModule,
