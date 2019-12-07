@@ -2,6 +2,9 @@
   <div class="row">
     <div class="column">
       <div class="leftnav">
+        <a *ngIf="showOrganization || showVolunteer" routerLink="/Chat">
+          Chat
+        </a>
         <a *ngIf="showOrganization" routerLink="/Organization">
           Dashboard
         </a>
