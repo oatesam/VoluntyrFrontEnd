@@ -11,8 +11,8 @@
           <div *ngIf="msg.type === 'chat_message'">
             <div>
               <div class="badge" *ngIf="!isMine(msg)"
-                  [style.backgroundColor]="getSenderColor(msg.sender)">
-                {{getSenderLetter(msg.sender)}}
+                  [style.backgroundColor]="getSenderColor(msg.sender)" [style.color]="getTextColor(msg.sender)">
+                {{msg.sender}}
               </div>
               <div class="content" [ngClass]="{'mine': isMine(msg)}">
                 {{msg.message}}
