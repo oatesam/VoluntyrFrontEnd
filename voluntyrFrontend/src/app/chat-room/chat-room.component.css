@@ -71,22 +71,23 @@ button[disabled] {
   width: 60%;
   display: flex;
   flex-flow: row;
-  margin: 1em;
-  padding: 0.5em;
+  margin: 1rem;
+  padding: 0.5rem;
 }
 
 .body .viewer .message .content {
   padding: 0.75rem;
   min-height: 2rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  line-height: 2rem;
+  /*margin-left: 0.5rem;*/
+  /*margin-right: 0.5rem;*/
+  /*line-height: 2rem;*/
   background-color: #b2bbbf;
-  border-radius: 0.8em;
+  border-radius: 0 0 0.8em 0.8em;
   color: black;
   text-align: center;
-  display: flex;
-  flex: 1;
+  /*display: flex;*/
+  /*flex: 1;*/
+  /*font-size: medium;*/
 }
 
 .body .viewer .message.mine {
@@ -97,16 +98,17 @@ button[disabled] {
 .body .viewer .message.mine .content {
   width: 100%;
   align-self: flex-end;
-  color: white;
-  background-color: #301eee;
+  border-radius: 0.8em;
+  color: #d6d6d6;
+  background-color: #004cee;
 }
 
 .body .viewer .message .badge {
-	 border-radius: 50%;
+	 border-radius: 0.8em 0.8em 0 0;
 	 background-color: #888;
-	 width: 3.5rem;
-	 height: 3.5rem;
-	 /*text-align: center;*/
-	 line-height: 3.5rem;
+	 width: 100%;
+	 height: 2.5rem;
+	 text-align: center;
+	 line-height: 2.5rem;
 	 font-size: 1.5rem;
 }
