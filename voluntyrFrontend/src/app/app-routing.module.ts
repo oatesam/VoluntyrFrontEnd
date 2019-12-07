@@ -18,6 +18,8 @@ import {DualauthComponent} from "@app/dualauth/dualauth.component";
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
+import {RecoverPasswordComponent} from "@app/recover-password/recover-password.component";
+import {ResetPasswordComponent} from "@app/reset-password/reset-password.component";
 import {RateEventsComponent} from '@app/rate-events/rate-events.component';
 
 const routes: Routes = [
@@ -32,6 +34,11 @@ const routes: Routes = [
   {
     path: 'DualAuth',
     component: DualauthComponent
+  },
+  { path: "recoverpassword", component: RecoverPasswordComponent},
+  {
+    path: "recoverpassword/:id",
+    component: ResetPasswordComponent
   },
   {
     path: "Events",
