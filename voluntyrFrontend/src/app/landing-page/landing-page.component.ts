@@ -10,6 +10,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem("refreshingToken", "false");
-    localStorage.setItem("dualAuthPassed", "false");
+    localStorage.setItem("dualAuthPassed", "noTrigger");
   }
 }

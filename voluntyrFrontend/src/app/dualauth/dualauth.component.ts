@@ -25,7 +25,9 @@ export class DualauthComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.setItem("dualAuthPassed", "false");
+  }
 
   sendPassword() {
     const password = this.dualAuthForm.controls.passwordControl.value;

@@ -37,15 +37,17 @@ export class NavBarComponent implements OnInit {
     );
     var tokenScope = decodedToken["scope"];
     var dualAuth = localStorage.getItem("dualAuthPassed");
-    if (tokenScope === "volunteer" && dualAuth === "true") {
-      this.showVolunteer = true;
-      this.showOrganization = false;
-    } else if (tokenScope === "organization" && dualAuth === "true") {
-      this.showOrganization = true;
-      this.showVolunteer = false;
-    } else {
-      this.showOrganization = false;
-      this.showVolunteer = false;
+    if (dualAuth === "true" || dualAuth === "noTrigger") {
+      if (tokenScope === "volunteer") {
+        this.showVolunteer = true;
+        this.showOrganization = false;
+      } else if (tokenScope === "organization" && dualAuth === "true") {
+        this.showOrganization = true;
+        this.showVolunteer = false;
+      } else {
+        this.showOrganization = false;
+        this.showVolunteer = false;
+      }
     }
   }
   changeLog(logger: boolean) {
