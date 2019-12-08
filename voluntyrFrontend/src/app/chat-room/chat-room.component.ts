@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ChatRoom, ChatService} from '@app/_services/chat.service';
+import {ChatRoom, ChatService, TypingSocketMessage} from '@app/_services/chat.service';
 import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,9 +16,12 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
 
   private sender: string;
   public messages: ChatSocketMessage[] = new Array<ChatSocketMessage>();
-  private socket: WebSocketSubject<ChatSocketMessage>;
+  public typing: TypingSocketMessage[] = new Array<TypingSocketMessage>();
+  private chatSocket: WebSocketSubject<ChatSocketMessage>;
+  private typingSocket: WebSocketSubject<TypingSocketMessage>;
   public clientMessage: string;
-  private reconnect: boolean = false;
+  private reconnectChat: boolean = false;
+  private reconnectTyping: boolean = false;
 
   constructor(
     private chatService: ChatService,
@@ -28,33 +31,111 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     if (changes['chatRoom'] && !changes['chatRoom'].isFirstChange()) {
       console.error("OnChanges: ", changes);
       this.messages = new Array<ChatSocketMessage>();
-      if (this.socket && !this.socket.closed) {
-        this.reconnect = true;
-        // this.makeSocket();
-        this.socket.complete();
+      this.typing = new Array<TypingSocketMessage>();
+      if (this.chatSocket && !this.chatSocket.closed) {
+        this.reconnectChat = true;
+        // this.makeChatSocket();
+        this.chatSocket.complete();
       } else {
-        this.makeSocket();
+        this.makeChatSocket();
+      }
+      if (this.typingSocket && !this.typingSocket.closed) {
+        this.reconnectTyping = true;
+        // this.makeChatSocket();
+        this.typingSocket.complete();
+      } else {
+        this.makeTypingSocket();
       }
     }
   }
 
   ngOnDestroy(): void {
     console.error("OnDestroy");
-    if (this.socket && !this.socket.closed) {
-      this.socket.complete();
+    if (this.chatSocket && !this.chatSocket.closed) {
+      this.chatSocket.complete();
+    }
+    if (this.typingSocket && !this.typingSocket.closed) {
+      this.typingSocket.complete();
     }
   }
 
   ngOnInit() {
     console.error("Onit");
     this.sender = localStorage.getItem("sender");
-    this.makeSocket();
+    this.makeChatSocket();
+    this.makeTypingSocket();
   }
 
-  private makeSocket() {
+  public sendTypingUpdate(typing: boolean) {
+    let msg: TypingSocketMessage;
+    if (typing) {
+      msg = new TypingSocketMessage(this.sender, "true");
+    } else {
+      msg = new TypingSocketMessage(this.sender, "false");
+    }
+    this.typingSocket.next(msg);
+  }
+
+  public getTypingMessage() {
+    let s: string = "";
+    if (this.typing.length > 1) {
+      for (let typer of this.typing) {
+        if (this.typing.indexOf(typer, 0) === (this.typing.length - 1)) {
+          s = s + " and " + typer.user;
+        } else {
+          s = s + typer.user + ", ";
+        }
+      }
+      s = s + " are typing..."
+    } else if (this.typing.length === 1) {
+      let typer = this.typing[0];
+      s = typer.user + " is typing...";
+    }
+    return s;
+  }
+
+  private makeTypingSocket() {
     this.chatService.chatId = this.chatRoom.id;
-    this.socket = this.chatService.getChatSocket();
-    this.socket.subscribe(
+    this.typingSocket = this.chatService.getTypingSocket();
+    this.typingSocket.subscribe(
+      msg => {
+        console.warn("Received Typing Message: ", msg);
+        if (msg.type == "typing_message" && msg.user != this.sender) {
+          for (let typer of this.typing) {
+            if (typer.user === msg.user) {
+              if (msg.typing === 'false') {
+                this.typing.splice(this.typing.indexOf(typer, 0), 1);
+              } else if (msg.typing === 'true') {
+                typer.typing = 'true';
+              }
+              return;
+            }
+          }
+          this.typing.push(msg);
+        }
+      },
+      error => {
+        console.error("Socket Error");
+        console.error(error);
+        this.chatSocket = null;
+        this.chatRoom = null;
+        this.chatRoomChange.emit(null);
+      },
+      () => {
+        if (this.reconnectTyping) {
+          this.reconnectTyping = false;
+          this.makeTypingSocket();
+        } else {
+          console.warn("Complete");
+        }
+      }
+    );
+  }
+
+  private makeChatSocket() {
+    this.chatService.chatId = this.chatRoom.id;
+    this.chatSocket = this.chatService.getChatSocket();
+    this.chatSocket.subscribe(
       msg => {
         console.warn("Received Message: ", msg);
         if (msg.type == "chat_message") {
@@ -64,14 +145,14 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
       error => {
         console.error("Socket Error");
         console.error(error);
-        this.socket = null;
+        this.chatSocket = null;
         this.chatRoom = null;
         this.chatRoomChange.emit(null);
       },
       () => {
-        if (this.reconnect) {
-          this.reconnect = false;
-          this.makeSocket();
+        if (this.reconnectChat) {
+          this.reconnectChat = false;
+          this.makeChatSocket();
         } else {
           console.warn("Complete");
         }
@@ -121,7 +202,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     const message = new ChatSocketMessage("chat_message", "", this.chatRoom.id, "", this.sender, this.getMessage());
     console.warn("Sent Message: ", message);
     // this.messages.push(message);
-    this.socket.next(message);
+    this.chatSocket.next(message);
     this.clientMessage = "";
   }
 

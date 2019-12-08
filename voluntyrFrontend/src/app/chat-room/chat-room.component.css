@@ -29,6 +29,15 @@
 	 border-bottom: 1px solid #444;
 }
 
+.footer {
+  display: block;
+}
+
+.footer .typing {
+  font-size: xx-small;
+  height: 2em;
+}
+
 form {
 	 display: flex;
    color: black;
