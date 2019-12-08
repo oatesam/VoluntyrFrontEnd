@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ChatRoom, ChatService} from '@app/_services/chat.service';
 import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
@@ -12,6 +12,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() chatRoom: ChatRoom;
+  @Output() chatRoomChange: EventEmitter<ChatRoom> = new EventEmitter<ChatRoom>();
+
   private sender: string;
   public messages: ChatSocketMessage[] = new Array<ChatSocketMessage>();
   private socket: WebSocketSubject<ChatSocketMessage>;
@@ -63,7 +65,8 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
         console.error("Socket Error");
         console.error(error);
         this.socket = null;
-        window.location.reload();
+        this.chatRoom = null;
+        this.chatRoomChange.emit(null);
       },
       () => {
         if (this.reconnect) {
