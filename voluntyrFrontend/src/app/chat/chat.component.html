@@ -2,12 +2,11 @@
   <div class="wrapper-rooms">
     <h1>Voluntyr Chat</h1>
   <!--  TODO: Add no chat-room placeholder -->
-    <button *ngIf="selectedChatRoom" class="btn-danger" (click)="selectedChatRoom = null">Leave Chat</button>
+    <button *ngIf="selectedChatRoom" class="btn-danger" (click)="leaveChat()">Leave Chat</button>
     <ul class="chat-rooms">
-      <li *ngFor="let chat of chatRooms" [class.selected]="chat === selectedChatRoom" (click)="selectChatRoom(chat)">
-        <span class="badge">5</span>
-  <!--      TODO: Add unread for each-->
-        <span class="name"> {{chat.name}}</span>
+      <li *ngFor="let chat of chatRooms" [class.selected]="chat.id === selectedChatRoom?.id"
+          (click)="selectChatRoom(chat)">
+        {{chat.name}}
       </li>
     </ul>
   </div>

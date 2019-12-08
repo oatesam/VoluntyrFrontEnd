@@ -258,13 +258,13 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   private scroll(): void {
-    console.log("Scroll");
-    // viewer.scrollTop = viewer.scrollHeight;
-    // let viewer = document.getElementById("viewer");
-    console.log(this.viewer);
-    setTimeout(() => {
-      this.scrollDown()
-    }, 10);
+    if (this.getDiff() <= 3) {
+      this.onScroll();
+    } else {
+      setTimeout(() => {
+        this.scrollDown()
+      }, 10);
+    }
   }
 
   private scrollDown(i = 1, d = 0): void {

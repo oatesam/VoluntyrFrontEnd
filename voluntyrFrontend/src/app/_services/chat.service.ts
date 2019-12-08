@@ -63,6 +63,10 @@ export class ChatService {
     return this.http.get<ChatRoom[]>(this._chatRoomAPI);
   }
 
+  getPrivateChatRoom(email: string): Observable<ChatRoom> {
+    return this.http.post<ChatRoom>(this._chatRoomAPI, {"email": email});
+  }
+
   public getChatSocket() {
     let curUser = JSON.parse(localStorage.getItem("currentUser"));
     return new WebSocketSubject<ChatSocketMessage>(`${environment.wsUrl}` + 'chat/' + curUser.access + "/" + this._chatId + "/");

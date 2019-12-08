@@ -50,8 +50,18 @@ export class ChatMembersComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public selectMember(member) {
-    this.selectedMember = member;
-  //  TODO: Make private chat room
+    console.log("Select member: ", member);
+    this.chatService.getPrivateChatRoom(member.user).subscribe(
+      data => {
+        this.selectedMember = member;
+        this.chatRoom = data;
+        this.chatRoomChange.emit(data);
+      },
+      error => {
+        console.error(error);
+        alert("We were not able to start a private chat with " + member.user + ". Please try again later.");
+      }
+    )
   }
 
   private makeSocket() {
