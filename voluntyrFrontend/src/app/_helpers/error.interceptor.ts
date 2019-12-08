@@ -28,6 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         const helper = new JwtHelperService();
         let curUser = JSON.parse(localStorage.getItem("currentUser"));
         if (err.status === 401 || err.status === 500) {
+          console.error(err);
           let isExpired = helper.isTokenExpired(curUser.access);
           if (isExpired) {
             localStorage.setItem("refreshingToken", "true");

@@ -44,6 +44,7 @@ export class EmailInputComponent {
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then((userData) =>{
+        console.log('wtf is going on')
         this.authService.socialLogin(userData.email, userData.id, userData.firstName, userData.lastName)
           .subscribe(
             resp => {
