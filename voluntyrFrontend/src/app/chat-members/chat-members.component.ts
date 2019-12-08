@@ -67,8 +67,8 @@ export class ChatMembersComponent implements OnInit, OnChanges, OnDestroy {
               return
             }
           }
-          this.members.push(msg); // TODO: Check if exists and replace if so
-          this.members.sort();
+          this.members.push(msg);
+          // this.members.sort();
         }
       },
       error => {

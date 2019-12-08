@@ -1,18 +1,29 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  AfterViewInit,
+  Component, ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import {ChatRoom, ChatService, TypingSocketMessage} from '@app/_services/chat.service';
 import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
   styleUrls: ['./chat-room.component.css']
 })
-export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
+export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
   @Input() chatRoom: ChatRoom;
   @Output() chatRoomChange: EventEmitter<ChatRoom> = new EventEmitter<ChatRoom>();
+  @ViewChild('autoscroll', {read: ElementRef, static: false}) viewer: ElementRef;
 
   private sender: string;
   public messages: ChatSocketMessage[] = new Array<ChatSocketMessage>();
@@ -26,6 +37,11 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private chatService: ChatService,
   ) {}
+
+  ngAfterViewInit(): void {
+    console.log("AfterViewInit");
+    this.scroll();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chatRoom'] && !changes['chatRoom'].isFirstChange()) {
@@ -59,14 +75,14 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     console.error("Onit");
     this.sender = localStorage.getItem("sender");
     this.makeChatSocket();
     this.makeTypingSocket();
   }
 
-  public sendTypingUpdate(typing: boolean) {
+  public sendTypingUpdate(typing: boolean): void {
     let msg: TypingSocketMessage;
     if (typing) {
       msg = new TypingSocketMessage(this.sender, "true");
@@ -76,7 +92,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     this.typingSocket.next(msg);
   }
 
-  public getTypingMessage() {
+  public getTypingMessage(): string {
     let s: string = "";
     if (this.typing.length > 1) {
       for (let typer of this.typing) {
@@ -94,7 +110,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     return s;
   }
 
-  private makeTypingSocket() {
+  private makeTypingSocket(): void {
     this.chatService.chatId = this.chatRoom.id;
     this.typingSocket = this.chatService.getTypingSocket();
     this.typingSocket.subscribe(
@@ -132,7 +148,10 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     );
   }
 
-  private makeChatSocket() {
+  public test() {
+    console.log(this.messages);
+  }
+  private makeChatSocket(): void {
     this.chatService.chatId = this.chatRoom.id;
     this.chatSocket = this.chatService.getChatSocket();
     this.chatSocket.subscribe(
@@ -140,6 +159,18 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
         console.warn("Received Message: ", msg);
         if (msg.type == "chat_message") {
           this.messages.push(msg);
+          this.scroll();
+        } else if (msg.type == "status_message" && msg.sender == this.sender) {
+          for (let message of this.messages) {
+            if (msg.id == message.id) {
+              if (message.status == "Sent") {
+                message.status = msg.status;
+              } else if (message.status == "Delivered" && msg.status == "Read") {
+                message.status = msg.status;
+              } 
+              return;
+            }
+          }
         }
       },
       error => {
@@ -160,7 +191,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
     );
   }
 
-  public getMessage() {
+  public getMessage(): string {
     // return this.messageFormGroup.controls.messageControl.value
     return this.clientMessage
   }
@@ -199,16 +230,64 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public send(): void {
-    const message = new ChatSocketMessage("chat_message", "", this.chatRoom.id, "", this.sender, this.getMessage());
+    const message = new ChatSocketMessage("chat_message", 0, this.chatRoom.id, "", this.sender, this.getMessage());
     console.warn("Sent Message: ", message);
     // this.messages.push(message);
     this.chatSocket.next(message);
     this.clientMessage = "";
   }
 
-  public isMine(message: ChatSocketMessage) {
+  public read(message: ChatSocketMessage) {
+    if (message.status != "Read") {
+      message.type = "status_message";
+      message.status = "Read";
+      this.chatSocket.next(message)
+    }
+  }
+
+  public onScroll() {
+    if (this.getDiff() <= 0) {
+      for (let msg of this.messages) {
+        this.read(msg);
+      }
+    }
+  }
+
+  public isMine(message: ChatSocketMessage): boolean {
     return message && message.sender === this.sender
   }
 
+  private scroll(): void {
+    console.log("Scroll");
+    // viewer.scrollTop = viewer.scrollHeight;
+    // let viewer = document.getElementById("viewer");
+    console.log(this.viewer);
+    setTimeout(() => {
+      this.scrollDown()
+    }, 10);
+  }
 
+  private scrollDown(i = 1, d = 0): void {
+    if (d < 1) {
+      d = this.getDiff();
+    }
+    if (d > 0 && i <= 120) {
+      setTimeout(() => {
+        let diff = this.easeInSin(i/120) * this.getDiff();
+      this.viewer.nativeElement.scrollTop += diff;
+      this.scrollDown(++i, d);
+      }, 1/60);
+    }
+  }
+
+  private getDiff(): number {
+    if (!this.viewer) {
+      return -1;
+    }
+    return this.viewer.nativeElement.scrollHeight - (this.viewer.nativeElement.scrollTop + this.viewer.nativeElement.clientHeight);
+  }
+
+  private easeInSin(n: number): number {
+    return (1 + Math.sin(Math.PI*n-Math.PI/2))/2;
+  }
 }
