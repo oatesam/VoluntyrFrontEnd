@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ChatRoom, ChatService} from '@app/_services/chat.service';
-import {SocketMessage} from '@app/_models/SocketMessage';
+import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -13,8 +13,8 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() chatRoom: ChatRoom;
   private sender: string;
-  public messages: SocketMessage[] = new Array<SocketMessage>();
-  private socket: WebSocketSubject<SocketMessage>;
+  public messages: ChatSocketMessage[] = new Array<ChatSocketMessage>();
+  private socket: WebSocketSubject<ChatSocketMessage>;
   public clientMessage: string;
   private reconnect: boolean = false;
 
@@ -25,7 +25,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chatRoom'] && !changes['chatRoom'].isFirstChange()) {
       console.error("OnChanges: ", changes);
-      this.messages = new Array<SocketMessage>();
+      this.messages = new Array<ChatSocketMessage>();
       if (this.socket && !this.socket.closed) {
         this.reconnect = true;
         // this.makeSocket();
@@ -51,7 +51,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
 
   private makeSocket() {
     this.chatService.chatId = this.chatRoom.id;
-    this.socket = this.chatService.getSocket();
+    this.socket = this.chatService.getChatSocket();
     this.socket.subscribe(
       msg => {
         console.warn("Received Message: ", msg);
@@ -115,14 +115,14 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public send(): void {
-    const message = new SocketMessage("chat_message", "", this.chatRoom.id, "", this.sender, this.getMessage());
+    const message = new ChatSocketMessage("chat_message", "", this.chatRoom.id, "", this.sender, this.getMessage());
     console.warn("Sent Message: ", message);
     // this.messages.push(message);
     this.socket.next(message);
     this.clientMessage = "";
   }
 
-  public isMine(message: SocketMessage) {
+  public isMine(message: ChatSocketMessage) {
     return message && message.sender === this.sender
   }
 

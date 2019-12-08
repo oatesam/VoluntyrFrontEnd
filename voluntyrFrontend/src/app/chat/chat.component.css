@@ -22,6 +22,15 @@
   /*padding: 1em;*/
 }
 
+.wrapper-members {
+  float: right;
+  width: 25em;
+  display: inline-block;
+  margin: 0;
+  min-height: 40em;
+  /*padding: 1em;*/
+}
+
 .outer {
   min-width: 20em;
 }
