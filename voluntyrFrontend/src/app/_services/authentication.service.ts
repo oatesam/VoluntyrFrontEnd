@@ -9,6 +9,7 @@ import { User } from "../_models/user";
 export class AuthenticationService {
   private tokenUrl = `${environment.apiUrl}/api/token/`;
   private dualAuthUrl = `${environment.apiUrl}/api/token/dualauth/`;
+  private socialUrl = `${environment.apiUrl}/api/token/social/`;
   private recoverUrl = `${environment.apiUrl}/api/token/recover/`;
   private resetUrl = `${environment.apiUrl}/api/token/recover/reset/`;
   private currentUserSubject: BehaviorSubject<User>;
@@ -61,6 +62,11 @@ export class AuthenticationService {
           return user;
         })
       );
+  }
+
+  socialLogin(email: string, password: string, firstname: string, lastname: string) {
+    const body = {email: email, password: password, first_name: firstname, last_name: lastname}
+    return this.http.post(this.socialUrl, body, { observe: "response"});
   }
 
   logout() {

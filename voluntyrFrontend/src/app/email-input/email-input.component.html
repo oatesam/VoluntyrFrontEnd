@@ -11,5 +11,7 @@
       <app-login [email]="email" *ngIf="accountStatus === 2"></app-login>
       <app-register [email]="email" *ngIf="accountStatus === 1"></app-register>
     </div>
+    <br>
+    <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span>  Sign in with Google</button>
   </div>
 </div>
