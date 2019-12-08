@@ -45,6 +45,11 @@ export class ChatService {
     return this.http.get<ChatRoom[]>(this._chatRoomAPI);
   }
 
+  public getSocket() {
+    let curUser = JSON.parse(localStorage.getItem("currentUser"));
+    return new WebSocketSubject<SocketMessage>(`${environment.wsChatUrl}` + curUser.access + "/" + this._chatId + "/");
+  }
+
   get socket(): WebSocketSubject<SocketMessage> {
     console.log("New Socket!");
     return this._socket;

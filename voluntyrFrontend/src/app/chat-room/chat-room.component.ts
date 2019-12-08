@@ -25,8 +25,10 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
       this.messages = new Array<SocketMessage>();
       if (this.socket && !this.socket.closed) {
         this.reconnect = true;
-        this.socket.complete();
         // this.makeSocket();
+        this.socket.complete();
+      } else {
+        this.makeSocket();
       }
     }
   }
@@ -46,7 +48,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
 
   private makeSocket() {
     this.chatService.chatId = this.chatRoom.id;
-    this.socket = this.chatService.socket;
+    this.socket = this.chatService.getSocket();
     this.socket.subscribe(
       msg => {
         console.warn("Received Message: ", msg);
@@ -55,7 +57,8 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
         }
       },
       error => {
-        console.error(error)
+        console.error(error);
+        this.socket = null;
       },
       () => {
         if (this.reconnect) {
