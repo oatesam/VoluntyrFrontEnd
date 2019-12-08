@@ -45,6 +45,20 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { RateEventsComponent } from './rate-events/rate-events.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
 import { RatingPopupComponent } from './rating-popup/rating-popup.component';
+import {SocialLoginModule, AuthServiceConfig, LoginOpt} from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
+
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("919398156388-sjt9psu2k5jvmsjtsh3v7hbi650offju.apps.googleusercontent.com")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -97,6 +111,7 @@ import { RatingPopupComponent } from './rating-popup/rating-popup.component';
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxSpinnerModule,
+    SocialLoginModule
   ],
   providers: [
     HttpClientModule,
@@ -113,6 +128,10 @@ import { RatingPopupComponent } from './rating-popup/rating-popup.component';
       useClass: ErrorInterceptor,
       multi: true
     },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [
     AppComponent,
