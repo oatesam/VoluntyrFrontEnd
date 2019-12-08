@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@an
 import {ChatRoom, ChatService} from '@app/_services/chat.service';
 import {SocketMessage} from '@app/_models/SocketMessage';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat-room',
@@ -17,7 +18,9 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   public clientMessage: string;
   private reconnect: boolean = false;
 
-  constructor(private chatService: ChatService) {}
+  constructor(
+    private chatService: ChatService,
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chatRoom'] && !changes['chatRoom'].isFirstChange()) {
@@ -57,8 +60,10 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
         }
       },
       error => {
+        console.error("Socket Error");
         console.error(error);
         this.socket = null;
+        window.location.reload();
       },
       () => {
         if (this.reconnect) {
@@ -110,7 +115,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public send(): void {
-    const message = new SocketMessage("chat_message", this.chatRoom.id, "", this.sender, this.getMessage());
+    const message = new SocketMessage("chat_message", "", this.chatRoom.id, "", this.sender, this.getMessage());
     console.warn("Sent Message: ", message);
     // this.messages.push(message);
     this.socket.next(message);

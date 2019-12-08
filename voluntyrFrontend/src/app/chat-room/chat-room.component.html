@@ -17,6 +17,9 @@
               <div class="content" [ngClass]="{'mine': isMine(msg)}">
                 {{msg.message}}
               </div>
+              <div class="status" *ngIf="isMine(msg)">
+                {{msg.status}}
+              </div>
             </div>
           </div>
         </div>
