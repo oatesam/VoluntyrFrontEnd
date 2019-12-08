@@ -167,7 +167,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
                 message.status = msg.status;
               } else if (message.status == "Delivered" && msg.status == "Read") {
                 message.status = msg.status;
-              } 
+              }
               return;
             }
           }
@@ -246,7 +246,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   public onScroll() {
-    if (this.getDiff() <= 0) {
+    if (this.getDiff() <= 3) {
       for (let msg of this.messages) {
         this.read(msg);
       }
