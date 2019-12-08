@@ -87,15 +87,50 @@ export class LoginComponent implements OnInit {
             this.route.queryParams.subscribe(
               params => {
                 let returnTo = params['returnUrl'];
-                if (returnTo == null) {
-                  console.log("log resp = ", resp);
-                  if (resp['access']) {
-                    this.router.navigateByUrl("/DualAuth");
+                console.log('authy_sent', resp['authy_sent']);
+                if (resp['authy_sent'] == true) {
+                  if (returnTo == null) {
+                    console.log("log resp = ", resp);
+                    if (resp['access']) {
+                      this.router.navigateByUrl("/DualAuth");
+                    }
+                  } else {
+                    console.log("log resp = ", resp);
+                    if (resp['access']) {
+                      this.router.navigate(["/DualAuth"], {queryParams: {returnUrl: returnTo}});
+                    }
                   }
                 } else {
-                  console.log("log resp = ", resp);
-                  if (resp['access']) {
-                    this.router.navigate(["DualAuth"], { queryParams: { returnUrl: returnTo } });
+                  const token = JSON.parse(localStorage.getItem("currentUser")).access;
+                  const tokenScope = decode(token);
+                  if (tokenScope["scope"] == "organization") {
+                    if (returnTo == null) {
+                      const token = JSON.parse(localStorage.getItem("currentUser")).access;
+                      const tokenScope = decode(token);
+                      console.log("log resp = ", resp);
+                      if (resp['access']) {
+                        this.router.navigateByUrl("/Organization");
+                      }
+                    } else {
+                      console.log("log resp = ", resp);
+                      if (resp['access']) {
+                        this.router.navigate(["/Organization"], {queryParams: {returnUrl: returnTo}});
+                      }
+                    }
+                  } else if (tokenScope["scope"] == "volunteer") {
+                    if (returnTo == null) {
+                      const token = JSON.parse(localStorage.getItem("currentUser")).access;
+                      const tokenScope = decode(token);
+                      console.log("log resp = ", resp);
+                      if (resp['access']) {
+                        this.router.navigateByUrl("/Volunteer");
+                      }
+                    } else {
+                      console.log("log resp = ", resp);
+                      if (resp['access']) {
+                        this.router.navigate(["/Volunteer"], {queryParams: {returnUrl: returnTo}});
+                      }
+                    }
                   }
                 }
               }
