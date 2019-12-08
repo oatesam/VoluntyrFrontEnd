@@ -1,13 +1,26 @@
 div.navtext{
   width: 100%;
-  height: 50px;
-  background-color: #537aa1;
-  padding: 16px;
+  height: 56.25px;
+  background-color: #980d0d;
+}
+
+.special {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+h1.special {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #block_container
 {
     text-align:center;
+}
+
+.centernav {
+  text-align: center;
 }
 
 .leftnav{
@@ -22,8 +35,23 @@ a {
   color: white;
   margin: 0;
   text-decoration: none;
+  font-size: 25px;
 }
 
 a.rightnav{
   padding-left:7px;
 }
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+

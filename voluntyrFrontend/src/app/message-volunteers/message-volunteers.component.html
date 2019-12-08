@@ -1,7 +1,7 @@
 <div class="wrapper responsive">
   <div class="center message-volunteers-wrapper">
     <div [hidden]="hide">
-      <h1>Email the Volunteers Registered for {{event?.title}}</h1>
+      <h1>Email all the Volunteers Registered for {{event?.title}}</h1>
       <form [formGroup]="messageForm" (ngSubmit)="sendEmail()">
         <h3>Subject</h3>
         <input id="subject" name="subject" type="text" class="form-control" formControlName="subjectControl" required>

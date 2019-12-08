@@ -26,6 +26,9 @@
         *ngFor="let event of events"
         [event]="event"
       ></app-individual-event-summary>
+      <h3 *ngIf="this.events?.length == 0">
+        You aren't registered for any events. Click on "Register Event" to signup for the upcoming events.
+      </h3>
     </div>
   </div>
 </div>

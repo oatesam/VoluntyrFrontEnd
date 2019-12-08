@@ -4,58 +4,268 @@
   <button class="register" id="orgtoggle"(click)="toggle()" id="bt">
       {{buttonName}}
   </button>
-
-
-  <ng-container *ngIf="!showOrg">
-    <h3>First Name</h3>
-    <input type="text" [formControl]="firstname">
-
-    <h3>Last Name</h3>
-    <input type="text" [formControl]="lastname">
-
-    <h3> Birthday</h3>
-    <ngb-datepicker class="registerdate" #dp [(ngModel)]="dateStruct" (navigate)="date = $event.next" [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2020, month: 1, day: 1}"></ngb-datepicker>
-
-    <h3>Phone Number</h3>
-    <input type="text" [formControl]="volphonenumber">
-
-  </ng-container>
-
-
   <ng-container *ngIf="showOrg">
-    <h3> Organization Name </h3>
-    <input type="text" [formControl]="orgname">
-
-<!--  <h3>Email</h3>-->
-<!--  <input type="text" [formControl]="emailControl">-->
-
-    <h3>Address</h3>
-    <input type="text" [formControl]="address">
-
-    <h3>City</h3>
-    <input type="text" [formControl]="city">
-
-    <h3>State</h3>
-    <input type="text" [formControl]="state">
-
-    <h3>Motto</h3>
-    <input type="text" [formControl]="motto">
-
-    <h3>Phone Number</h3>
-    <input type="text" [formControl]="phonenumber">
+    <form [formGroup]="orgregisterForm" (ngSubmit)="verifyReg()">
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Organization Name</h5>
+            <input id="orgName" name="orgName" type="text" class="form-control" formControlName="orgNameControl" required>
+          </div>
+          <div *ngIf="orgregisterForm.controls.orgNameControl.invalid && (orgregisterForm.controls.orgNameControl.dirty || orgregisterForm.controls.orgNameControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.orgNameControl.errors.required">
+              Organization Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Address</h5>
+            <input id="orgAddress" name="orgAddress" type="text" class="form-control" formControlName="orgAddressControl" required>
+          </div>
+          <div *ngIf="orgregisterForm.controls.orgAddressControl.invalid && (orgregisterForm.controls.orgAddressControl.dirty || orgregisterForm.controls.orgAddressControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.orgAddressControl.errors.required">
+              Address is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">City</h5>
+            <input id="city" name="city" type="text" class="form-control" formControlName="cityControl" required>
+          </div>
+          <div *ngIf="orgregisterForm.controls.cityControl.invalid && (orgregisterForm.controls.cityControl.dirty || orgregisterForm.controls.cityControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.cityControl.errors.required">
+              City is required
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group" align="left">
+            <h5 align="left">State</h5>
+            <select class="custom-select" formControlName="stateControl">
+              <option value="">Choose your State</option>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AZ">AZ</option>
+              <option value="AR">AR</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DE">DE</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="IA">IA</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="ME">ME</option>
+              <option value="MD">MD</option>
+              <option value="MA">MA</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MS">MS</option>
+              <option value="MO">MO</option>
+              <option value="MT">MT</option>
+              <option value="NE">NE</option>
+              <option value="NV">NV</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>
+              <option value="NY">NY</option>
+              <option value="NC">NC</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WV">WV</option>
+              <option value="WI">WI</option>
+              <option value="WY">WY</option>
+            </select>
+          </div>
+          <div *ngIf="orgregisterForm.controls.stateControl.invalid && (orgregisterForm.controls.stateControl.dirty || orgregisterForm.controls.stateControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.stateControl.errors.required">
+              State is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Motto</h5>
+            <input id="orgMotto" name="orgMotto" type="text" class="form-control" formControlName="orgMottoControl">
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Phone</h5>
+            <input id="orgphone" name="orgphone" type="text" class="form-control" formControlName="orgphoneControl">
+          </div>
+          <div *ngIf="orgregisterForm.controls.orgphoneControl.invalid && (orgregisterForm.controls.orgphoneControl.dirty || orgregisterForm.controls.orgphoneControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.orgphoneControl.errors.required">
+              Phone is required
+            </div>
+            <div *ngIf="orgregisterForm.controls.orgphoneControl.errors.format">
+              Please enter your phone number in XXX-XXX-XXXX format
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Password</h5>
+            <input id="password" name="password" type="password" class="form-control" formControlName="passwordControl" [ngClass]="orgregisterForm.controls.passwordControl.invalid ? 'is-invalid' : ''" appHidePassword>
+          </div>
+          <div *ngIf="orgregisterForm.controls.passwordControl.invalid && (orgregisterForm.controls.passwordControl.dirty || orgregisterForm.controls.passwordControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.passwordControl.errors.required">
+              Password is required
+            </div>
+            <div *ngIf="orgregisterForm.controls.passwordControl.errors.minlength">
+              Must be at least 8 characters!
+            </div>
+            <div *ngIf="orgregisterForm.controls.passwordControl.errors.hasNumber">
+              Must contain at least 1 number!
+            </div>
+            <div *ngIf="orgregisterForm.controls.passwordControl.errors.hasCapitalCase">
+              Must contain at least 1 in Capital Case!
+            </div>
+            <div *ngIf="orgregisterForm.controls.passwordControl.errors.hasSmallCase">
+              Must contain at least 1 Letter in Small Case!
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Confirm Password</h5>
+            <input id="confirmpassword" name="confirmpassword" type="password" class="form-control" formControlName="confirmpasswordControl" appHidePassword>
+          </div>
+          <div *ngIf="orgregisterForm.controls.confirmpasswordControl.invalid && (orgregisterForm.controls.confirmpasswordControl.dirty || orgregisterForm.controls.confirmpasswordControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="orgregisterForm.controls.confirmpasswordControl.errors.required">
+              Please re enter Password
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <re-captcha (resolved)="resolved($event)" [siteKey]="CAPTCHAKEY"></re-captcha>
+      </div>
+      <div class="row">
+        <button type="button" (click)="verifyReg()" [disabled]="orgregisterForm.controls.orgNameControl.invalid || orgregisterForm.controls.orgAddressControl.invalid || orgregisterForm.controls.cityControl.invalid || orgregisterForm.controls.stateControl.invalid || orgregisterForm.controls.orgphoneControl.invalid || orgregisterForm.controls.confirmpasswordControl.invalid" class="btn btn-primary btn-lg">Register</button>
+      </div>
+    </form>
   </ng-container>
-
-  <h3>Password</h3>
-  <input type="password" [formControl]="password" appHidePassword>
-
-  <h3>Confirm Password</h3>
-  <input type="password" [formControl]="passwordconfirm" appHidePassword>
-
-  <alert></alert>
-  <re-captcha
-    (resolved)="resolved($event)"
-    [siteKey]="CAPTCHAKEY"
-  ></re-captcha>
-  <br>
-  <button class="register"(click)="verifyReg()">Register</button>
+  <ng-container *ngIf="!showOrg">
+    <form [formGroup]="volregisterForm" (ngSubmit)="verifyReg()">
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">First Name</h5>
+            <input id="firstName" name="firstName" type="text" class="form-control" formControlName="firstNameControl" required>
+          </div>
+          <div *ngIf="volregisterForm.controls.firstNameControl.invalid && (volregisterForm.controls.firstNameControl.dirty || volregisterForm.controls.firstNameControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.firstNameControl.errors.required">
+              First Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Last Name</h5>
+            <input id="lastName" name="lastName" type="text" class="form-control" formControlName="lastNameControl" required>
+          </div>
+          <div *ngIf="volregisterForm.controls.lastNameControl.invalid && (volregisterForm.controls.lastNameControl.dirty || volregisterForm.controls.lastNameControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.lastNameControl.errors.required">
+              Last Name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Birth Date</h5>
+            <input id="birthDate" name="birthDate" type="date" class="form-control" formControlName="birthDateControl">
+          </div>
+          <div *ngIf="volregisterForm.controls.birthDateControl.invalid && (volregisterForm.controls.birthDateControl.dirty || volregisterForm.controls.birthDateControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.birthDateControl.errors.required">
+              Please choose your birthday in calendar
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Phone Number</h5>
+            <input id="volphonenumber" name="volphonenumber" type="text" class="form-control" formControlName="volphonenumberControl" required>
+          </div>
+          <div *ngIf="volregisterForm.controls.volphonenumberControl.invalid && (volregisterForm.controls.volphonenumberControl.dirty || volregisterForm.controls.volphonenumberControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.volphonenumberControl.errors.required">
+              Phone Number is required
+            </div>
+            <div *ngIf="volregisterForm.controls.volphonenumberControl.errors.format">
+              Please enter your phone number in XXX-XXX-XXXX format
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div class="form-group">
+              <h5 align="left">Password</h5>
+              <input id="volpassword" name="volpassword" type="password" class="form-control showhide" formControlName="volpasswordControl" appHidePassword>
+          </div>
+          <div *ngIf="volregisterForm.controls.volpasswordControl.invalid && (volregisterForm.controls.volpasswordControl.dirty || volregisterForm.controls.volpasswordControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.volpasswordControl.errors.required">
+              Password is required
+            </div>
+            <div *ngIf="volregisterForm.controls.volpasswordControl.errors.minlength">
+              Must be at least 8 characters!
+            </div>
+            <div *ngIf="volregisterForm.controls.volpasswordControl.errors.hasNumber">
+              Must contain at least 1 number!
+            </div>
+            <div *ngIf="volregisterForm.controls.volpasswordControl.errors.hasCapitalCase">
+              Must contain at least 1 in Capital Case!
+            </div>
+            <div *ngIf="volregisterForm.controls.volpasswordControl.errors.hasSmallCase">
+              Must contain at least 1 Letter in Small Case!
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="form-group">
+            <h5 align="left">Confirm Password</h5>
+            <input id="confirmvolpassword" name="confirmvolpassword" type="password" class="form-control showhide" formControlName="confirmvolpasswordControl" appHidePassword>
+          </div>
+          <div *ngIf="volregisterForm.controls.confirmvolpasswordControl.invalid && (volregisterForm.controls.confirmvolpasswordControl.dirty || volregisterForm.controls.confirmvolpasswordControl.touched)" class="center responsive alert alert-danger error">
+            <div *ngIf="volregisterForm.controls.confirmvolpasswordControl.errors.required">
+              Please re enter Password
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <re-captcha (resolved)="resolved($event)" [siteKey]="CAPTCHAKEY"></re-captcha>
+      </div>
+      <div class="row">
+        <button type="button" (click)="verifyReg()" [disabled]="volregisterForm.controls.firstNameControl.invalid || volregisterForm.controls.lastNameControl.invalid || volregisterForm.controls.birthDateControl.invalid || volregisterForm.controls.confirmvolpasswordControl.invalid" class="btn btn-primary btn-lg">Register</button>
+      </div>
+    </form>
+  </ng-container>
 </div>
