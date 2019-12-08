@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from '../_services/authentication.service';
-import {Router} from '@angular/router';
-import * as jwt_decode from 'jwt-decode';
+import { Component, OnInit } from "@angular/core";
+import { AuthenticationService } from "../_services/authentication.service";
+import { Router } from "@angular/router";
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: "app-nav-bar",
@@ -36,10 +36,11 @@ export class NavBarComponent implements OnInit {
       JSON.parse(localStorage.getItem("currentUser")).access
     );
     var tokenScope = decodedToken["scope"];
-    if (tokenScope === "volunteer") {
+    var dualAuth = localStorage.getItem("dualAuthPassed");
+    if (tokenScope === "volunteer" && dualAuth === "true") {
       this.showVolunteer = true;
       this.showOrganization = false;
-    } else if (tokenScope === "organization") {
+    } else if (tokenScope === "organization" && dualAuth === "true") {
       this.showOrganization = true;
       this.showVolunteer = false;
     } else {
