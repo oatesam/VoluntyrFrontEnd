@@ -111,6 +111,6 @@ ngb-datepicker.dropdown-menu.registerdate {
 /* Clear floats after the columns */
 .row {
   overflow: hidden;
-  padding-left: 50px;
+  padding: 1.5px;
 }
 

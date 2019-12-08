@@ -93,15 +93,5 @@ export class NewEventComponent implements OnInit {
       }
     });
   }
-  canDeactivate(): Observable<boolean> | boolean {
-    console.log("Can deactivate");
-    // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-    // Otherwise ask the user with the dialog service and return its
-    // observable which resolves to true or false when the user decides
-    if (!this.submitted) { //!this.unsavedEdits
-      return this.dialogService.confirm('Discard changes?');
-    } else {
-      return true;
-    }
-  }
+
 }
