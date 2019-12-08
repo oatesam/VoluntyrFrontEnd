@@ -9,8 +9,12 @@ div.wrapper{
   text-align: center;
 }
 
-h1, h2, h3, h4, p {
+h1, h3, h4, p {
   color: white;
+}
+
+h2 {
+  color: antiquewhite;
 }
 
 h1 {
