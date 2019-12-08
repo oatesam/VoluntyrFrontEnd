@@ -4,7 +4,7 @@
 
 export const environment = {
   apiUrl: 'http://localhost:8000',
-  wsChatUrl: 'ws://localhost:8000/ws/chat/',
+  wsUrl: 'ws://localhost:8000/ws/',
   host: 'localhost:4200',
   production: false,
   captchaKey: "6LfoXL8UAAAAAEM-FhgKlTKFYxRx5R_UwJkov6cR"

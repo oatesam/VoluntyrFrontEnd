@@ -1,4 +1,4 @@
-export class SocketMessage {
+export class ChatSocketMessage {
   type: string;
   id: string;
   room: string;

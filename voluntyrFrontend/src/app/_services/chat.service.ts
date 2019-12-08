@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
-import {SocketMessage} from '@app/_models/SocketMessage';
+import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 import {environment} from '@environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -15,13 +15,17 @@ export class ChatRoom {
   }
 }
 
-export class ChatMember {
-  email: string;
-  online: boolean;
+export class StatusSocketMessage {
+  type: string;
+  room: string;
+  status: string;
+  user: string;
 
-  constructor(email, online) {
-    this.email = email;
-    this.online = online;
+  constructor(room, status, user) {
+    this.type = "online_message";
+    this.room = room;
+    this.status = status;
+    this.user = user;
   }
 }
 
@@ -31,13 +35,14 @@ export class ChatMember {
 export class ChatService {
   // https://github.com/joewalnes/reconnecting-websocket
   private _chatRoomAPI = `${environment.apiUrl}` + "/chat/rooms/";
-  private _socket: WebSocketSubject<SocketMessage>;
+  private _roomWs = `${environment.wsUrl}` + "/online/";
+  private _chatSocket: WebSocketSubject<ChatSocketMessage>;
 
   private _chatId: string;
 
   constructor(private http: HttpClient) {
-    let curUser = JSON.parse(localStorage.getItem("currentUser"));
-    this._socket = new WebSocketSubject<SocketMessage>(`${environment.wsChatUrl}` + curUser.access + "/");
+    // let curUser = JSON.parse(localStorage.getItem("currentUser"));
+    // this._chatSocket = new WebSocketSubject<SocketMessage>(`${environment.wsUrl}` + 'chat/' + curUser.access + "/");
     console.log("New Service!");
   }
 
@@ -45,15 +50,16 @@ export class ChatService {
     return this.http.get<ChatRoom[]>(this._chatRoomAPI);
   }
 
-  public getSocket() {
+  public getChatSocket() {
     let curUser = JSON.parse(localStorage.getItem("currentUser"));
-    return new WebSocketSubject<SocketMessage>(`${environment.wsChatUrl}` + curUser.access + "/" + this._chatId + "/");
+    return new WebSocketSubject<ChatSocketMessage>(`${environment.wsUrl}` + 'chat/' + curUser.access + "/" + this._chatId + "/");
   }
 
-  get socket(): WebSocketSubject<SocketMessage> {
-    console.log("New Socket!");
-    return this._socket;
+  public getStatusSocket() {
+    let curUser = JSON.parse(localStorage.getItem("currentUser"));
+    return new WebSocketSubject<StatusSocketMessage>(`${environment.wsUrl}` + 'online/' + curUser.access + "/");
   }
+
 
   set chatId(value: string) {
     this._chatId = value;

@@ -2,6 +2,7 @@
   <div class="wrapper-rooms">
     <h1>Voluntyr Chat</h1>
   <!--  TODO: Add no chat-room placeholder -->
+    <button *ngIf="selectedChatRoom" class="btn-danger" (click)="selectedChatRoom = null">Leave Chat</button>
     <ul class="chat-rooms">
       <li *ngFor="let chat of chatRooms" [class.selected]="chat === selectedChatRoom" (click)="selectChatRoom(chat)">
         <span class="badge">5</span>
@@ -10,7 +11,12 @@
       </li>
     </ul>
   </div>
-  <div class="wrapper-chat" *ngIf="selectedChatRoom != null">
-    <app-chat-room [chatRoom]="selectedChatRoom"></app-chat-room>
+  <div *ngIf="selectedChatRoom != null">
+    <div class="wrapper-chat">
+      <app-chat-room [chatRoom]="selectedChatRoom"></app-chat-room>
+    </div>
+    <div class="wrapper-members">
+      <app-chat-members [chatRoom]="selectedChatRoom"></app-chat-members>
+    </div>
   </div>
 </div>
