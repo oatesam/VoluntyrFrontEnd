@@ -4,11 +4,12 @@
       <h1>
         {{this.chatRoom.name}}
       </h1>
+      <button (click)="test()">Test</button>
     </div>
-    <div class="body">
-      <div class="viewer">
+    <div class="body" #autoscroll (scroll)="onScroll()">
+      <div class="viewer" >
         <div class="message" *ngFor="let msg of messages" [ngClass]="{'mine': isMine(msg)}">
-          <div *ngIf="msg.type === 'chat_message'">
+          <div *ngIf="msg.type === 'chat_message' || msg.type === 'status_message'">
             <div>
               <div class="badge" *ngIf="!isMine(msg)"
                   [style.backgroundColor]="getSenderColor(msg.sender)" [style.color]="getTextColor(msg.sender)">
