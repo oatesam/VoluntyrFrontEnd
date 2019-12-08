@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ChatRoom, ChatService} from '@app/_services/chat.service';
 
 @Component({
@@ -6,13 +6,21 @@ import {ChatRoom, ChatService} from '@app/_services/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnChanges {
 
   public chatRooms: ChatRoom[];
   public selectedChatRoom: ChatRoom;
   constructor(public chatService: ChatService) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getChatRooms();
+  }
+
+  ngOnInit(): void {
+    this.getChatRooms();
+  }
+
+  private getChatRooms() {
     this.chatService.getChatRooms().subscribe(
       data => {
         this.chatRooms = data;
@@ -26,6 +34,11 @@ export class ChatComponent implements OnInit {
 
   selectChatRoom(chatRoom) {
     this.selectedChatRoom = chatRoom;
+  }
+
+  leaveChat() {
+    this.selectedChatRoom = null;
+    this.getChatRooms();
   }
 
 }

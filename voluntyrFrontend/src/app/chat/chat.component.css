@@ -45,12 +45,10 @@
 .chat-rooms li {
   color: black;
   cursor: pointer;
-  position: relative;
-  left: 0;
   background-color: #EEE;
   margin: .5em;
-  padding: .3em 0.1em;
-  height: 1.6em;
+  padding: .3em 0.3em;
+  /*height: 1.6em;*/
   border-radius: 4px;
 }
 
@@ -68,25 +66,4 @@
 .chat-rooms li.selected:hover {
   background-color: rgb(156, 39, 8);
   color: white;
-}
-
-.chat-rooms .name {
-  padding: 0.2em 0;
-  position: relative;
-  left: 8px;
-}
-
-.chat-rooms .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0.8em 0.7em;
-  background-color:#405061;
-  line-height: 1em;
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  height: 1.8em;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
 }
