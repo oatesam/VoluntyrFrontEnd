@@ -121,6 +121,9 @@
             <div *ngIf="orgregisterForm.controls.orgphoneControl.errors.required">
               Phone is required
             </div>
+            <div *ngIf="orgregisterForm.controls.orgphoneControl.errors.format">
+              Please enter your phone number in XXX-XXX-XXXX format
+            </div>
           </div>
         </div>
       </div>
@@ -214,6 +217,9 @@
           <div *ngIf="volregisterForm.controls.volphonenumberControl.invalid && (volregisterForm.controls.volphonenumberControl.dirty || volregisterForm.controls.volphonenumberControl.touched)" class="center responsive alert alert-danger error">
             <div *ngIf="volregisterForm.controls.volphonenumberControl.errors.required">
               Phone Number is required
+            </div>
+            <div *ngIf="volregisterForm.controls.volphonenumberControl.errors.format">
+              Please enter your phone number in XXX-XXX-XXXX format
             </div>
           </div>
         </div>

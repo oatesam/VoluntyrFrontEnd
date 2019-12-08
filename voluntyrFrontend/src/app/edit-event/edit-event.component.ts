@@ -64,7 +64,7 @@ export class EditEventComponent implements OnInit, CanComponentDeactivate  {
         error1 => {
           console.error(error1);
         }
-      )
+      );
   }
 
   public editEvent() {

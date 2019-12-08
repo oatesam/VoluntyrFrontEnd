@@ -43,7 +43,9 @@ export class RegisterComponent implements OnInit {
       cityControl: new FormControl('', [Validators.required]),
       stateControl: new FormControl('', [Validators.required]),
       orgMottoControl: new FormControl('', []),
-      orgphoneControl: new FormControl('', [Validators.required]),
+      orgphoneControl: new FormControl('', [Validators.required, Validators.minLength(12),
+      Validators.maxLength(12),
+      CustomValidators.patternValidator(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/, {format: true})]),
       passwordControl: new FormControl('', Validators.compose([Validators.required,
       CustomValidators.patternValidator(/\d/, {
               hasNumber: true
@@ -59,7 +61,11 @@ export class RegisterComponent implements OnInit {
     firstNameControl: new FormControl('', [Validators.required]),
     lastNameControl: new FormControl('', [Validators.required]),
     birthDateControl: new FormControl('', [Validators.required]),
-    volphonenumberControl: new FormControl('', [Validators.required]),
+    volphonenumberControl: new FormControl('', [Validators.required,
+      Validators.minLength(12),
+      Validators.maxLength(12),
+      CustomValidators.patternValidator(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/, {format: true})
+    ]),
     volpasswordControl: new FormControl('', Validators.compose([Validators.required,
       CustomValidators.patternValidator(/\d/, {
               hasNumber: true
