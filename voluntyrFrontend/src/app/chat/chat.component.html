@@ -13,10 +13,10 @@
   </div>
   <div *ngIf="selectedChatRoom != null">
     <div class="wrapper-chat">
-      <app-chat-room [chatRoom]="selectedChatRoom"></app-chat-room>
+      <app-chat-room [(chatRoom)]="selectedChatRoom"></app-chat-room>
     </div>
     <div class="wrapper-members">
-      <app-chat-members [chatRoom]="selectedChatRoom"></app-chat-members>
+      <app-chat-members [(chatRoom)]="selectedChatRoom"></app-chat-members>
     </div>
   </div>
 </div>

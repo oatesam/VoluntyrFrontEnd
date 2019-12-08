@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {StatusSocketMessage, ChatRoom, ChatService} from '@app/_services/chat.service';
 import {WebSocketSubject} from 'rxjs/internal-compatibility';
 import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
@@ -11,6 +11,8 @@ import {ChatSocketMessage} from '@app/_models/ChatSocketMessage';
 export class ChatMembersComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() chatRoom: ChatRoom;
+  @Output() chatRoomChange: EventEmitter<ChatRoom> = new EventEmitter<ChatRoom>();
+
   private sender: string;
   public members: StatusSocketMessage[] = new Array<StatusSocketMessage>();
   public selectedMember: StatusSocketMessage;
@@ -73,7 +75,8 @@ export class ChatMembersComponent implements OnInit, OnChanges, OnDestroy {
         console.error("Socket Error");
         console.error(error);
         this.socket = null;
-        window.location.reload();
+        this.chatRoom = null;
+        this.chatRoomChange.emit(null);
       },
       () => {
         console.warn("Complete");
