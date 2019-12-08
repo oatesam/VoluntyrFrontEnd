@@ -15,6 +15,18 @@ export class ChatRoom {
   }
 }
 
+export class TypingSocketMessage {
+  type: string;
+  user: string;
+  typing: string;
+
+  constructor(user, typing) {
+    this.type = "typing_message";
+    this.user = user;
+    this.typing = typing;
+  }
+}
+
 export class StatusSocketMessage {
   type: string;
   room: string;
@@ -35,7 +47,8 @@ export class StatusSocketMessage {
 export class ChatService {
   // https://github.com/joewalnes/reconnecting-websocket
   private _chatRoomAPI = `${environment.apiUrl}` + "/chat/rooms/";
-  private _roomWs = `${environment.wsUrl}` + "/online/";
+  private _roomWs = `${environment.wsUrl}` + "online/";
+  private _typingWs = `${environment.wsUrl}` + "typing/";
   private _chatSocket: WebSocketSubject<ChatSocketMessage>;
 
   private _chatId: string;
@@ -55,9 +68,14 @@ export class ChatService {
     return new WebSocketSubject<ChatSocketMessage>(`${environment.wsUrl}` + 'chat/' + curUser.access + "/" + this._chatId + "/");
   }
 
+  public getTypingSocket() {
+    let curUser = JSON.parse(localStorage.getItem("currentUser"));
+    return new WebSocketSubject<TypingSocketMessage>(this._typingWs + curUser.access + "/" + this._chatId + "/");
+  }
+
   public getStatusSocket() {
     let curUser = JSON.parse(localStorage.getItem("currentUser"));
-    return new WebSocketSubject<StatusSocketMessage>(`${environment.wsUrl}` + 'online/' + curUser.access + "/");
+    return new WebSocketSubject<StatusSocketMessage>(this._roomWs + curUser.access + "/");
   }
 
 

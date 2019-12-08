@@ -26,9 +26,14 @@
       </div>
     </div>
     <div class="footer">
+      <div class="typing">
+        <span *ngIf="typing.length > 0">
+          {{getTypingMessage()}}
+        </span>
+      </div>
       <form  #form="ngForm" (ngSubmit)="send()" autocomplete="off">
         <input required name="clientMessage" placeholder="Enter a message" type="text"
-               [(ngModel)]="clientMessage">
+               [(ngModel)]="clientMessage" (focusin)="sendTypingUpdate(true)" (focusout)="sendTypingUpdate(false)">
         <button [ngClass]="{'btn-success': form.valid}" type="submit" [disabled]="form.invalid">
           send
         </button>
