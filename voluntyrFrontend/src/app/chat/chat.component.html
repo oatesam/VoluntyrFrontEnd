@@ -4,12 +4,12 @@
     <p *ngIf="selectedChatRoom == null">
       Click a chat room below to get started.
     </p>
-    <div *ngIf="chatRooms.length === 0">
+    <div *ngIf="chatRooms?.length === 0">
       <h4>
         You are not apart of any chat rooms.
       </h4>
     </div>
-    <div *ngIf="chatRooms.length > 0">
+    <div *ngIf="chatRooms?.length > 0">
       <button *ngIf="selectedChatRoom" class="btn btn-danger" (click)="leaveChat()">Leave Chat</button>
       <ul class="chat-rooms">
         <li *ngFor="let chat of chatRooms" [class.selected]="chat.id === selectedChatRoom?.id"
