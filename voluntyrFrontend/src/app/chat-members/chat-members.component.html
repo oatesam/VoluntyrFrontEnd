@@ -1,11 +1,9 @@
 <div class="wrapper">
   <h1>Members</h1>
   <ul class="members">
-  <!--    TODO: Add private chat on each click-->
     <li *ngFor="let member of members" [class.selected]="member === selectedMember" (click)="selectMember(member)">
       <div class="badge"
            [style.backgroundColor]="getBackground(member)"></div>
-  <!--      TODO: Add unread for each-->
       <span class="name"> {{member.user}}</span>
     </li>
   </ul>
