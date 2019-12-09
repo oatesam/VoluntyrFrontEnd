@@ -1,10 +1,18 @@
-.wrapper-rooms {
-  float: left;
+.outer {
+  min-width: 40em;
+  height: 50em;
+  border-radius: 0.8em;
   background-color: #666666;
   background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
+}
+
+.wrapper-rooms {
+  border-radius: 0.8em;
+  background-color: #666666;
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
+  float: left;
   display: block;
   align-items: center;
-  border-radius: 0.8em 0 0 0.8em;
   padding: 1em;
   margin: 0;
   text-align: center;
@@ -29,10 +37,6 @@
   margin: 0;
   min-height: 40em;
   /*padding: 1em;*/
-}
-
-.outer {
-  min-width: 20em;
 }
 
 .chat-rooms {
