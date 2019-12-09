@@ -4,49 +4,54 @@
     <form [formGroup]="loginForm">
       <div class="form-group">
         <alert> </alert>
-        <h3>Event Title</h3>
+        <h3 style="text-align: left">Event Title</h3>
         <input
           type="text"
           class="form-control"
           name="title"
           formControlName="title"
+          style="width: 50%; height: 27.5px"
         />
       </div>
       <div class="form-group">
-        <h3>Location</h3>
+        <h3 style="text-align: left">Location</h3>
         <input
           type="text"
           class="form-control"
           name="location"
           formControlName="location"
+          style="width: 50%; height: 27.5px"
         />
       </div>
       <div class="form-group">
-        <h3>Date</h3>
+        <h3 style="text-align: left">Date</h3>
         <input
           type="date"
           class="form-control"
           name="date"
-          formControlName="eventdate"/>
+          formControlName="eventdate"
+          style="width: 50%; height: 27.5px"/>
       </div>
       <div class="form-group">
-        <h3>Start Time</h3>
+        <h3 style="text-align: left">Start Time</h3>
         <input
         type="datetime-local"
         class="form-control"
         name="startime"
-        formControlName="starttime">
+        formControlName="starttime"
+        style="width: 50%; height: 27.5px">
       </div>
       <div class="form-group">
-        <h3>End Time</h3>
+        <h3 style="text-align: left">End Time</h3>
         <input
         type="datetime-local"
         class="form-control"
         name="endtime"
-        formControlName="endtime">
+        formControlName="endtime"
+        style="width: 50%; height: 27.5px">
       </div>
       <div class="form-group">
-        <h3>Description</h3>
+        <h3 style="text-align: left">Description</h3>
         <br />
         <textarea
           class="form-control"
@@ -76,7 +81,7 @@
     <h4>
       {{numberOfVols}} volunteer(s) have registered for your {{event?.title}}.
     </h4>
-    <button (click)="messageVolunteers()" class="btn btn-lg btn-primary"> Email the Registered Volunteers </button>
+    <button (click)="messageVolunteers()" class="btn btn-lg btn-primary"> Email all the Registered Volunteers </button>
     <h4>
       Here are the Registered Volunteers:
     </h4>

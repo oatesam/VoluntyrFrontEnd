@@ -1,13 +1,16 @@
 input{
-  text-align: center;
+  text-align: left;
   padding: 8px 12px;
   text-decoration: none;
   font-size: 16px;
   color: black;
-  width:150px;
-  max-width: 60%;
-  min-width: 40%;
+  width: 100%;
+  height: 27.5px;
+}
 
+select{
+  width: 100%;
+  height: 27.5px;
 }
 
 div.logreg{
@@ -20,7 +23,6 @@ button.register {
   border: none;
   color: white;
   padding: 15px 32px;
-  text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -39,6 +41,10 @@ h3 {
 }
 
 h4 {
+  color: white;
+}
+
+h5 {
   color: white;
 }
 
@@ -88,5 +94,23 @@ ngb-datepicker.dropdown-menu.registerdate {
 }
 .ngb-dp-month .ngb-dp-week:last-child {
   padding-bottom: 100rem;
+}
+
+.error {
+ padding: 3px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 1.5px;
+  /*padding: 40px;
+  height: 0px;*/
+}
+
+/* Clear floats after the columns */
+.row {
+  overflow: hidden;
+  padding: 1.5px;
 }
 

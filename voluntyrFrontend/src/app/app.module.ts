@@ -34,12 +34,33 @@ import {EmailInputWrapperComponent} from './email-input-wrapper/email-input-wrap
 import {EditEventComponent} from './edit-event/edit-event.component';
 import {LoginwrapperComponent} from '@app/loginwrapper/loginwrapper.component';
 import {RegisterwrapperComponent} from '@app/registerwrapper/registerwrapper.component';
-import { VolunteerOrganizationComponent } from './volunteer-organization/volunteer-organization.component';
-import { DualauthComponent } from './dualauth/dualauth.component';
-import { InvitePopupComponent } from './invite-popup/invite-popup.component';
-import { CopyToClipboardDirective } from './_helpers/copy-to-clipboard.directive';
-import { SingleEventWrapperComponent } from './single-event-wrapper/single-event-wrapper.component';
-import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.component';
+import {VolunteerOrganizationComponent} from './volunteer-organization/volunteer-organization.component';
+import {DualauthComponent} from './dualauth/dualauth.component';
+import {InvitePopupComponent} from './invite-popup/invite-popup.component';
+import {CopyToClipboardDirective} from './_helpers/copy-to-clipboard.directive';
+import {SingleEventWrapperComponent} from './single-event-wrapper/single-event-wrapper.component';
+import {VolunteerInviteComponent} from './volunteer-invite/volunteer-invite.component';
+import {RateEventsComponent} from './rate-events/rate-events.component';
+import {RateEventComponent} from './rate-event/rate-event.component';
+import {RatingPopupComponent} from './rating-popup/rating-popup.component';
+import {ChatComponent} from './chat/chat.component';
+import {ChatRoomComponent} from './chat-room/chat-room.component';
+import {ChatMembersComponent} from './chat-members/chat-members.component';
+import {RecoverPasswordComponent} from './recover-password/recover-password.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {AuthServiceConfig, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("919398156388-sjt9psu2k5jvmsjtsh3v7hbi650offju.apps.googleusercontent.com")
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -72,6 +93,14 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
     CopyToClipboardDirective,
     SingleEventWrapperComponent,
     VolunteerInviteComponent,
+    RateEventsComponent,
+    RateEventComponent,
+    RatingPopupComponent,
+    RecoverPasswordComponent,
+    ResetPasswordComponent,
+    ChatComponent,
+    ChatRoomComponent,
+    ChatMembersComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +116,7 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxSpinnerModule,
+    SocialLoginModule
   ],
   providers: [
     HttpClientModule,
@@ -103,12 +133,17 @@ import { VolunteerInviteComponent } from './volunteer-invite/volunteer-invite.co
       useClass: ErrorInterceptor,
       multi: true
     },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [
     AppComponent,
   ],
   entryComponents: [
     InvitePopupComponent,
+    RatingPopupComponent,
   ]
 })
 export class AppModule {}

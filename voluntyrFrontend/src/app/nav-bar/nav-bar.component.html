@@ -1,40 +1,39 @@
 <div class="navtext">
-  &nbsp;
-  <div class="leftnav">
-    <!--<a routerLink="/">-->
-      <!--Home-->
-    <!--</a>-->
-    &nbsp;
-    &nbsp;
-    <a *ngIf="showOrganization" routerLink="/Organization">
-      Dashboard
-    </a>
-    &nbsp;
-    <a *ngIf="showVolunteer" routerLink="/Volunteer">
-      Dashboard
-    </a>
-    &nbsp;
-     <a *ngIf="showVolunteer" routerLink="/Events">
-      Events
-    </a>
-    <!--<a routerLink="/Support">-->
-      <!--Support-->
-    <!--</a>-->
-    <!--&nbsp;-->
-    <!--<a routerLink="/Account">-->
-      <!--Account-->
-    <!--</a>-->
-  </div>
-  <div class="rightnav">
-    <ng-container *ngIf="!logged">
-      <a routerLink="email-input" class="rightnav ">
-        Login
-      </a>
-    </ng-container>
-    <ng-container *ngIf="logged">
-      <a routerLink="/" class="rightnav" (click)="navLogout()">
-        Logout
-      </a>
-    </ng-container>
+  <div class="row">
+    <div class="column">
+      <div class="leftnav">
+        <a *ngIf="showOrganization || showVolunteer" routerLink="/Chat">
+          Chat
+        </a>
+        <a *ngIf="showOrganization" routerLink="/Organization">
+          Dashboard
+        </a>
+        <a *ngIf="showVolunteer" routerLink="/Volunteer">
+          Dashboard
+        </a>
+        <a *ngIf="showVolunteer" routerLink="/Events">
+          Events
+        </a>
+      </div>
+    </div>
+    <div class="special column">
+      <div class="centernav">
+        <h1 style="color: whitesmoke;"><i>VOLUNTYRS</i></h1>
+      </div>
+    </div>
+    <div class="column">
+      <div class="rightnav">
+        <ng-container *ngIf="!logged">
+          <a routerLink="email-input" class="rightnav ">
+            Login
+          </a>
+        </ng-container>
+        <ng-container *ngIf="logged">
+          <a routerLink="/" class="rightnav" (click)="navLogout()">
+            Logout
+          </a>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>

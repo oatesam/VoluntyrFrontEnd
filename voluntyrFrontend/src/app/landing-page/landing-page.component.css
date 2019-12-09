@@ -31,3 +31,11 @@ div.wrapper{
 h4.email-input {
   color: white;
 }
+
+a {
+  color: darkred;
+  margin: 0;
+  font-size: 25px;
+  text-align: center;
+  alignment: center;
+}

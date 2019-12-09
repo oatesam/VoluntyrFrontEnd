@@ -6,6 +6,10 @@ import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { ReturnStatement } from "@angular/compiler";
+import {CanComponentDeactivate, CanDeactivateGuard} from "@app/_helpers/can-deactivate.guard";
+import {DialogService} from "@app/_services/dialog.service";
+import {EventsService} from '@app/_services/events.service';
+
 @Component({
   selector: "app-new-event",
   templateUrl: "./new-event.component.html",
@@ -13,6 +17,7 @@ import { ReturnStatement } from "@angular/compiler";
 })
 // TODO: Should be rewritten using FormGroups and FormControls
 export class NewEventComponent implements OnInit {
+  submitted: boolean = false;
   public title;
   public location;
   public start_time;
@@ -32,7 +37,8 @@ export class NewEventComponent implements OnInit {
     private http: HttpClient,
     private OrganizationService: OrganizationService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {}
@@ -87,4 +93,5 @@ export class NewEventComponent implements OnInit {
       }
     });
   }
+
 }

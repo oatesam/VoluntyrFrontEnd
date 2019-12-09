@@ -18,6 +18,12 @@ import {DualauthComponent} from "@app/dualauth/dualauth.component";
 import {SingleEventWrapperComponent} from '@app/single-event-wrapper/single-event-wrapper.component';
 import {VolunteerInviteComponent} from '@app/volunteer-invite/volunteer-invite.component';
 import {AuthGuard} from '@app/_helpers/auth.guard';
+import {RecoverPasswordComponent} from "@app/recover-password/recover-password.component";
+import {ResetPasswordComponent} from "@app/reset-password/reset-password.component";
+import {RateEventsComponent} from '@app/rate-events/rate-events.component';
+import {EmailInputComponent} from "@app/email-input/email-input.component";
+import {RegisterComponent} from "@app/register/register.component";
+import {ChatComponent} from '@app/chat/chat.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -25,12 +31,17 @@ const routes: Routes = [
   // basically the same as below, just replace 'ExampleComponent'
   // {path: '', component: ExampleComponent, canActivate: [AuthGuard]},
   // will uncomment the above line once AuthGuard is integrated
-  { path: "email-input", component: EmailInputWrapperComponent },
+  { path: "email-input", component: EmailInputComponent },
   { path: "login", component: LoginwrapperComponent },
   { path: "register", component: RegisterwrapperComponent },
   {
     path: 'DualAuth',
     component: DualauthComponent
+  },
+  { path: "recoverpassword", component: RecoverPasswordComponent},
+  {
+    path: "recoverpassword/:id",
+    component: ResetPasswordComponent
   },
   {
     path: "Events",
@@ -39,6 +50,11 @@ const routes: Routes = [
     data: {
       expectedRole: "volunteer"
     }
+  },
+  {
+    path: "Chat",
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "Organization",
@@ -54,7 +70,8 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "organization"
-    }
+    },
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: "Organization/:id",
@@ -101,6 +118,14 @@ const routes: Routes = [
   {
     path: "Invite/:invite",
     component: VolunteerInviteComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: "volunteer"
+    }
+  },
+  {
+    path: "Ratings",
+    component: RateEventsComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: "volunteer"

@@ -44,6 +44,10 @@ export class VolunteerDashboardComponent implements OnInit {
     this.router.navigateByUrl("Events");
   }
 
+  public routeToRatings() {
+    this.router.navigateByUrl("Ratings");
+  }
+
   public getEvents() {
     this.VolunteerService.getEvents(this.token).subscribe(
       data => {

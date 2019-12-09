@@ -15,7 +15,10 @@
         <div class="col-md-6"><h1>Registered Events</h1></div>
         <div class="col-md-6">
           <button class="btn btn-primary" (click)="routeToEvents()">
-            Register or Unregister<br>for events
+            Register or Unregister<br />for events
+          </button>
+          <button class="btn btn-primary" (click)="routeToRatings()">
+            Rate Past Events
           </button>
         </div>
       </div>
@@ -23,6 +26,9 @@
         *ngFor="let event of events"
         [event]="event"
       ></app-individual-event-summary>
+      <h3 *ngIf="this.events?.length == 0">
+        You aren't registered for any events. Click on "Register Event" to signup for the upcoming events.
+      </h3>
     </div>
   </div>
 </div>

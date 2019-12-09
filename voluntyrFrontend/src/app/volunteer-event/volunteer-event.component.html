@@ -3,6 +3,10 @@
   <h4 *ngIf="showOrg"><fa-icon [icon]="faLandmark"></fa-icon>
     <a routerLink="/Organization/{{event.organization.id}}">{{ event.organization.name }}</a>
   </h4>
+  <h5>
+    <fa-icon [icon]="faRating"></fa-icon> {{event.organization.rating}} star rating from
+          {{event.organization.raters}} volunteers
+  </h5>
   <h5><fa-icon [icon]="faMapPin"></fa-icon>{{ event.location }}</h5>
   <h5>
     <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -18,4 +22,11 @@
   </p>
   <button *ngIf="!signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Register for this event</button>
   <button *ngIf="signedup" type="button" (click)="signUpEvent()" class="btn btn-primary btn-lg">Unregister for this event</button>
+</div>
+<div class="spinner">
+  <ngx-spinner>
+    <h1>
+      Please wait while we sign you up...
+    </h1>
+  </ngx-spinner>
 </div>

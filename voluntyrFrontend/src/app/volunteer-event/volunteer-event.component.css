@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #537aa1;
+  background-color: #92a8d1;
   /*background-image: radial-gradient(rgba(64, 64, 64,1) , rgba(64, 64, 64,0));*/
   display: block;
   align-items: center;
@@ -21,4 +21,9 @@ a {
 fa-icon {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.spinner {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
 }

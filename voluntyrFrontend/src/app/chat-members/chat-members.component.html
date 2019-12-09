@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <h1>Members</h1>
+  <ul class="members">
+    <li *ngFor="let member of members" [class.selected]="member === selectedMember" (click)="selectMember(member)">
+      <div class="badge"
+           [style.backgroundColor]="getBackground(member)"></div>
+      <span class="name"> {{member.user}}</span>
+    </li>
+  </ul>
+</div>

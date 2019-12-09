@@ -5,8 +5,8 @@ import {
   faEnvelopeOpen,
   faRibbon,
   faLandmark,
-  faMapPin
-} from "@fortawesome/free-solid-svg-icons";
+  faMapPin, faStar
+} from '@fortawesome/free-solid-svg-icons';
 import { OrganizationService } from "../_services/organization.service";
 import { organization } from "../_models/organization";
 import { Event } from '@app/_models/Event';
@@ -25,6 +25,7 @@ export class OrganizerDashboardComponent implements OnInit {
   faRibbon = faRibbon;
   faLandmark = faLandmark;
   faMapPin = faMapPin;
+  faRating = faStar;
   //
 
   constructor(

@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountsService} from '../_services/accounts.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AlertService} from '@app/_services/alert.service';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import {environment} from '@environments/environment';
+import {CustomValidators} from "@app/custom-validator/custom-validators";
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   constructor(private accountService: AccountsService,
               private router: Router,
               private route: ActivatedRoute,
-              private alert: AlertService
+              private alert: AlertService,
+              public fb: FormBuilder
   ) {  }
 
   dateStruct: NgbDateStruct;
@@ -29,41 +31,51 @@ export class RegisterComponent implements OnInit {
   public curReg: any = 'a Volunteer';
   public CAPTCHAKEY = `${environment.captchaKey}`;
 
-  firstname = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1) ]);
-  lastname = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  birthday: string;
   emailControl = new FormControl('', [
         Validators.required,
         Validators.minLength(8),
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}'),
         Validators.email]);
-  password = new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)]);
-  passwordconfirm = new FormControl('');
-  orgname = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  address = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  city = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  state = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  motto = new FormControl();
-  phonenumber = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
-  volphonenumber = new FormControl('', [
-        Validators.required,
-        Validators.minLength(1)]);
+
+  orgregisterForm = this.fb.group({
+      orgNameControl: new FormControl('', [Validators.required]),
+      orgAddressControl: new FormControl('', [Validators.required]),
+      cityControl: new FormControl('', [Validators.required]),
+      stateControl: new FormControl('', [Validators.required]),
+      orgMottoControl: new FormControl('', []),
+      orgphoneControl: new FormControl('', [Validators.required, Validators.minLength(12),
+      Validators.maxLength(12),
+      CustomValidators.patternValidator(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/, {format: true})]),
+      passwordControl: new FormControl('', Validators.compose([Validators.required,
+      CustomValidators.patternValidator(/\d/, {
+              hasNumber: true
+            }), CustomValidators.patternValidator(/[A-Z]/, {
+              hasCapitalCase: true
+            }), CustomValidators.patternValidator(/[a-z]/, {
+              hasSmallCase: true
+            }), Validators.minLength(8)])),
+      confirmpasswordControl: new FormControl('', [Validators.required]),
+  });
+
+  volregisterForm = this.fb.group({
+    firstNameControl: new FormControl('', [Validators.required]),
+    lastNameControl: new FormControl('', [Validators.required]),
+    birthDateControl: new FormControl('', [Validators.required]),
+    volphonenumberControl: new FormControl('', [Validators.required,
+      Validators.minLength(12),
+      Validators.maxLength(12),
+      CustomValidators.patternValidator(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/, {format: true})
+    ]),
+    volpasswordControl: new FormControl('', Validators.compose([Validators.required,
+      CustomValidators.patternValidator(/\d/, {
+              hasNumber: true
+            }), CustomValidators.patternValidator(/[A-Z]/, {
+              hasCapitalCase: true
+            }), CustomValidators.patternValidator(/[a-z]/, {
+              hasSmallCase: true
+            }), Validators.minLength(8)])),
+    confirmvolpasswordControl: new FormControl('', Validators.compose([Validators.required]))
+  });
   captchaResolved = false;
 
   toggle() {
@@ -92,53 +104,36 @@ export class RegisterComponent implements OnInit {
 
   verifyVolunteerRegistration() {
     this.email = this.email.toLowerCase();
-    if (!this.firstname.valid || !this.lastname.valid) {
-      this.alert.error('Please enter your name');
-    } else if (!this.dateStruct) {
-      this.alert.error('Please choose your birthday in calendar');
-    } else if (!this.emailControl.valid) {
-      this.alert.error('Invalid email');
-    } else if (!this.password.valid) {
-      this.alert.error('Invalid password');
-    } else if (this.password.value !== this.passwordconfirm.value) {
-      this.alert.error('Passwords don\'t match');
+    console.log('FName', this.volregisterForm.controls.firstNameControl.value);
+    console.log('LName', this.volregisterForm.controls.lastNameControl.value);
+    console.log('DOB', this.volregisterForm.controls.birthDateControl.value);
+    console.log('Password', this.volregisterForm.controls.volpasswordControl.value);
+    if (!this.emailControl.valid) {
+      alert('Invalid email');
+    } else if (this.volregisterForm.controls.volpasswordControl.value !== this.volregisterForm.controls.confirmvolpasswordControl.value) {
+      alert('Passwords don\'t match');
     } else if (!this.captchaResolved) {
        this.alert.error('Submit captcha before logging in.');
     } else {
-       this.birthday = '' + this.dateStruct.year.toString() + '-' + this.dateStruct.month.toString() + '-' + this.dateStruct.day.toString();
+       console.log('else');
        this.accountService.registerVolunteer(
-        this.firstname.value,
-        this.lastname.value,
+        this.volregisterForm.controls.firstNameControl.value,
+        this.volregisterForm.controls.lastNameControl.value,
         this.emailControl.value,
-        this.password.value,
-        this.volphonenumber.value,
-        this.birthday).subscribe(
+        this.volregisterForm.controls.volpasswordControl.value,
+        this.volregisterForm.controls.volphonenumberControl.value,
+        this.volregisterForm.controls.birthDateControl.value).subscribe(
         resp => {
           console.log(resp);
-          this.route.queryParams.subscribe(
-              params => {
-                let returnTo = params['returnUrl'];
-                if (returnTo == null) {
-                  if (resp.status === 201) {
-                    console.log(resp);
-                    this.router.navigateByUrl('login');
-                  } else if (resp.status === 409) {
-                    console.log(resp);
-                    alert("This email already has an account. Please login at the next page.");
-                    this.router.navigateByUrl('login');
-                  }
-                } else {
-                  if (resp.status === 201) {
-                    console.log(resp);
-                    this.router.navigate(['login'], { queryParams: { returnUrl: returnTo } });
-                  } else if (resp.status === 409) {
-                    console.log(resp);
-                    alert("This email already has an account. Please login at the next page.");
-                    this.router.navigate(['login'], { queryParams: { returnUrl: returnTo } });
-                  }
-                }
-              }
-            );
+          console.log(resp.status);
+          if (resp.status === 201) {
+            console.log(resp);
+            this.router.navigateByUrl('login');
+          } else if (resp.status === 409) {
+            console.log(resp);
+            alert("This email already has an account. Please login at the next page.");
+            this.router.navigateByUrl('login');
+          }
         }, error1 => {
           alert("There was a problem with your registration. Please try again later.");
           // TODO: Make this more user friendly
@@ -149,20 +144,30 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyOrganizationRegistration() {
+    console.log('Name', this.orgregisterForm.controls.orgNameControl.value);
+    console.log('Email', this.email);
+    console.log('Password', this.orgregisterForm.controls.passwordControl.value);
+    console.log('Address', this.orgregisterForm.controls.orgAddressControl.value);
+    console.log('Phone', this.orgregisterForm.controls.orgphoneControl.value);
+    console.log('City', this.orgregisterForm.controls.cityControl.value);
+    console.log('State', this.orgregisterForm.controls.stateControl.value);
+    console.log('Motto', this.orgregisterForm.controls.orgMottoControl.value);
     if (!this.emailControl.valid) {
-      this.alert.error('Invalid email');
-    } else if (this.password.value !== this.passwordconfirm.value) {
-      this.alert.error('Passwords don\'t match');
+      alert('Invalid email');
+    } else if (this.orgregisterForm.controls.passwordControl.value !== this.orgregisterForm.controls.confirmpasswordControl.value) {
+      alert('Passwords dont match');
+    } else if (!this.captchaResolved) {
+       alert('Submit captcha before logging in.');
     } else {
       this.accountService.registerOrganization(
-        this.orgname.value,
+        this.orgregisterForm.controls.orgNameControl.value,
         this.emailControl.value,
-        this.password.value,
-        this.address.value,
-        this.phonenumber.value,
-        this.city.value,
-        this.state.value,
-        this.motto.value).subscribe(
+        this.orgregisterForm.controls.passwordControl.value,
+        this.orgregisterForm.controls.orgAddressControl.value,
+        this.orgregisterForm.controls.orgphoneControl.value,
+        this.orgregisterForm.controls.cityControl.value,
+        this.orgregisterForm.controls.stateControl.value,
+        this.orgregisterForm.controls.orgMottoControl.value).subscribe(
         resp => {
           if (resp.status === 201) {
             this.router.navigateByUrl('login');
