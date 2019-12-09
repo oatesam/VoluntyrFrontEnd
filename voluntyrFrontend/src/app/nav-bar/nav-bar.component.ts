@@ -41,7 +41,7 @@ export class NavBarComponent implements OnInit {
       if (tokenScope === "volunteer") {
         this.showVolunteer = true;
         this.showOrganization = false;
-      } else if (tokenScope === "organization" && dualAuth === "true") {
+      } else if (tokenScope === "organization") {
         this.showOrganization = true;
         this.showVolunteer = false;
       } else {
