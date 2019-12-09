@@ -1,14 +1,20 @@
 <div class="outer">
   <div class="wrapper-rooms">
     <h1>Voluntyr Chat</h1>
-  <!--  TODO: Add no chat-room placeholder -->
-    <button *ngIf="selectedChatRoom" class="btn-danger" (click)="leaveChat()">Leave Chat</button>
-    <ul class="chat-rooms">
-      <li *ngFor="let chat of chatRooms" [class.selected]="chat.id === selectedChatRoom?.id"
-          (click)="selectChatRoom(chat)">
-        {{chat.name}}
-      </li>
-    </ul>
+    <div *ngIf="chatRooms.length === 0">
+      <h4>
+        You are not apart of any chat rooms.
+      </h4>
+    </div>
+    <div *ngIf="chatRooms.length > 0">
+      <button *ngIf="selectedChatRoom" class="btn-danger" (click)="leaveChat()">Leave Chat</button>
+      <ul class="chat-rooms">
+        <li *ngFor="let chat of chatRooms" [class.selected]="chat.id === selectedChatRoom?.id"
+            (click)="selectChatRoom(chat)">
+          {{chat.name}}
+        </li>
+      </ul>
+    </div>
   </div>
   <div *ngIf="selectedChatRoom != null">
     <div class="wrapper-chat">
