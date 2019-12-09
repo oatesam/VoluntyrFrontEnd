@@ -238,7 +238,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   public read(message: ChatSocketMessage) {
-    if (message.status != "Read") {
+    if (message.status != "Read" && message.sender != this.sender) {
       message.type = "status_message";
       message.status = "Read";
       this.chatSocket.next(message)
@@ -246,7 +246,7 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   public onScroll() {
-    if (this.getDiff() <= 3) {
+    if (this.getDiff() <= 4) {
       for (let msg of this.messages) {
         this.read(msg);
       }
@@ -258,12 +258,10 @@ export class ChatRoomComponent implements OnInit, OnDestroy, OnChanges, AfterVie
   }
 
   private scroll(): void {
-    if (this.getDiff() <= 3) {
-      this.onScroll();
-    } else {
+    if (this.getDiff() <= 2) {
       setTimeout(() => {
         this.scrollDown()
-      }, 10);
+      }, 50);
     }
   }
 
