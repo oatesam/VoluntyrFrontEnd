@@ -23,6 +23,7 @@ import {ResetPasswordComponent} from "@app/reset-password/reset-password.compone
 import {RateEventsComponent} from '@app/rate-events/rate-events.component';
 import {EmailInputComponent} from "@app/email-input/email-input.component";
 import {RegisterComponent} from "@app/register/register.component";
+import {ChatComponent} from '@app/chat/chat.component';
 
 const routes: Routes = [
   { path: "", component: LandingPageComponent },
@@ -49,6 +50,11 @@ const routes: Routes = [
     data: {
       expectedRole: "volunteer"
     }
+  },
+  {
+    path: "Chat",
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "Organization",

@@ -22,3 +22,8 @@ fa-icon {
   margin-right: 5px;
   margin-left: 5px;
 }
+
+.spinner {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));
+}

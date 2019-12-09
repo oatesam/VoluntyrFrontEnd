@@ -1,0 +1,132 @@
+.wrapper {
+  background-color: #555;
+  /*background-image: radial-gradient(rgba(64, 64, 64, 1), rgba(64, 64, 64, 0));*/
+  /*display: block;*/
+  /*align-items: center;*/
+  border-radius: 0 0.8em 0.8em 0;
+  padding: 15px;
+  /*margin: 1em;*/
+  /*text-align: center;*/
+  color: white;
+  /*padding-left: 2% !important;*/
+  /*padding-right: 2% !important;*/
+}
+
+.ctn {
+	 display: flex;
+	 justify-self: center;
+	 /*width: 40%;*/
+	 /*background-color: lightgray;*/
+	 flex-flow: column;
+}
+
+.header, .footer {
+	 background-color: #555;
+	 padding: 1rem;
+	 display: flex;
+	 justify-self: center;
+	 line-height: 2rem;
+	 border-bottom: 1px solid #444;
+}
+
+.footer {
+  display: block;
+}
+
+.footer .typing {
+  font-size: xx-small;
+  height: 2em;
+}
+
+form {
+	 display: flex;
+   color: black;
+	 width: 100%;
+}
+
+form input{
+  width: 90%;
+}
+
+button {
+  margin-left: 0.5em;
+  min-width: 5em;
+  width: 15%;
+}
+
+button[disabled] {
+  background-color: #666;
+  color: #666;
+  cursor: not-allowed;
+  outline-color: #666;
+}
+
+.body {
+	 min-height: 30rem;
+	 max-height: 40rem;
+	 background-color: #454545;
+	 display: flex;
+	 flex-flow: column;
+	 overflow-y: auto;
+}
+
+.body .viewer {
+	 display: flex;
+	 flex-direction: column;
+	 flex: none;
+}
+
+.body .viewer .message {
+  width: 60%;
+  display: flex;
+  flex-flow: row;
+  margin: 0 1rem;
+  padding: 0.5rem;
+}
+
+.body .viewer .message .status {
+  text-align: right;
+  font-size: xx-small;
+  padding: 0.2em;
+  margin-right: 0.5em;
+  color: lightgrey;
+}
+
+.body .viewer .message .content {
+  padding: 0.75rem;
+  min-width: 3em;
+  min-height: 2.6em;
+  /*margin-left: 0.5rem;*/
+  /*margin-right: 0.5rem;*/
+  /*line-height: 2rem;*/
+  background-color: #b2bbbf;
+  border-radius: 0 0 0.8em 0.8em;
+  color: black;
+  text-align: center;
+  /*display: flex;*/
+  /*flex: 1;*/
+  /*font-size: medium;*/
+}
+
+.body .viewer .message.mine {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+}
+
+.body .viewer .message.mine .content {
+  width: 100%;
+  align-self: flex-end;
+  border-radius: 0.8em;
+  color: #d6d6d6;
+  background-color: #004cee;
+}
+
+.body .viewer .message .badge {
+	 border-radius: 0.8em 0.8em 0 0;
+	 background-color: #888;
+	 width: 100%;
+	 height: 2.5rem;
+	 text-align: center;
+	 line-height: 2.5rem;
+	 font-size: 1.5rem;
+}

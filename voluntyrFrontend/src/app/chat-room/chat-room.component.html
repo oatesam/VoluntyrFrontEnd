@@ -1,0 +1,43 @@
+<div class="ctn">
+  <div class="wrapper">
+    <div class="header">
+      <h1>
+        {{this.chatRoom.name}}
+      </h1>
+    </div>
+    <div class="body" #autoscroll (scroll)="onScroll()">
+      <div class="viewer" >
+        <div class="message" *ngFor="let msg of messages" [ngClass]="{'mine': isMine(msg)}">
+          <div *ngIf="msg.type === 'chat_message' || msg.type === 'status_message'">
+            <div>
+              <div class="badge" *ngIf="!isMine(msg)"
+                  [style.backgroundColor]="getSenderColor(msg.sender)" [style.color]="getTextColor(msg.sender)">
+                {{msg.sender}}
+              </div>
+              <div class="content" [ngClass]="{'mine': isMine(msg)}">
+                {{msg.message}}
+              </div>
+              <div class="status" *ngIf="isMine(msg)">
+                {{msg.status}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="typing">
+        <span *ngIf="typing.length > 0">
+          {{getTypingMessage()}}
+        </span>
+      </div>
+      <form  #form="ngForm" (ngSubmit)="send()" autocomplete="off">
+        <input required name="clientMessage" placeholder="Enter a message" type="text"
+               [(ngModel)]="clientMessage" (focusin)="sendTypingUpdate(true)" (focusout)="sendTypingUpdate(false)">
+        <button [ngClass]="{'btn-success': form.valid}" type="submit" [disabled]="form.invalid">
+          send
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

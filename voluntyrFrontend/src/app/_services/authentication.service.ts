@@ -54,6 +54,7 @@ export class AuthenticationService {
           this.logged = true;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("currentUser", JSON.stringify(user));
+          localStorage.setItem("sender", email);
           // localStorage.setItem('currentUser', JSON.stringify(user));
           // To retrieve the current user
           // let curUser = localStorage.getItem(currentUser);
@@ -72,6 +73,8 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("sender");
+    localStorage.removeItem("refreshingToken");
     this.logged = false;
     this.currentUserSubject.next(null);
     this.getLogged.emit(false);
