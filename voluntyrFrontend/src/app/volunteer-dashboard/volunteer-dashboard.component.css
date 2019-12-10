@@ -24,3 +24,9 @@ h1 {
 .inner {
   margin-bottom: 5%;
 }
+
+
+.ctrlBtn {
+  width: 12em;
+  margin: 0.2em;
+}
