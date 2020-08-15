@@ -21,8 +21,11 @@ Collaborators:
 ## Components
 
 Frontend - Angular (https://github.com/oatesam/VoluntyrFrontEnd)
+ 
 Backend - Django REST (https://github.com/oatesam/VoluntyrBackEnd)
+
 Database - PostgreSQL (database not included in version control)
+
 Deployment - Heroku (Formerly at https://voluntyr.herokuapp.com/)
 
 ### Volunteer Flow
