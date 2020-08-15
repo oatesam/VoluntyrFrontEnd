@@ -1,83 +1,55 @@
 # Voluntyr: Volunteer Management System
-# FrontEnd Development Branch
+## FrontEnd Development Branch
 
 A webapp for volunteer and charitable groups to connect and organize for positive action.
 
 ___
 By:
-- Luke Ritchie
+- Sam Oates
+
+Collaborators:
+- Chenxu Wang
+- Charles Frank
+- Nikhil Mankame
 
 
 >#### Disclaimer
 >
->This repository used to house a Django application, this was the old version of the application. It has since been split into 3 components and is being rebuilt. To find that application, you can go here: https://github.com/Ritchieluk/OldBrainDump
+>This repository is a migration from a version hosted on Indiana University's Enterprise version of Github.
+>Webapp was formerly hosted on heroku (https://voluntyr.herokuapp.com/) but discontinued due to expense.
 
 ## Components
 
-Brain.Dump can be split into three major components: a journaling site that can create animate journals, 
-a reinforcement-learned algorithm that acts as an interpreter for analyzing the entries, and an api to communicate between the components and database.
+Frontend - Angular (https://github.com/oatesam/VoluntyrFrontEnd)
+Backend - Django REST (https://github.com/oatesam/VoluntyrBackEnd)
+Database - PostgreSQL (database not included in version control)
+Deployment - Heroku (Formerly at https://voluntyr.herokuapp.com/)
 
-### The Journal
+### Volunteer Flow
 ___
-*The Journal* will be a website allowing you to write and save a journal entry, and then submit once you have
-finished writing it. Upon submission it will be sent to the interpreter to be analyzed.
-Emotionally charged words will be picked up by the Interpreter. The Interpreter will send back a JSON containing the information required by the Journal to animate it and create an image.
+The base url would return the landing page, describing the site's functionality and a portal to login to either the volunteer dashboard. The dashboard would allow volunteers to connect with organizations through the Search function, using any number of powerful filters. After signing up for an event, the volunteer is automatically added to an organization-moderated group-message, where orgs can administer more nuanced information and answer any volunteer questions. They are also emailed an invite link to Voluntyr page where the event is posted, allowing a volunteer to invite anyone else to participate.
 
-You can find examples of this animation here:
-- http://www.cs.uky.edu/~ldri225/braindump/test.php
-- http://www.cs.uky.edu/~ldri225/braindump/test1.php
-- http://www.cs.uky.edu/~ldri225/braindump/test2.php
-- http://www.cs.uky.edu/~ldri225/braindump/test3.php
+After attending an event, volunteers have the option to rate both the individual event and the organization as a whole, with both a quantitative assessment and a written review. These reviews are then calculated to adjust an organization's visibility through our search, meaning the better an organization is at delivering positive change to their community, the easier it is to find them on our site.
 
-
-### The Interpreter
+### Organizer Flow
 ___
-*The Interpreter* is a reinforcement-learned sentiment analysis tool that will
-read the journal entries and return decimal values for different percentages of 
-certain emotions, which will then be passed on to the Drawer.
+Once authorized, an organizer can create a landing page for their organization. This can include contact information for the organization and also display any past or future events the organization would be running. That same page also show volunteers an organization's description, motto, and ratings from fellow volunteers.
 
-### The API
+Organizers can post photos to past events, showing what they accomplished. This is both a great way for volunteers to feel validated about their participation and to show new volunteers what exactly they should expect when coming to an event planned by an organization. We implemented a donation button that organizations can connect their PayPal to, making it easy for volunteers who cannot physically participate to still contribute in some way.
+
+### Authorization Flow
 ___
-The API is a Flask application that handles communication between the Journal, the Interpreter, and the Database. A link to that project can be found here: https://github.com/Ritchieluk/BrainDumpAPI
+Our landing page is as simplistic as possible, only asking for an email at first. It then passes the user to registration (if the email is not in the database) or login (if the user is already registered), minimizing keystrokes by automatically passing the email through to the necessary form. Upon completion of the form, users had to complete a ReCaptcha (provided by Google OAuth), and two-factor authentication (provided by Authy).
+
+A user's experience on the site is then dictated by their authorization role as volunteer or organization. Information is conditionally retrieved from the database only after verifying the user's role, maintaining the private connection between volunteers and organizations.
 
 
 ## Future Goals
 ___
-We envision many future applications for such a program.
+We envision many updates if this project is ever revisited.
 
-- The machine learning tool could be reinforced by actual analyzation data from psychologists and psychiatrists, and be used to flag entries potentially indicative of mental illness
-- Users could view summaries of their journal entries via most used words, most present emotion, graphs of emotional changes, most common themes, etc.
-- This machine learning instance could be used on more than just braindumps, the braindump journaling platform could expand to blogs, message boards, forums, each of which would have icons indicative of the emotional content within. 
-- There could be multiple styles of artful icons that users could choose between
-- The main site page could be an image of the summarized emotional content of all recent posts, to create a snapshot of the recent mindset of its users
-- Users of the site could search through posts and entries via tag words and view user opinions on the site via summarized emotional content of all entries relevant to the tag word(s).
-- Users could feed the ML instance pre-written content to be analyzed and represented
+- Hour-By-Hour Scheduler
+- Implement time-slots for volunteers to choose specific windows to participate
+- Allow volunteers to exchange time-slots
+- Enhance user experience
 
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
